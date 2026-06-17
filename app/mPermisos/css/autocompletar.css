@@ -1,0 +1,28 @@
+.autocompletar a:link {
+	color:#000000;
+	font-family: Verdana;
+	font-size: 11px;
+	text-decoration:none;
+	font-weight:normal;}
+
+.autocompletar a:hover {
+	color:#ffffff;
+	font-family: Verdana;
+	font-size: 11px;
+	text-decoration:none;
+	background-color:#669966;}
+#lista
+{
+				font-family:Verdana, Geneva, sans-serif;
+				font-size:11px;
+				background:#FFF;
+				background-repeat:no-repeat;
+                color:#333;
+				text-decoration:none;
+				padding-left:32px;
+}
+#reloj
+{
+
+display:none;
+}

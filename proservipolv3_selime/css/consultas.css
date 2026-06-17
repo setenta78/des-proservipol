@@ -1,0 +1,6 @@
+#textFechaDesde, #textFechaHasta, #selFiltroBusqueda, #selFiltroServicio{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}

@@ -1,0 +1,34 @@
+<?
+	header ('content-type: text/xml');
+	include("../configuracionBD2.php");
+	require("../../baseDatos/dbLicenciaMedica.class.php");
+	require("../../objetos/servicio.class.php");
+	require("../../objetos/unidad.class.php");
+	require("../../objetos/tipoServicio.class.php");
+	require("../../objetos/tipoServicioExtraordinario.class.php");
+	require("../../objetos/licenciaMedica.class.php");
+		
+	$unidad	= $_POST['unidad'];
+	$fecha 		= date("Ymd");
+
+	
+	$objServicios = new dbLicencia;
+	$objServicios->mensajeLicenciaMedica($unidad, $fecha,&$servicios);
+	$cantidad = count($servicios);
+	if ($servicios != ""){		
+	  	echo "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>";
+	  	echo "<root>";
+	   	for ($i=0; $i<$cantidad; $i++){
+	   		echo "<servicio>";
+	   		echo "<color>".$servicios[$i]->getColor()."</color>";
+   		  echo "<folio>".$servicios[$i]->getFolio()."</folio>";
+   		  echo "<fechaRegistro>".$servicios[$i]->getFechaIngreso()."</fechaRegistro>";
+	   		echo "<licenciaMedica>".$servicios[$i]->getDescripcionLicencia()."</licenciaMedica>";
+	   		echo "</servicio>";
+	 	}
+		echo "</root>";
+	} else {
+		echo "VACIO";
+	}
+	
+ ?>

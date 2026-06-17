@@ -1,0 +1,1245 @@
+<?
+Class dbFuncionarios extends Conexion
+{			
+	
+	function listaTotalFuncionarios($Unidad, $nombreBucar, $escalafon, $grado, $NombreCampo, $TipoOrden, $funcionarios){
+	
+		$FechaHoy = date("Y-m-d");
+		if ($NombreCampo == "grado")  $campoOrdenar = "FUNCIONARIO.ESC_CODIGO ".$TipoOrden.", FUNCIONARIO.GRA_CODIGO ".$TipoOrden.", FUNCIONARIO.FUN_CODIGO ".$TipoOrden;
+		if ($NombreCampo == "nombre") $campoOrdenar = "FUNCIONARIO.FUN_APELLIDOPATERNO ".$TipoOrden.", FUNCIONARIO.FUN_APELLIDOMATERNO ".$TipoOrden.", FUNCIONARIO.FUN_NOMBRE ".$TipoOrden;
+		if ($NombreCampo == "codigo") $campoOrdenar = "FUNCIONARIO.FUN_CODIGO ".$TipoOrden;
+		if ($NombreCampo == "cargo")  $campoOrdenar = "CARGO.CAR_DESCRIPCION ".$TipoOrden;
+		
+		//echo "NombreCampo " . $NombreCampo;
+		
+		if ($NombreCampo == "") $campoOrdenar = "FUNCIONARIO.ESC_CODIGO, FUNCIONARIO.GRA_CODIGO, FUNCIONARIO.FUN_CODIGO";
+		
+		if ($grado != "") $filtrarGrado = " AND GRADO.GRA_DESCRIPCION = '".$grado."' ";
+		
+		$sql = "SELECT 
+				  FUNCIONARIO.FUN_CODIGO,
+				  GRADO.GRA_DESCRIPCION,
+				  FUNCIONARIO.FUN_APELLIDOPATERNO,
+				  FUNCIONARIO.FUN_APELLIDOMATERNO,
+				  FUNCIONARIO.FUN_NOMBRE,
+				  FUNCIONARIO.FUN_NOMBRE2,
+				  FUNCIONARIO.UNI_CODIGO,
+				  CARGO.CAR_CODIGO,
+				  CARGO.CAR_DESCRIPCION
+				FROM
+				  GRADO
+				  INNER JOIN FUNCIONARIO ON (GRADO.ESC_CODIGO = FUNCIONARIO.ESC_CODIGO)
+				  AND (GRADO.GRA_CODIGO = FUNCIONARIO.GRA_CODIGO)
+				  LEFT OUTER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+				  LEFT OUTER JOIN CARGO ON (CARGO_FUNCIONARIO.CAR_CODIGO = CARGO.CAR_CODIGO)
+				WHERE
+				  FUNCIONARIO.UNI_CODIGO = ".$Unidad." ".$filtrarGrado."  AND
+				  CARGO_FUNCIONARIO.FECHA_HASTA IS NULL";
+				  
+		$sql = "SELECT 
+				  FUNCIONARIO.FUN_CODIGO,
+				  GRADO.GRA_DESCRIPCION,
+				  FUNCIONARIO.FUN_APELLIDOPATERNO,
+				  FUNCIONARIO.FUN_APELLIDOMATERNO,
+				  FUNCIONARIO.FUN_NOMBRE,
+				  FUNCIONARIO.FUN_NOMBRE2,
+				  FUNCIONARIO.UNI_CODIGO,
+				  CARGO.CAR_CODIGO,
+				  CARGO.CAR_DESCRIPCION,
+				  CARGO_FUNCIONARIO.UNI_AGREGADO AS COD_UNIDAD_AGREGADO,
+				  UNIDAD.UNI_DESCRIPCION AS DES_UNIDAD_AGREGADO,
+				  CARGO_FUNCIONARIO.CUADRANTE_CODIGO,
+				  CUADRANTE.CUA_ABREVIATURA,
+				   USUARIO.TUS_CODIGO,
+				  USUARIO.US_FECHACREACION
+				FROM
+				  GRADO
+				  INNER JOIN FUNCIONARIO ON (GRADO.ESC_CODIGO = FUNCIONARIO.ESC_CODIGO)
+				  AND (GRADO.GRA_CODIGO = FUNCIONARIO.GRA_CODIGO)
+				  LEFT OUTER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+				  LEFT OUTER JOIN CARGO ON (CARGO_FUNCIONARIO.CAR_CODIGO = CARGO.CAR_CODIGO)
+				  LEFT OUTER JOIN UNIDAD ON (CARGO_FUNCIONARIO.UNI_AGREGADO = UNIDAD.UNI_CODIGO)
+  				  LEFT OUTER JOIN UNIDAD_CUADRANTE ON (CARGO_FUNCIONARIO.CUADRANTE_CODIGO = UNIDAD_CUADRANTE.CUADRANTE_CODIGO)
+  				  LEFT OUTER JOIN CUADRANTE ON (UNIDAD_CUADRANTE.CUA_CODIGO = CUADRANTE.CUA_CODIGO)
+  				   LEFT OUTER JOIN USUARIO ON (FUNCIONARIO.FUN_CODIGO  = USUARIO.FUN_CODIGO)
+				WHERE
+				  FUNCIONARIO.UNI_CODIGO = ".$Unidad." ".$filtrarGrado." AND
+				  CARGO_FUNCIONARIO.FECHA_HASTA IS NULL";				  
+
+		if ($nombreBucar != "") $sql .= " AND (FUNCIONARIO.FUN_APELLIDOPATERNO like '%".$nombreBucar."%' OR FUNCIONARIO.FUN_APELLIDOMATERNO like '%".$nombreBucar."%' OR FUNCIONARIO.FUN_NOMBRE like '%".$nombreBucar."%') ";	
+
+		$sql .= " ORDER BY ".$campoOrdenar;
+								
+				//echo $sql;
+				
+				$i=0;
+				$result = $this->execstmt($this->Conecta(),$sql);
+				mysql_close();
+				while($myrow = mysql_fetch_array($result)){
+					$gradoJerarquico = new grado;
+					$gradoJerarquico->setDescripcion(STRTOUPPER($myrow["GRA_DESCRIPCION"]));
+					
+					$cargo = new cargo;
+					$cargo->setCodigo(STRTOUPPER($myrow["CAR_CODIGO"]));
+					$cargo->setDescripcion(STRTOUPPER($myrow["CAR_DESCRIPCION"]));
+					
+					$unidadAgregado = new unidad;
+					$unidadAgregado->setCodigoUnidad($myrow["COD_UNIDAD_AGREGADO"]);
+					$unidadAgregado->setDescripcionUnidad(STRTOUPPER($myrow["DES_UNIDAD_AGREGADO"]));
+					
+					$cuadrante = new cuadrante;
+					$cuadrante->setCodigo($myrow["CUADRANTE_CODIGO"]);
+					$cuadrante->setAbreviatura($myrow["CUA_ABREVIATURA"]);
+					
+					//$usuario = new usuario;
+					//$usuario->setPerfil($myrow["TUS_CODIGO"]);
+					//$usuario->setFechaCreacion($myrow["US_FECHACREACION"]);
+					
+					$persona = new funcionario;
+					$persona->setCodigoFuncionario(STRTOUPPER($myrow["FUN_CODIGO"]));
+					$persona->setApellidoPaterno(STRTOUPPER($myrow["FUN_APELLIDOPATERNO"]));
+					$persona->setApellidoMaterno(STRTOUPPER($myrow["FUN_APELLIDOMATERNO"]));
+					$persona->setPNombre(STRTOUPPER($myrow["FUN_NOMBRE"]));
+					$persona->setSNombre(STRTOUPPER($myrow["FUN_NOMBRE2"]));
+					$persona->setGrado($gradoJerarquico);
+					$persona->setCargo($cargo);
+					$persona->setUnidadAgregado($unidadAgregado);
+					$persona->setCuadrante($cuadrante);
+				  $persona->setPerfil($myrow["TUS_CODIGO"]);
+					$persona->setFechaCreacion($myrow["US_FECHACREACION"]);
+					
+				
+					
+					
+					$funcionarios[$i] = $persona;					
+					$i++;
+				}
+		}
+	
+			//FUNCION NUEVA 21-05-2015
+		function listaTotalFuncionariosAgregados($Unidad, $nombreBucar, $escalafon, $grado, $NombreCampo, $TipoOrden, $funcionarios){
+	
+		$FechaHoy = date("Y-m-d");
+		if ($NombreCampo == "grado")  $campoOrdenar = "FUNCIONARIO.ESC_CODIGO ".$TipoOrden.", FUNCIONARIO.GRA_CODIGO ".$TipoOrden.", FUNCIONARIO.FUN_CODIGO ".$TipoOrden;
+		if ($NombreCampo == "nombre") $campoOrdenar = "FUNCIONARIO.FUN_APELLIDOPATERNO ".$TipoOrden.", FUNCIONARIO.FUN_APELLIDOMATERNO ".$TipoOrden.", FUNCIONARIO.FUN_NOMBRE ".$TipoOrden;
+		if ($NombreCampo == "codigo") $campoOrdenar = "FUNCIONARIO.FUN_CODIGO ".$TipoOrden;
+		if ($NombreCampo == "cargo")  $campoOrdenar = "CARGO.CAR_DESCRIPCION ".$TipoOrden;
+		
+		//echo "NombreCampo " . $NombreCampo;
+		
+		if ($NombreCampo == "") $campoOrdenar = "FUNCIONARIO.ESC_CODIGO, FUNCIONARIO.GRA_CODIGO, FUNCIONARIO.FUN_CODIGO";
+		
+		if ($grado != "") $filtrarGrado = " AND GRADO.GRA_DESCRIPCION = '".$grado."' ";
+		
+		$sql = "SELECT 
+				  FUNCIONARIO.FUN_CODIGO,
+				  GRADO.GRA_DESCRIPCION,
+				  FUNCIONARIO.FUN_APELLIDOPATERNO,
+				  FUNCIONARIO.FUN_APELLIDOMATERNO,
+				  FUNCIONARIO.FUN_NOMBRE,
+				  FUNCIONARIO.FUN_NOMBRE2,
+				  FUNCIONARIO.UNI_CODIGO,
+				  CARGO.CAR_CODIGO,
+				  CARGO.CAR_DESCRIPCION
+				FROM
+				  GRADO
+				  INNER JOIN FUNCIONARIO ON (GRADO.ESC_CODIGO = FUNCIONARIO.ESC_CODIGO)
+				  AND (GRADO.GRA_CODIGO = FUNCIONARIO.GRA_CODIGO)
+				  LEFT OUTER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+				  LEFT OUTER JOIN CARGO ON (CARGO_FUNCIONARIO.CAR_CODIGO = CARGO.CAR_CODIGO)
+				  
+				WHERE
+				  FUNCIONARIO.UNI_CODIGO = ".$Unidad." ".$filtrarGrado."  AND
+				  CARGO_FUNCIONARIO.FECHA_HASTA IS NULL";
+				  
+		$sql = "SELECT 
+				  FUNCIONARIO.FUN_CODIGO,
+				  GRADO.GRA_DESCRIPCION,
+				  FUNCIONARIO.FUN_APELLIDOPATERNO,
+				  FUNCIONARIO.FUN_APELLIDOMATERNO,
+				  FUNCIONARIO.FUN_NOMBRE,
+				  FUNCIONARIO.FUN_NOMBRE2,
+				  FUNCIONARIO.UNI_CODIGO,
+				  CARGO.CAR_CODIGO,
+				  CARGO.CAR_DESCRIPCION,
+				  CARGO_FUNCIONARIO.UNI_AGREGADO AS COD_UNIDAD_AGREGADO,
+				  UNIDAD.UNI_DESCRIPCION AS UNIDAD_ORIGEN,
+				  CARGO_FUNCIONARIO.CUADRANTE_CODIGO,
+				  CUADRANTE.CUA_ABREVIATURA
+				FROM
+				  GRADO
+				  INNER JOIN FUNCIONARIO ON (GRADO.ESC_CODIGO = FUNCIONARIO.ESC_CODIGO)
+				  AND (GRADO.GRA_CODIGO = FUNCIONARIO.GRA_CODIGO)
+				  LEFT OUTER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+				  LEFT OUTER JOIN CARGO ON (CARGO_FUNCIONARIO.CAR_CODIGO = CARGO.CAR_CODIGO)
+				  LEFT OUTER JOIN UNIDAD ON (CARGO_FUNCIONARIO.UNI_CODIGO = UNIDAD.UNI_CODIGO)
+  				  LEFT OUTER JOIN UNIDAD_CUADRANTE ON (CARGO_FUNCIONARIO.CUADRANTE_CODIGO = UNIDAD_CUADRANTE.CUADRANTE_CODIGO)
+  				  LEFT OUTER JOIN CUADRANTE ON (UNIDAD_CUADRANTE.CUA_CODIGO = CUADRANTE.CUA_CODIGO)
+  				 
+                  
+				WHERE
+				  CARGO_FUNCIONARIO.UNI_AGREGADO = ".$Unidad." ".$filtrarGrado." AND
+				  CARGO_FUNCIONARIO.FECHA_HASTA IS NULL";				  
+		if ($nombreBucar != "") $sql .= " AND (FUNCIONARIO.FUN_APELLIDOPATERNO like '%".$nombreBucar."%' OR FUNCIONARIO.FUN_APELLIDOMATERNO like '%".$nombreBucar."%' OR FUNCIONARIO.FUN_NOMBRE like '%".$nombreBucar."%') ";	
+
+		$sql .= " ORDER BY ".$campoOrdenar;
+								
+				//echo $sql;
+				
+				$i=0;
+				$result = $this->execstmt($this->Conecta(),$sql);
+				mysql_close();
+				while($myrow = mysql_fetch_array($result)){
+					$gradoJerarquico = new grado;
+					$gradoJerarquico->setDescripcion(STRTOUPPER($myrow["GRA_DESCRIPCION"]));
+					
+					$cargo = new cargo;
+					$cargo->setCodigo(STRTOUPPER($myrow["CAR_CODIGO"]));
+					$cargo->setDescripcion(STRTOUPPER($myrow["CAR_DESCRIPCION"]));
+                    //$cargo->setDias($myrow["CANT_DIAS"]); //Agregado 30-06-2015
+					
+					$unidadAgregado = new unidad;
+					$unidadAgregado->setCodigoUnidad($myrow["COD_UNIDAD_AGREGADO"]);
+					$unidadAgregado->setDescripcionUnidad(STRTOUPPER($myrow["UNIDAD_ORIGEN"]));
+					
+					$cuadrante = new cuadrante;
+					$cuadrante->setCodigo($myrow["CUADRANTE_CODIGO"]);
+					$cuadrante->setAbreviatura($myrow["CUA_ABREVIATURA"]);
+					
+
+                    
+					$persona = new funcionario;
+					$persona->setCodigoFuncionario(STRTOUPPER($myrow["FUN_CODIGO"]));
+					$persona->setApellidoPaterno(STRTOUPPER($myrow["FUN_APELLIDOPATERNO"]));
+					$persona->setApellidoMaterno(STRTOUPPER($myrow["FUN_APELLIDOMATERNO"]));
+					$persona->setPNombre(STRTOUPPER($myrow["FUN_NOMBRE"]));
+					$persona->setSNombre(STRTOUPPER($myrow["FUN_NOMBRE2"]));
+					$persona->setGrado($gradoJerarquico);
+					$persona->setCargo($cargo);
+					$persona->setUnidadAgregado($unidadAgregado);
+					$persona->setCuadrante($cuadrante);
+                    
+					
+					$funcionarios[$i] = $persona;					
+					$i++;
+				}
+		}
+	//FIN FUNCION
+        
+		function bucaFuncionarios($codigoFuncionario, $funcionarios){
+				
+		$sql = "SELECT 
+			   `funcionarios`.`Fun_Codigo`,
+			   `grados`.`Esc_Id`,
+			   `grados`.`Gr_Id`,
+	    	   `grados`.`Gr_Descripcion`,
+	    	   `funcionarios`.`Fun_APaterno`,
+	    	   `funcionarios`.`Fun_AMaterno`,
+	    	   `funcionarios`.`Fun_Nombres`,
+	    	   `funcionarios`.`Unid_Id`,
+	    	   `CARGOS`.`CAR_CODIGO`,
+	    	   `CARGOS`.`CAR_DESCRIPCION`
+			    FROM `funcionarios`
+	    	    INNER JOIN `grados` ON (`funcionarios`.`Fun_Grado` = `grados`.`Gr_Id`) AND (`funcionarios`.`Fun_Escalafon` = `grados`.`Esc_Id`)
+	    	    LEFT OUTER JOIN `CARGOS` ON (`funcionarios`.`CAR_CODIGO` = `CARGOS`.`CAR_CODIGO`)
+	    	    WHERE (`funcionarios`.`Fun_Codigo` = '".$codigoFuncionario."')";
+	    	    
+	    	    
+	    $sql = "SELECT 
+				  FUNCIONARIO.FUN_CODIGO,
+				  FUNCIONARIO.ESC_CODIGO,
+				  FUNCIONARIO.GRA_CODIGO,
+				  GRADO.GRA_DESCRIPCION,
+				  FUNCIONARIO.FUN_RUT,
+				  FUNCIONARIO.FUN_APELLIDOPATERNO,
+				  FUNCIONARIO.FUN_APELLIDOMATERNO,
+				  FUNCIONARIO.FUN_NOMBRE,
+				  FUNCIONARIO.FUN_NOMBRE2,
+				  FUNCIONARIO.UNI_CODIGO,
+				  UNIDAD.UNI_DESCRIPCION,
+				  CARGO.CAR_CODIGO,
+				  CARGO.CAR_DESCRIPCION,
+				  CARGO_FUNCIONARIO.FECHA_DESDE,
+				  CARGO_FUNCIONARIO.CUADRANTE_CODIGO,
+				  CARGO_FUNCIONARIO.UNI_AGREGADO AS COD_AGREGADO,
+  				  UNIDAD1.UNI_DESCRIPCION AS DES_AGREGADO,
+                  CARGO_FUNCIONARIO.CANT_DIAS,
+				   USUARIO.TUS_CODIGO,
+				  USUARIO.US_FECHACREACION
+				FROM
+				  GRADO
+				  INNER JOIN FUNCIONARIO ON (GRADO.ESC_CODIGO = FUNCIONARIO.ESC_CODIGO) AND (GRADO.GRA_CODIGO = FUNCIONARIO.GRA_CODIGO)
+				  LEFT OUTER JOIN UNIDAD ON (FUNCIONARIO.UNI_CODIGO = UNIDAD.UNI_CODIGO)
+				  LEFT OUTER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+				  LEFT OUTER JOIN CARGO ON (CARGO_FUNCIONARIO.CAR_CODIGO = CARGO.CAR_CODIGO)
+				  LEFT OUTER JOIN UNIDAD UNIDAD1 ON (CARGO_FUNCIONARIO.UNI_AGREGADO = UNIDAD1.UNI_CODIGO)
+				   LEFT OUTER JOIN USUARIO ON (FUNCIONARIO.FUN_CODIGO  = USUARIO.FUN_CODIGO)
+				WHERE
+				  CARGO_FUNCIONARIO.FECHA_HASTA IS NULL	AND
+				  FUNCIONARIO.FUN_CODIGO = '".$codigoFuncionario."'";
+	    	    //echo $sql;
+	    	    
+				$i=0;
+				$result = $this->execstmt($this->Conecta(),$sql);
+				mysql_close();
+				while($myrow = mysql_fetch_array($result)){
+					$escalafon = new escalafon;
+					$escalafon->setCodigo(STRTOUPPER($myrow["ESC_CODIGO"]));
+					$escalafon->setDescripcion("");
+					
+					$grado = new grado;
+					$grado->setEscalafon($escalafon);
+					$grado->setCodigo(STRTOUPPER($myrow["GRA_CODIGO"]));
+					$grado->setDescripcion(STRTOUPPER($myrow["GRA_DESCRIPCION"]));
+					
+					$cargo = new cargo;
+					$cargo->setCodigo(STRTOUPPER($myrow["CAR_CODIGO"]));
+					$cargo->setDescripcion(STRTOUPPER($myrow["CAR_DESCRIPCION"]));
+					$cargo->setFechaDesde($myrow["FECHA_DESDE"]);
+					$cargo->setCuadrante($myrow["CUADRANTE_CODIGO"]);
+                    $cargo->setDias($myrow["CANT_DIAS"]); //aqui agregado
+					
+					$unidadAgregado = new unidad;
+					$unidadAgregado->setCodigoUnidad($myrow["COD_AGREGADO"]);
+					$unidadAgregado->setDescripcionUnidad($myrow["DES_AGREGADO"]);
+					
+					$unidad = new unidad;
+					$unidad->setCodigoUnidad($myrow["UNI_CODIGO"]);
+					$unidad->setDescripcionUnidad($myrow["UNI_DESCRIPCION"]);
+					
+					$funcionario = new funcionario;
+					$funcionario->setCodigoFuncionario(STRTOUPPER($myrow["FUN_CODIGO"]));
+					$funcionario->setApellidoPaterno(STRTOUPPER($myrow["FUN_APELLIDOPATERNO"]));
+					$funcionario->setApellidoMaterno(STRTOUPPER($myrow["FUN_APELLIDOMATERNO"]));
+					$funcionario->setPNombre(STRTOUPPER($myrow["FUN_NOMBRE"]));
+					$funcionario->setSNombre(STRTOUPPER($myrow["FUN_NOMBRE2"]));
+					$funcionario->setGrado($grado);
+					$funcionario->setCargo($cargo);
+					$funcionario->setUnidad($unidad);
+					$funcionario->setUnidadAgregado($unidadAgregado);
+					$funcionario->setRutFuncionario(STRTOUPPER($myrow["FUN_RUT"]));
+					$funcionario->setPerfil($myrow["TUS_CODIGO"]);
+					$funcionario->setFechaCreacion($myrow["US_FECHACREACION"]);
+					
+					$funcionarios[$i] = $funcionario;					
+					$i++;
+				}
+		}
+		
+		function buscarFuncionarioPersonal($codigoFuncionario, $funcionarios){    	    
+	    	    
+	    $sql = "SELECT 
+								B.PEFBCOD,
+								B.PEFBRUT,
+								B.PEFBAPEP,
+								B.PEFBAPEM,
+								B.PEFBNOM1,
+								B.PEFBNOM2,
+								B.PEFBESC,
+								B.PEFBGRA
+							FROM pesbasi B
+							WHERE B.PEFBCOD = '".$codigoFuncionario."'";
+	    	    //echo $sql;
+	    	    
+				$i=0;
+				$result = $this->execstmt($this->Conecta(),$sql);
+				mysql_close();
+				while($myrow = mysql_fetch_array($result)){
+					$escalafon = new escalafon;
+					$escalafon->setCodigo(STRTOUPPER($myrow["PEFBESC"]));
+					
+					$grado = new grado;
+					$grado->setEscalafon($escalafon);
+					$grado->setCodigo(STRTOUPPER($myrow["PEFBGRA"]));
+					
+					$funcionario = new funcionario;
+					$funcionario->setCodigoFuncionario(STRTOUPPER($myrow["PEFBCOD"]));
+					$funcionario->setRutFuncionario(STRTOUPPER($myrow["PEFBRUT"]));
+					$funcionario->setApellidoPaterno(STRTOUPPER($myrow["PEFBAPEP"]));
+					$funcionario->setApellidoMaterno(STRTOUPPER($myrow["PEFBAPEM"]));
+					$funcionario->setPNombre(STRTOUPPER($myrow["PEFBNOM1"]));
+					$funcionario->setSNombre(STRTOUPPER($myrow["PEFBNOM2"]));
+					$funcionario->setGrado($grado);
+					
+					$funcionarios[$i] = $funcionario;					
+					$i++;
+				}
+		}
+		
+		function updateFuncionario($funcionario){
+					
+			$sql = "UPDATE FUNCIONARIO SET
+					ESC_CODIGO = " . $funcionario->getGrado()->getEscalafon()->getCodigo() . ", 
+					GRA_CODIGO =".$funcionario->getGrado()->getCodigo(). ",
+					FUN_APELLIDOPATERNO = '".$funcionario->getApellidoPaterno(). "',
+					FUN_APELLIDOMATERNO = '".$funcionario->getApellidoMaterno(). "',
+					FUN_NOMBRE = '".$funcionario->getPNombre(). "',
+					FUN_NOMBRE2 = '".$funcionario->getSNombre(). "',
+					UNI_CODIGO = '".$funcionario->getUnidad()->getCodigoUnidad(). "'
+					WHERE FUN_CODIGO ='" . $funcionario->getCodigoFuncionario() . "'";
+					
+			//echo $sql;
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}
+		
+		
+		function updateCargoFuncionario($funcionario, $fechaNuevoCargo){
+			
+			$sql = "UPDATE CARGO_FUNCIONARIO SET
+					FECHA_HASTA = '".$fechaNuevoCargo."'
+					WHERE FUN_CODIGO = '".$funcionario->getCodigoFuncionario()."' AND FECHA_HASTA IS NULL";
+			
+			//echo $sql;
+			//$result = 1;
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}		
+		
+		
+		function updateCuadranteFuncionario($funcionario){
+			
+			$sql = "UPDATE CARGO_FUNCIONARIO SET
+					CUADRANTE_CODIGO = ".$funcionario->GetCargo()->getCuadrante()."
+					WHERE FUN_CODIGO = '".$funcionario->getCodigoFuncionario()."' AND FECHA_HASTA IS NULL";
+			
+			//echo $sql;
+			//$result = 1;
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}	
+
+		
+		function insertCargoFuncionario($funcionario, $fechaNuevoCargo){
+		  	 //Control agregado el 30-06-2015
+            if ($funcionario->GetCargo()->getDias() == "") $diasGuardar = 'NULL';
+            else $diasGuardar = $funcionario->GetCargo()->getDias();
+			
+			$sql = "INSERT INTO CARGO_FUNCIONARIO (FUN_CODIGO, CAR_CODIGO, UNI_CODIGO, FECHA_DESDE, CUADRANTE_CODIGO, UNI_AGREGADO, CANT_DIAS)
+					VALUES ('".$funcionario->getCodigoFuncionario()."',".$funcionario->GetCargo()->getCodigo().",".$funcionario->getUnidad()->getCodigoUnidad().",'".$fechaNuevoCargo."',".$funcionario->GetCargo()->getCuadrante().",".$funcionario->getUnidadAgregado()->getCodigoUnidad().",".$diasGuardar.");";
+			
+			//echo $sql;
+			//$result = 1;
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}
+		
+		
+		function nuevoFuncionario($funcionario){ 
+
+			$sql = "INSERT INTO FUNCIONARIO 
+				   (FUN_CODIGO, FUN_RUT, ESC_CODIGO, GRA_CODIGO, FUN_APELLIDOPATERNO, FUN_APELLIDOMATERNO, FUN_NOMBRE, UNI_CODIGO) VALUES
+			 	   ('".$funcionario->getCodigoFuncionario()."',
+			 	    '".$funcionario->getRutFuncionario()."',
+			 	     ".$funcionario->getGrado()->getEscalafon()->getCodigo().",
+			 	     ".$funcionario->getGrado()->getCodigo().",
+			 	    '".$funcionario->getApellidoPaterno()."',
+			 	    '".$funcionario->getApellidoMaterno()."',
+			 	    '".$funcionario->getPNombre()."',
+			 	    ".$funcionario->getUnidad()->getCodigoUnidad().")";
+			
+			//echo $sql;
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}
+		
+		
+		function dejarDisponible($funcionario, $Fecha){
+			
+			$sql = "UPDATE FUNCIONARIO SET UNI_CODIGO = Null WHERE FUN_CODIGO ='" . $funcionario->getCodigoFuncionario() . "'";
+			
+			//echo $sql;
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}
+
+
+		function bajaRetiroFuncionario($funcionario, $motivo, $fechaBajaRetiro){ 
+							
+			$sql = "INSERT INTO CARGO_FUNCIONARIO (FUN_CODIGO, CAR_CODIGO, UNI_CODIGO, FECHA_DESDE, FECHA_HASTA)
+					VALUES ('".$funcionario->getCodigoFuncionario()."',".$funcionario->GetCargo()->getCodigo().","
+					.$funcionario->getUnidad()->getCodigoUnidad().",'".$fechaBajaRetiro."','".$fechaBajaRetiro."');";
+			
+			//echo $sql;		
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}
+		
+		
+		function bajaFuncionario($funcionario, $motivo, $fecha){ 
+			
+			//$sql = "INSERT INTO retiro (Re_Codigo, Re_Escalafon, Re_Grado, Re_APaterno, Re_AMaterno, Re_Nombres, Unid_Id, Re_Fecha) VALUES
+			//	    ('".$funcionario->getCodigoFuncionario()."',
+			// 	     ".$funcionario->getGrado()->getEscalafon()->getCodigo().",
+			// 	     ".$funcionario->getGrado()->getCodigo().",
+			// 	    '".$funcionario->getApellidoPaterno()."',
+			// 	    '".$funcionario->getApellidoMaterno()."',
+			// 	    '".$funcionario->getPNombre()."',
+			// 	    '".$funcionario->getUnidad()->getCodigoUnidad()."',
+			// 	     ".$funcionario->getCargo()->getCodigo().",
+			// 	    '".$Fecha."')";
+
+			$sql = "UPDATE FUNCIONARIO SET UNI_CODIGO = '-1' WHERE FUN_CODIGO ='" . $funcionario->getCodigoFuncionario() . "'";			 	    
+			
+			//echo $sql;		
+			return 1;	
+			//$result = $this->execstmt($this->Conecta(),$sql);
+		}
+		
+		
+		function retiroFuncionario($funcionario, $motivo, $fecha){ 
+
+			$sql = "UPDATE funcionarios SET Unid_Id = '0' WHERE Fun_Codigo ='" . $funcionario->getCodigoFuncionario() . "'";			 	    
+			
+			//echo $sql;		
+			return 1;	
+			//$result = $this->execstmt($this->Conecta(),$sql);
+		}
+		
+		
+		
+		function borraFuncionario($funcionario){
+			
+			$sql = "DELETE FROM funcionarios WHERE Fun_Codigo ='". $funcionario->getCodigoFuncionario() ."'";
+			
+			//echo $sql;
+			return 1;
+			//$result = $this->execstmt($this->Conecta(),$sql);			
+		}
+		
+		function borraUsuario($funcionario)
+		{
+			$sql = "DELETE FROM USUARIO WHERE FUN_CODIGO ='". $funcionario->getCodigoFuncionario()."'";
+			//echo $sql;
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}
+		
+		
+		//-- FUNCIONES PARA FICHA SERVICIO
+		
+		
+		function listaFuncionariosDisponiblesOld($unidad, $fechaServicio, $tipoServicio, $correlativo, $funcionarios){
+	
+		$nombreCampo = "FUNCIONARIO.FUN_APELLIDOPATERNO, FUNCIONARIO.FUN_APELLIDOMATERNO, FUNCIONARIO.FUN_NOMBRE";
+		$tipoOrden 	 = "ASC";
+		
+		if ($tipoServicio != 2000){
+			
+			if ($tipoServicio != 1100){
+				
+				$dd = ",150";
+				if ($tipoServicio >= 110 && $tipoServicio <= 180) $dd = "";
+								
+				$sql = "SELECT 
+						  FUNCIONARIO.FUN_CODIGO,
+						  GRADO.GRA_DESCRIPCION,
+						  FUNCIONARIO.FUN_APELLIDOPATERNO,
+						  FUNCIONARIO.FUN_APELLIDOMATERNO,
+						  FUNCIONARIO.FUN_NOMBRE
+						FROM
+						  FUNCIONARIO
+						  INNER JOIN GRADO ON (FUNCIONARIO.ESC_CODIGO = GRADO.ESC_CODIGO) AND (FUNCIONARIO.GRA_CODIGO = GRADO.GRA_CODIGO)
+						  LEFT OUTER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+						WHERE 
+							(FUNCIONARIO.UNI_CODIGO = ".$unidad.") AND
+							(CARGO_FUNCIONARIO.FECHA_DESDE <= '".$fechaServicio."' AND (CARGO_FUNCIONARIO.FECHA_HASTA > '".$fechaServicio."' OR CARGO_FUNCIONARIO.FECHA_HASTA IS NULL)) AND 
+							(CARGO_FUNCIONARIO.CAR_CODIGO NOT IN (1000, 2000, 3000, 3100, 4000, 5000".$dd.")) AND
+							(FUNCIONARIO.FUN_CODIGO NOT IN (                                                            
+									SELECT                                                                               
+									  FUNCIONARIO_SERVICIO.FUN_CODIGO                                                    
+									FROM                                                                                 
+									  FUNCIONARIO_SERVICIO                                                               
+									  LEFT OUTER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO)
+									  AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)    
+									WHERE 
+									  SERVICIO.TSERV_CODIGO <> 1100 AND                                                                                   
+									  SERVICIO.FECHA = '".$fechaServicio."'))"; 
+			} else {
+				
+				$xx = "";
+				if ($correlativo != "") $xx = "AND
+											   (FUNCIONARIO.FUN_CODIGO NOT IN (                                                            
+												SELECT                                                                               
+												  FUNCIONARIO_SERVICIO.FUN_CODIGO                                                    
+												FROM                                                                                 
+												  FUNCIONARIO_SERVICIO                                                               
+												  LEFT OUTER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO)
+												  AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)    
+												WHERE                                                                                
+												  (FUNCIONARIO_SERVICIO.UNI_CODIGO = ".$unidad ." AND FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = ".$correlativo.")))";
+				
+							
+				 
+				
+				$sql = "SELECT 
+						  FUNCIONARIO.FUN_CODIGO,
+						  GRADO.GRA_DESCRIPCION,
+						  FUNCIONARIO.FUN_APELLIDOPATERNO,
+						  FUNCIONARIO.FUN_APELLIDOMATERNO,
+						  FUNCIONARIO.FUN_NOMBRE
+						FROM
+						  FUNCIONARIO
+						  INNER JOIN GRADO ON (FUNCIONARIO.ESC_CODIGO = GRADO.ESC_CODIGO) AND (FUNCIONARIO.GRA_CODIGO = GRADO.GRA_CODIGO)
+						  LEFT OUTER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+						WHERE 
+							(FUNCIONARIO.UNI_CODIGO = ".$unidad.") AND
+							(CARGO_FUNCIONARIO.FECHA_DESDE <= '".$fechaServicio."' AND (CARGO_FUNCIONARIO.FECHA_HASTA > '".$fechaServicio."' OR CARGO_FUNCIONARIO.FECHA_HASTA IS NULL)) AND 
+							(CARGO_FUNCIONARIO.CAR_CODIGO NOT IN (1000, 2000, 3000, 3100, 4000, 5000))".$xx; 
+
+			}
+		}
+		
+		
+		if ($tipoServicio == 2000){
+
+			$xx = "";
+			if ($correlativo != "") $xx = " OR (FUNCIONARIO_SERVICIO.UNI_CODIGO = ".$unidad ." AND FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = ".$correlativo.")";
+
+			$sql = "SELECT 
+					  FUNCIONARIO.FUN_CODIGO,
+					  GRADO.GRA_DESCRIPCION,
+					  FUNCIONARIO.FUN_APELLIDOPATERNO,
+					  FUNCIONARIO.FUN_APELLIDOMATERNO,
+					  FUNCIONARIO.FUN_NOMBRE
+					FROM
+					  FUNCIONARIO
+					  INNER JOIN GRADO ON (FUNCIONARIO.ESC_CODIGO = GRADO.ESC_CODIGO) AND (FUNCIONARIO.GRA_CODIGO = GRADO.GRA_CODIGO)
+					  LEFT OUTER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+					WHERE 
+						(FUNCIONARIO.UNI_CODIGO = ".$unidad.") AND
+						(CARGO_FUNCIONARIO.FECHA_DESDE <= '".$fechaServicio."' AND (CARGO_FUNCIONARIO.FECHA_HASTA > '".$fechaServicio."' OR CARGO_FUNCIONARIO.FECHA_HASTA IS NULL)) AND 
+						(CARGO_FUNCIONARIO.CAR_CODIGO IN (150)) AND
+						(FUNCIONARIO.FUN_CODIGO NOT IN (                                                            
+								SELECT                                                                               
+								  FUNCIONARIO_SERVICIO.FUN_CODIGO                                                    
+								FROM                                                                                 
+								  FUNCIONARIO_SERVICIO                                                               
+								  LEFT OUTER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO)
+								  AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)    
+								  WHERE SERVICIO.FECHA = '".$fechaServicio."' AND SERVICIO.TSERV_CODIGO IN (120,130,140,150,160,170,180)".$xx."))";
+
+		}
+		$sql .= " ORDER BY ".$nombreCampo." ".$tipoOrden;
+								
+				//echo $sql . "\n\n";
+				
+				$i=0;
+				$result = $this->execstmt($this->Conecta(),$sql);
+				mysql_close();
+				while($myrow = mysql_fetch_array($result)){
+					$grado = new grado;
+					$grado->setDescripcion(STRTOUPPER($myrow["GRA_DESCRIPCION"]));
+					
+					$funcionario = new funcionario;
+					$funcionario->setCodigoFuncionario(STRTOUPPER($myrow["FUN_CODIGO"]));
+					$funcionario->setApellidoPaterno(STRTOUPPER($myrow["FUN_APELLIDOPATERNO"]));
+					$funcionario->setApellidoMaterno(STRTOUPPER($myrow["FUN_APELLIDOMATERNO"]));
+					$funcionario->setPNombre(STRTOUPPER($myrow["FUN_NOMBRE"]));
+					$funcionario->setGrado($grado);
+					
+					$funcionarios[$i] = $funcionario;					
+					$i++;
+				}
+		}
+		
+		
+		function listaFuncionariosDisponibles($unidad, $fechaServicio, $tipoServicio, $correlativo, $servicio, $funcionarios){
+	
+			//$nombreCampo = "FUNCIONARIO.FUN_APELLIDOPATERNO, FUNCIONARIO.FUN_APELLIDOMATERNO, FUNCIONARIO.FUN_NOMBRE";
+			$nombreCampo = "FUN_APELLIDOPATERNO, FUN_APELLIDOMATERNO, FUN_NOMBRE, FUN_NOMBRE2";
+			$tipoOrden 	 = "ASC";
+		
+			$sql = "(SELECT
+					  FUNCIONARIO.FUN_CODIGO AS FUN_CODIGO,
+					  GRADO.GRA_DESCRIPCION AS GRA_DESCRIPCION,
+					  FUNCIONARIO.FUN_APELLIDOPATERNO AS FUN_APELLIDOPATERNO,
+					  FUNCIONARIO.FUN_APELLIDOMATERNO AS FUN_APELLIDOMATERNO,
+					  FUNCIONARIO.FUN_NOMBRE AS FUN_NOMBRE,
+					  FUNCIONARIO.FUN_NOMBRE2 AS FUN_NOMBRE2
+					FROM
+					  FUNCIONARIO
+					  INNER JOIN GRADO ON (FUNCIONARIO.ESC_CODIGO = GRADO.ESC_CODIGO) AND (FUNCIONARIO.GRA_CODIGO = GRADO.GRA_CODIGO)
+					  LEFT OUTER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+					WHERE 
+					  (CARGO_FUNCIONARIO.UNI_CODIGO = ".$unidad.") AND
+					  (CARGO_FUNCIONARIO.FECHA_DESDE <= '".$fechaServicio."' AND (CARGO_FUNCIONARIO.FECHA_HASTA > '".$fechaServicio."' OR CARGO_FUNCIONARIO.FECHA_HASTA IS NULL)) AND 
+					  (CARGO_FUNCIONARIO.CAR_CODIGO NOT IN (1000, 2000, 3000, 3100, 3001, 3002, 3003, 3004, 3005, 4000, 4100, 5000, 6000, 3500, 7010))";
+			
+            
+				if ($correlativo != "" && $correlativo != "-1") {
+						$sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (       
+									SELECT 
+									  FUNCIONARIO_SERVICIO.FUN_CODIGO
+									FROM
+									  FUNCIONARIO_SERVICIO
+								    WHERE
+									  FUNCIONARIO_SERVICIO.UNI_CODIGO = ".$unidad." AND 
+									  FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = ".$correlativo.")";
+				}
+		
+			
+				if ($correlativo == "-1"){
+						$sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (
+									SELECT                                                                           
+						          		FUNCIONARIO_SERVICIO.FUN_CODIGO                                                
+						        	FROM                                                                             
+						          		FUNCIONARIO_SERVICIO                                                           
+						          		INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) 
+						          		AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+						        	WHERE SERVICIO.FECHA = '".$fechaServicio."')";
+				}                   
+				
+				if ($servicio == 142 || $servicio == 143 || $servicio == 144 || $servicio == 145 || $servicio == 146 || $servicio == 147 || $servicio == 148 || $servicio == 149 || $servicio == 151 || $servicio == 152 || $servicio == 153){
+					   $sql .= " AND FUNCIONARIO.FUN_CODIGO IN (
+									SELECT                                                                           
+						          		FUNCIONARIO_SERVICIO.FUN_CODIGO                                                
+						        	FROM                                                                             
+						          		FUNCIONARIO_SERVICIO                                                           
+						          		INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) 
+						          		AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+						        	WHERE SERVICIO.FECHA = '".$fechaServicio."')";
+				}
+				
+				
+				if ($servicio == 607){
+					   $sql .= " AND FUNCIONARIO.FUN_CODIGO IN (
+									SELECT                                                                           
+						          		FUNCIONARIO_SERVICIO.FUN_CODIGO                                                
+						        	FROM                                                                             
+						          		FUNCIONARIO_SERVICIO                                                           
+						          		INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) 
+						          		AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+						        	WHERE SERVICIO.FECHA = '".$fechaServicio."' AND SERVICIO.TSERV_CODIGO IN (191, 194, 195, 196, 197, 198, 625, 201))";
+				}
+				
+                                //agregado
+			//	if ($servicio != 161 || $servicio != 162 || $servicio != 170 || $servicio != 180 || $servicio != 628 || $servicio != 629 || $servicio != 630 || $servicio != 631 || $servicio != 632 || $servicio != 633){
+			//			$sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (
+			//						SELECT                                                                           
+			//		          		FUNCIONARIO_SERVICIO.FUN_CODIGO                                                
+			//			        	FROM                                                                             
+			//		          		FUNCIONARIO_SERVICIO                                                           
+			//			          		INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) 
+			//			          		AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+            //                            INNER JOIN TIPO_SERVICIO ON (SERVICIO.TSERV_CODIGO = TIPO_SERVICIO.TSERV_CODIGO)
+			//			        	WHERE SERVICIO.FECHA = '".$fechaServicio."' AND TIPO_SERVICIO.TSERV_CODIGO IN(161,162,170,180,628,629,630,631,632,633))";
+									
+			//	}  
+			
+ 
+      
+			$sql .= ") UNION (";
+			
+			$sql .= "SELECT 
+						  CARGO_FUNCIONARIO.FUN_CODIGO AS FUN_CODIGO,
+						  GRADO.GRA_DESCRIPCION AS GRA_DESCRIPCION,
+						  FUNCIONARIO.FUN_APELLIDOPATERNO AS FUN_APELLIDOPATERNO,
+						  FUNCIONARIO.FUN_APELLIDOMATERNO AS FUN_APELLIDOMATERNO,
+						  FUNCIONARIO.FUN_NOMBRE AS FUN_NOMBRE,
+						  FUNCIONARIO.FUN_NOMBRE2 AS FUN_NOMBRE2
+						FROM
+						  GRADO
+						  INNER JOIN FUNCIONARIO ON (GRADO.ESC_CODIGO = FUNCIONARIO.ESC_CODIGO)
+						  AND (GRADO.GRA_CODIGO = FUNCIONARIO.GRA_CODIGO)
+						  INNER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+						WHERE
+						  CARGO_FUNCIONARIO.UNI_AGREGADO = ".$unidad." AND 
+						  CARGO_FUNCIONARIO.FECHA_DESDE <= '".$fechaServicio."' AND (CARGO_FUNCIONARIO.FECHA_HASTA > '".$fechaServicio."' OR CARGO_FUNCIONARIO.FECHA_HASTA IS NULL)";
+			
+         
+            
+				if ($correlativo != "" && $correlativo != "-1") {
+						$sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (       
+									SELECT 
+									  FUNCIONARIO_SERVICIO.FUN_CODIGO
+									FROM
+									  FUNCIONARIO_SERVICIO
+								    WHERE
+									  FUNCIONARIO_SERVICIO.UNI_CODIGO = ".$unidad." AND 
+									  FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = ".$correlativo.")";
+				}
+
+				if ($correlativo == "-1"){
+						$sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (
+									SELECT                                                                           
+						          		FUNCIONARIO_SERVICIO.FUN_CODIGO                                                
+						        	FROM                                                                             
+						          		FUNCIONARIO_SERVICIO                                                           
+						          		INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) 
+						          		AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+						        	WHERE SERVICIO.FECHA = '".$fechaServicio."')";
+									
+				}    
+				
+				if ($servicio == 142 || $servicio == 143 || $servicio == 144 || $servicio == 145 || $servicio == 146 || $servicio == 147 || $servicio == 148 || $servicio == 149 || $servicio == 151 || $servicio == 152 || $servicio == 153){
+					   $sql .= " AND FUNCIONARIO.FUN_CODIGO IN (
+									SELECT                                                                           
+						          		FUNCIONARIO_SERVICIO.FUN_CODIGO                                                
+						        	FROM                                                                             
+						          		FUNCIONARIO_SERVICIO                                                           
+						          		INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) 
+						          		AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+						        	WHERE SERVICIO.FECHA = '".$fechaServicio."')";
+				}
+				
+				
+				if ($servicio == 607){
+					   $sql .= " AND FUNCIONARIO.FUN_CODIGO IN (
+									SELECT                                                                           
+						          		FUNCIONARIO_SERVICIO.FUN_CODIGO                                                
+						        	FROM                                                                             
+						          		FUNCIONARIO_SERVICIO                                                           
+						          		INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) 
+						          		AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+						        	WHERE SERVICIO.FECHA = '".$fechaServicio."' AND SERVICIO.TSERV_CODIGO IN (191, 194, 195, 196, 197, 198, 625, 201))";
+				}
+                
+       
+                       //agregado
+				//if ($servicio != 161 || $servicio != 162 || $servicio != 170 || $servicio != 180 || $servicio != 628 || $servicio != 629 || $servicio != 630 || $servicio != 631 || $servicio != 632 || $servicio != 633){
+				//		$sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (
+				//					SELECT                                                                           
+				//	          		FUNCIONARIO_SERVICIO.FUN_CODIGO                                                
+				//		        	FROM                                                                             
+				//	          		FUNCIONARIO_SERVICIO                                                           
+				//		          		INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) 
+				//		          		AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+                //                        INNER JOIN TIPO_SERVICIO ON (SERVICIO.TSERV_CODIGO = TIPO_SERVICIO.TSERV_CODIGO)
+				//		        	WHERE SERVICIO.FECHA = '".$fechaServicio."' AND TIPO_SERVICIO.TSERV_CODIGO IN(161,162,170,180,628,629,630,631,632,633))";
+									
+				//}  
+				
+  
+       
+			$sql .= ")";													  
+			$sql .= " ORDER BY ".$nombreCampo." ".$tipoOrden;
+                                
+								
+			//echo $sql . "\n\n";
+                                
+			$i=0;
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			while($myrow = mysql_fetch_array($result)){
+				$grado = new grado;
+				$grado->setDescripcion(STRTOUPPER($myrow["GRA_DESCRIPCION"]));
+					
+				$funcionario = new funcionario;
+				$funcionario->setCodigoFuncionario(STRTOUPPER($myrow["FUN_CODIGO"]));
+				$funcionario->setApellidoPaterno(STRTOUPPER($myrow["FUN_APELLIDOPATERNO"]));
+				$funcionario->setApellidoMaterno(STRTOUPPER($myrow["FUN_APELLIDOMATERNO"]));
+				$funcionario->setPNombre(STRTOUPPER($myrow["FUN_NOMBRE"]));
+				$funcionario->setSNombre(STRTOUPPER($myrow["FUN_NOMBRE2"]));
+				$funcionario->setGrado($grado);
+					        
+				$funcionarios[$i] = $funcionario;					
+				$i++;       
+			}
+		}
+
+
+		function listaFuncionariosDisponiblesUltimo($unidad, $fechaServicio, $tipoServicio, $correlativo, $funcionarios){
+	
+			//$nombreCampo = "FUNCIONARIO.FUN_APELLIDOPATERNO, FUNCIONARIO.FUN_APELLIDOMATERNO, FUNCIONARIO.FUN_NOMBRE";
+			$nombreCampo = "FUN_APELLIDOPATERNO, FUN_APELLIDOMATERNO, FUN_NOMBRE";
+			$tipoOrden 	 = "ASC";
+		
+			$sql = "(SELECT
+					  FUNCIONARIO.FUN_CODIGO AS FUN_CODIGO,
+					  GRADO.GRA_DESCRIPCION AS GRA_DESCRIPCION,
+					  FUNCIONARIO.FUN_APELLIDOPATERNO AS FUN_APELLIDOPATERNO,
+					  FUNCIONARIO.FUN_APELLIDOMATERNO AS FUN_APELLIDOMATERNO,
+					  FUNCIONARIO.FUN_NOMBRE AS FUN_NOMBRE
+					FROM
+					  FUNCIONARIO
+					  INNER JOIN GRADO ON (FUNCIONARIO.ESC_CODIGO = GRADO.ESC_CODIGO) AND (FUNCIONARIO.GRA_CODIGO = GRADO.GRA_CODIGO)
+					  LEFT OUTER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+					WHERE 
+					  (FUNCIONARIO.UNI_CODIGO = ".$unidad.") AND
+					  (CARGO_FUNCIONARIO.FECHA_DESDE <= '".$fechaServicio."' AND (CARGO_FUNCIONARIO.FECHA_HASTA > '".$fechaServicio."' OR CARGO_FUNCIONARIO.FECHA_HASTA IS NULL)) AND 
+					  (CARGO_FUNCIONARIO.CAR_CODIGO NOT IN (1000, 2000, 3000, 4000, 5000, 6000, 3500))";
+			
+				
+				$sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (
+						    SELECT 
+							  FUNCIONARIO_SERVICIO.FUN_CODIGO
+							FROM
+							  FUNCIONARIO_SERVICIO
+							  INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+							  INNER JOIN TIPO_SERVICIO ON (SERVICIO.TSERV_CODIGO = TIPO_SERVICIO.TSERV_CODIGO)
+							WHERE SERVICIO.FECHA = '".$fechaServicio."' AND TIPO_SERVICIO.TSERV_TIPO = 'N')";	
+				
+				
+				if ($correlativo != "" && $correlativo != "-1") {
+						$sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (       
+									SELECT 
+									  FUNCIONARIO_SERVICIO.FUN_CODIGO
+									FROM
+									  FUNCIONARIO_SERVICIO
+								    WHERE
+									  FUNCIONARIO_SERVICIO.UNI_CODIGO = ".$unidad." AND 
+									  FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = ".$correlativo.")";
+				}
+		
+			
+				if ($correlativo == "-1" OR $tipoServicio == "N"){
+						$sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (
+									SELECT                                                                           
+						          		FUNCIONARIO_SERVICIO.FUN_CODIGO                                                
+						        	FROM                                                                             
+						          		FUNCIONARIO_SERVICIO                                                           
+						          		INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) 
+						          		AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+						        	WHERE SERVICIO.FECHA = '".$fechaServicio."')";
+				}                   
+			
+			$sql .= ") UNION (";
+			
+			$sql .= "SELECT 
+						  CARGO_FUNCIONARIO.FUN_CODIGO AS FUN_CODIGO,
+						  GRADO.GRA_DESCRIPCION AS GRA_DESCRIPCION,
+						  FUNCIONARIO.FUN_APELLIDOPATERNO AS FUN_APELLIDOPATERNO,
+						  FUNCIONARIO.FUN_APELLIDOMATERNO AS FUN_APELLIDOMATERNO,
+						  FUNCIONARIO.FUN_NOMBRE AS FUN_NOMBRE
+						FROM
+						  GRADO
+						  INNER JOIN FUNCIONARIO ON (GRADO.ESC_CODIGO = FUNCIONARIO.ESC_CODIGO)
+						  AND (GRADO.GRA_CODIGO = FUNCIONARIO.GRA_CODIGO)
+						  INNER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+						WHERE
+						  CARGO_FUNCIONARIO.UNI_AGREGADO = ".$unidad." AND 
+						  CARGO_FUNCIONARIO.FECHA_DESDE <= '".$fechaServicio."' AND (CARGO_FUNCIONARIO.FECHA_HASTA > '".$fechaServicio."' OR CARGO_FUNCIONARIO.FECHA_HASTA IS NULL)";
+						  
+
+			   $sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (
+						    SELECT 
+							  FUNCIONARIO_SERVICIO.FUN_CODIGO
+							FROM
+							  FUNCIONARIO_SERVICIO
+							  INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+							  INNER JOIN TIPO_SERVICIO ON (SERVICIO.TSERV_CODIGO = TIPO_SERVICIO.TSERV_CODIGO)
+							WHERE SERVICIO.FECHA = '".$fechaServicio."' AND TIPO_SERVICIO.TSERV_TIPO = 'N')";	
+			
+				if ($correlativo != "" && $correlativo != "-1") {
+						$sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (       
+									SELECT 
+									  FUNCIONARIO_SERVICIO.FUN_CODIGO
+									FROM
+									  FUNCIONARIO_SERVICIO
+								    WHERE
+									  FUNCIONARIO_SERVICIO.UNI_CODIGO = ".$unidad." AND 
+									  FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = ".$correlativo.")";
+				}
+
+				if ($correlativo == "-1" OR $tipoServicio == "N"){
+						$sql .= " AND FUNCIONARIO.FUN_CODIGO NOT IN (
+									SELECT                                                                           
+						          		FUNCIONARIO_SERVICIO.FUN_CODIGO                                                
+						        	FROM                                                                             
+						          		FUNCIONARIO_SERVICIO                                                           
+						          		INNER JOIN SERVICIO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = SERVICIO.UNI_CODIGO) 
+						          		AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = SERVICIO.CORRELATIVO_SERVICIO)
+						        	WHERE SERVICIO.FECHA = '".$fechaServicio."')";
+									
+				}    
+			
+			$sql .= ")";													  
+			$sql .= " ORDER BY ".$nombreCampo." ".$tipoOrden;
+                                
+								
+			//echo $sql . "\n\n";
+                                
+			$i=0;
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			while($myrow = mysql_fetch_array($result)){
+				$grado = new grado;
+				$grado->setDescripcion(STRTOUPPER($myrow["GRA_DESCRIPCION"]));
+					
+				$funcionario = new funcionario;
+				$funcionario->setCodigoFuncionario(STRTOUPPER($myrow["FUN_CODIGO"]));
+				$funcionario->setApellidoPaterno(STRTOUPPER($myrow["FUN_APELLIDOPATERNO"]));
+				$funcionario->setApellidoMaterno(STRTOUPPER($myrow["FUN_APELLIDOMATERNO"]));
+				$funcionario->setPNombre(STRTOUPPER($myrow["FUN_NOMBRE"]));
+				$funcionario->setGrado($grado);
+					        
+				$funcionarios[$i] = $funcionario;					
+				$i++;       
+			}
+		}
+		    
+		    
+		function listaCantidadFuncionarios($unidad, $tipoUnidad, $escalafon, $grado, $desGrado, $fecha1, $inicio, $listaFuncionariosUnidad){	
+			
+			//if ($grado != ""){
+			if ($desGrado != ""){				
+				//$filtro = " AND FUNCIONARIO.ESC_CODIGO = ". $escalafon. " AND FUNCIONARIO.GRA_CODIGO = ".$grado;
+				$filtro = " AND GRADO.GRA_DESCRIPCION = '". $desGrado . "'";
+			}
+			
+			if ($tipoUnidad == "nacional"){
+				$unidadAgregada = "";
+				$unidadFiltro   = "";     
+			}
+			
+			if ($tipoUnidad == "zona"){
+				//$unidadAgregada = "UNIDAD3.UNI_CODIGO, UNIDAD3.UNI_DESCRIPCION,";
+				
+				if ($inicio == "1"){
+					$unidadAgregada = "IF (UNIDAD3.UNI_CODIGO=".$unidad.",UNIDAD2.UNI_CODIGO, UNIDAD3.UNI_CODIGO) AS UNI_CODIGO,";          
+					$unidadAgregada .= "IF (UNIDAD3.UNI_CODIGO=".$unidad.",UNIDAD2.UNI_DESCRIPCION, UNIDAD3.UNI_DESCRIPCION) AS UNI_DESCRIPCION,";
+				}
+				
+				if ($inicio == "0"){
+					$unidadAgregada = "IF (UNIDAD3.UNI_CODIGO=".$unidad.",UNIDAD3.UNI_CODIGO, UNIDAD2.UNI_CODIGO) AS UNI_CODIGO,";          
+					$unidadAgregada .= "IF (UNIDAD3.UNI_CODIGO=".$unidad.",UNIDAD3.UNI_DESCRIPCION, UNIDAD2.UNI_DESCRIPCION) AS UNI_DESCRIPCION,";
+				}
+				
+				$unidadAgrupar = "UNI_CODIGO, UNI_DESCRIPCION,";
+				
+				
+				//$unidadFiltro   = "WHERE (UNIDAD3.UNI_CODIGO = ".$unidad.")";
+				//if ($inicio == "0") $unidadFiltro = "AND (UNIDAD3.UNI_CODIGO = ".$unidad.")";
+				//if ($inicio == "1") $unidadFiltro = "";
+			}   
+			
+			if ($tipoUnidad == "prefectura"){
+				//$unidadAgregada = "UNIDAD2.UNI_CODIGO, UNIDAD2.UNI_DESCRIPCION,";
+				
+				if ($inicio == "1"){  
+					$unidadAgregada = "IF (UNIDAD2.UNI_CODIGO=".$unidad.",UNIDAD1.UNI_CODIGO, UNIDAD2.UNI_CODIGO) AS UNI_CODIGO,";          
+					$unidadAgregada .= "IF (UNIDAD2.UNI_CODIGO=".$unidad.",UNIDAD1.UNI_DESCRIPCION, UNIDAD2.UNI_DESCRIPCION) AS UNI_DESCRIPCION,";
+				}
+				
+				if ($inicio == "0"){  
+					$unidadAgregada = "IF (UNIDAD2.UNI_CODIGO=".$unidad.",UNIDAD2.UNI_CODIGO, UNIDAD1.UNI_CODIGO) AS UNI_CODIGO,";          
+					$unidadAgregada .= "IF (UNIDAD2.UNI_CODIGO=".$unidad.",UNIDAD2.UNI_DESCRIPCION, UNIDAD1.UNI_DESCRIPCION) AS UNI_DESCRIPCION,";
+				}
+				
+				//if ($inicio == "0") $unidadFiltro = "AND (UNIDAD2.UNI_CODIGO = ".$unidad.")";        
+				//if ($inicio == "1") $unidadFiltro = "AND (UNIDAD3.UNI_CODIGO = ".$unidad.")";      
+				
+				$unidadAgrupar = "UNI_CODIGO, UNI_DESCRIPCION,"; 
+				
+			}
+			
+			if ($tipoUnidad == "comisaria"){
+				//$unidadAgregada = "UNIDAD1.UNI_CODIGO, UNIDAD1.UNI_DESCRIPCION,";
+				if ($inicio == "1"){  
+					$unidadAgregada = "IF (UNIDAD1.UNI_CODIGO=".$unidad.",UNIDAD.UNI_CODIGO, UNIDAD1.UNI_CODIGO) AS UNI_CODIGO,";          
+					$unidadAgregada .= "IF (UNIDAD1.UNI_CODIGO=".$unidad.",UNIDAD.UNI_DESCRIPCION, UNIDAD1.UNI_DESCRIPCION) AS UNI_DESCRIPCION,";
+				}
+				
+				if ($inicio == "0"){  
+					$unidadAgregada = "IF (UNIDAD1.UNI_CODIGO=".$unidad.",UNIDAD1.UNI_CODIGO, UNIDAD.UNI_CODIGO) AS UNI_CODIGO,";          
+					$unidadAgregada .= "IF (UNIDAD1.UNI_CODIGO=".$unidad.",UNIDAD1.UNI_DESCRIPCION, UNIDAD.UNI_DESCRIPCION) AS UNI_DESCRIPCION,";
+				}
+				
+				
+				//if ($inicio == "0") $unidadFiltro   = "AND (UNIDAD1.UNI_CODIGO = ".$unidad.")";      
+				//if ($inicio == "1") $unidadFiltro   = "AND (UNIDAD2.UNI_CODIGO = ".$unidad.")";      
+				
+				$unidadAgrupar = "UNI_CODIGO, UNI_DESCRIPCION,"; 
+			}
+			
+			if ($tipoUnidad == "destacamento"){
+				$unidadAgregada = "UNIDAD.UNI_CODIGO, UNIDAD.UNI_DESCRIPCION,";
+				//if ($inicio == "0") $unidadFiltro   = "AND (UNIDAD.UNI_CODIGO = ".$unidad.")";      
+				//if ($inicio == "1") $unidadFiltro   = "AND (UNIDAD1.UNI_CODIGO = ".$unidad.")";      
+				
+				$unidadAgrupar = "UNI_CODIGO, UNI_DESCRIPCION,"; 
+			}
+											
+			$sql = "SELECT 
+					  ".$unidadAgregada.$correlativo."
+					  SERVICIO.TSERV_CODIGO,
+					  TIPO_SERVICIO.TSERV_DESCRIPCION,
+					  SERVICIO.FECHA,
+					  COUNT(FUNCIONARIO_SERVICIO.FUN_CODIGO) AS CANT_PERSONAL,
+					  COUNT(DISTINCT(FUNCIONARIO_VEHICULO.VEH_CODIGO)) AS CANT_VEHICULOS
+					FROM
+					  SERVICIO
+					  INNER JOIN FUNCIONARIO_SERVICIO ON (SERVICIO.UNI_CODIGO = FUNCIONARIO_SERVICIO.UNI_CODIGO)
+					  AND (SERVICIO.CORRELATIVO_SERVICIO = FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO)
+					  INNER JOIN TIPO_SERVICIO ON (SERVICIO.TSERV_CODIGO = TIPO_SERVICIO.TSERV_CODIGO)
+					  INNER JOIN UNIDAD ON (SERVICIO.UNI_CODIGO = UNIDAD.UNI_CODIGO)
+					  LEFT OUTER JOIN FUNCIONARIO_VEHICULO ON (FUNCIONARIO_SERVICIO.UNI_CODIGO = FUNCIONARIO_VEHICULO.FUN_UNI_CODIGO)
+					  AND (FUNCIONARIO_SERVICIO.CORRELATIVO_SERVICIO = FUNCIONARIO_VEHICULO.FUN_CORRELATIVO_SERVICIO)
+					  AND (FUNCIONARIO_SERVICIO.FUN_CODIGO = FUNCIONARIO_VEHICULO.FUN_CODIGO)
+					  INNER JOIN UNIDAD UNIDAD1 ON (UNIDAD.UNI_PADRE = UNIDAD1.UNI_CODIGO)
+					  INNER JOIN UNIDAD UNIDAD2 ON (UNIDAD1.UNI_PADRE = UNIDAD2.UNI_CODIGO)       
+					  INNER JOIN UNIDAD UNIDAD3 ON (UNIDAD2.UNI_PADRE = UNIDAD3.UNI_CODIGO)       
+					".$unidadFiltro.$filtro."
+					GROUP BY
+					  ".$unidadAgregada.$correlativo."   
+					  SERVICIO.TSERV_CODIGO,
+					  TIPO_SERVICIO.TSERV_DESCRIPCION,
+					  SERVICIO.FECHA
+					HAVING
+					  SERVICIO.FECHA = '".$fecha1."' ORDER BY TIPO_SERVICIO.TSERV_ORDEN";
+
+
+			$sql = "SELECT 
+					  ".$unidadAgregada."
+					  FUNCIONARIO.ESC_CODIGO,
+					  FUNCIONARIO.GRA_CODIGO,
+					  GRADO.GRA_DESCRIPCION,
+					  COUNT(*) AS CANT_PERSONAL
+					FROM
+					  FUNCIONARIO
+					  INNER JOIN GRADO ON (FUNCIONARIO.ESC_CODIGO = GRADO.ESC_CODIGO) AND (FUNCIONARIO.GRA_CODIGO = GRADO.GRA_CODIGO)
+					  INNER JOIN UNIDAD ON (FUNCIONARIO.UNI_CODIGO = UNIDAD.UNI_CODIGO)
+					  INNER JOIN UNIDAD UNIDAD1 ON (UNIDAD.UNI_PADRE = UNIDAD1.UNI_CODIGO)
+					  INNER JOIN UNIDAD UNIDAD2 ON (UNIDAD1.UNI_PADRE = UNIDAD2.UNI_CODIGO)       
+					  INNER JOIN UNIDAD UNIDAD3 ON (UNIDAD2.UNI_PADRE = UNIDAD3.UNI_CODIGO) 
+					".$unidadFiltro.$filtro."
+					GROUP BY
+					  ".$unidadAgregada."
+					  FUNCIONARIO.ESC_CODIGO,
+					  FUNCIONARIO.GRA_CODIGO,
+					  GRADO.GRA_DESCRIPCION
+					ORDER BY
+					  FUNCIONARIO.ESC_CODIGO,
+					  FUNCIONARIO.GRA_CODIGO";
+
+
+			 //query grado por descripcion
+			 $sql = "SELECT 
+					  ".$unidadAgregada."
+					  GRADO.GRA_DESCRIPCION,
+					  COUNT(*) AS CANT_PERSONAL
+					FROM
+					  FUNCIONARIO
+					  INNER JOIN GRADO ON (FUNCIONARIO.ESC_CODIGO = GRADO.ESC_CODIGO) AND (FUNCIONARIO.GRA_CODIGO = GRADO.GRA_CODIGO)
+					  LEFT OUTER JOIN CARGO_FUNCIONARIO ON (FUNCIONARIO.FUN_CODIGO = CARGO_FUNCIONARIO.FUN_CODIGO)
+					  INNER JOIN UNIDAD ON (FUNCIONARIO.UNI_CODIGO = UNIDAD.UNI_CODIGO)
+					  INNER JOIN UNIDAD UNIDAD1 ON (UNIDAD.UNI_PADRE = UNIDAD1.UNI_CODIGO)
+					  INNER JOIN UNIDAD UNIDAD2 ON (UNIDAD1.UNI_PADRE = UNIDAD2.UNI_CODIGO)       
+					  INNER JOIN UNIDAD UNIDAD3 ON (UNIDAD2.UNI_PADRE = UNIDAD3.UNI_CODIGO) 
+					  WHERE CARGO_FUNCIONARIO.FECHA_HASTA IS NULL AND
+					  (UNIDAD.UNI_PADRE = ".$unidad." OR                                                                                                                                                                                                                                                                    
+					  UNIDAD.UNI_PADRE IN (SELECT UNIDAD.UNI_CODIGO FROM UNIDAD WHERE UNIDAD.UNI_PADRE = ".$unidad." OR 
+					  UNIDAD.UNI_PADRE IN (SELECT UNIDAD.UNI_CODIGO FROM UNIDAD WHERE UNIDAD.UNI_PADRE = ".$unidad." OR 
+					  UNIDAD.UNI_PADRE IN (SELECT UNIDAD.UNI_CODIGO FROM UNIDAD WHERE UNIDAD.UNI_PADRE = ".$unidad."))))"
+					 .$filtro."
+					GROUP BY
+					  ".$unidadAgrupar."
+					  GRADO.GRA_DESCRIPCION
+					ORDER BY
+					  FUNCIONARIO.ESC_CODIGO,
+					  FUNCIONARIO.GRA_CODIGO";					  
+
+
+			// CARGO_FUNCIONARIO.FECHA_HASTA IS NULL";														
+			//echo $sql;
+			
+			$cont=0;
+			$i=0;
+			$listaFuncionariosUnidad = "";
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			while($myrow = mysql_fetch_array($result) ){
+				
+				$unidad = new unidad;
+				$unidad->setCodigoUnidad($myrow["UNI_CODIGO"]);
+				$unidad->setDescripcionUnidad($myrow["UNI_DESCRIPCION"]);
+				
+				$grado = new grado;
+				$grado->setEscalafon($myrow["ESC_CODIGO"]);
+				$grado->setCodigo($myrow["GRA_CODIGO"]);
+				$grado->setDescripcion($myrow["GRA_DESCRIPCION"]);
+				
+				$funcionariosUnidad = new funcionariosUnidad;
+				$funcionariosUnidad->setUnidad($unidad);
+				$funcionariosUnidad->setGrado($grado);
+				$funcionariosUnidad->setCantidadFuncionarios($myrow["CANT_PERSONAL"]);
+												
+				$listaFuncionariosUnidad[$i] = $funcionariosUnidad;
+
+				$i++;
+			}
+		}
+		
+		
+		function listaCantidadFuncionariosNuevo($unidad, $tipoUnidad, $tipoUnidadPadre, $escalafon, $grado, $desGrado, $fecha1, $inicio, $listaFuncionariosUnidad){	
+			
+			
+			$filtroGrado = "";
+			if ($escalafon != "") $filtroGrado =  "AND FUNCIONARIO.ESC_CODIGO = " . $escalafon . " AND FUNCIONARIO.GRA_CODIGO = " . $grado;
+			
+			
+			//((CARGO_FUNCIONARIO.FECHA_DESDE <= '20130320') AND (CARGO_FUNCIONARIO.FECHA_HASTA > '20130320' OR CARGO_FUNCIONARIO.FECHA_HASTA IS NULL))
+			
+			$sql = "SELECT 
+						VISTA_UNIDADES_2.".$tipoUnidadPadre."_CODIGO AS UNI_CODIGO_PADRE,
+						VISTA_UNIDADES_2.".$tipoUnidad."_CODIGO AS UNI_CODIGO,
+						VISTA_UNIDADES_2.".$tipoUnidad."_DESCRIPCION AS UNI_DESCRIPCION,
+						FUNCIONARIO.ESC_CODIGO,
+					    FUNCIONARIO.GRA_CODIGO,
+					    GRADO.GRA_DESCRIPCION,
+					    COUNT(*) AS CANT_PERSONAL,
+					    COUNT(IF(CARGO_FUNCIONARIO.`CAR_CODIGO`= 3000 OR CARGO_FUNCIONARIO.`CAR_CODIGO`= 3100, 1, NULL)) AS CANT_AGREGADOS
+					FROM
+					  VISTA_UNIDADES_2
+					  INNER JOIN CARGO_FUNCIONARIO ON (VISTA_UNIDADES_2.DESTACAMENTO_CODIGO = CARGO_FUNCIONARIO.UNI_CODIGO)
+					  INNER JOIN FUNCIONARIO ON (CARGO_FUNCIONARIO.FUN_CODIGO = FUNCIONARIO.FUN_CODIGO)
+					  INNER JOIN GRADO ON (FUNCIONARIO.ESC_CODIGO = GRADO.ESC_CODIGO)
+					  AND (FUNCIONARIO.GRA_CODIGO = GRADO.GRA_CODIGO)
+					WHERE
+					 ((CARGO_FUNCIONARIO.FECHA_HASTA IS NULL) AND (CARGO_FUNCIONARIO.CAR_CODIGO NOT IN (1000,2000,3500)))
+					GROUP BY
+						VISTA_UNIDADES_2.".$tipoUnidadPadre."_CODIGO,
+						VISTA_UNIDADES_2.".$tipoUnidad."_CODIGO,
+						VISTA_UNIDADES_2.".$tipoUnidad."_DESCRIPCION,
+					    GRADO.GRA_DESCRIPCION
+					HAVING UNI_CODIGO_PADRE = ".$unidad." ".$filtroGrado."
+					ORDER BY
+						FUNCIONARIO.ESC_CODIGO,
+					    FUNCIONARIO.GRA_CODIGO";					
+
+			// CARGO_FUNCIONARIO.FECHA_HASTA IS NULL";														
+			//echo $sql;
+			
+			$cont=0;
+			$i=0;
+			$listaFuncionariosUnidad = "";
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			while($myrow = mysql_fetch_array($result) ){
+				
+				$unidad = new unidad;
+				$unidad->setCodigoUnidad($myrow["UNI_CODIGO"]);
+				$unidad->setDescripcionUnidad($myrow["UNI_DESCRIPCION"]);
+				
+				$grado = new grado;
+				$grado->setEscalafon($myrow["ESC_CODIGO"]);
+				$grado->setCodigo($myrow["GRA_CODIGO"]);
+				$grado->setDescripcion($myrow["GRA_DESCRIPCION"]);
+				
+				$funcionariosUnidad = new funcionariosUnidad;
+				$funcionariosUnidad->setUnidad($unidad);
+				$funcionariosUnidad->setGrado($grado);
+				$funcionariosUnidad->setCantidadFuncionarios($myrow["CANT_PERSONAL"]);
+				$funcionariosUnidad->setCantidadAgregados($myrow["CANT_AGREGADOS"]);
+				
+				
+												
+				$listaFuncionariosUnidad[$i] = $funcionariosUnidad;
+
+				$i++;
+			}
+		}
+		
+		
+			
+}//end class   
+?>

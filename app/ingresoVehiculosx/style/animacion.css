@@ -1,0 +1,198 @@
+.texto{
+	font-family: Verdana;
+	font-size: 10px;
+	color:  #000000;
+	font-weight: bold;	
+}
+
+.texto2{
+	font-family: Verdana;
+	font-size: 14px;
+	color:  #000000;
+	font-weight: bold;	
+}
+
+.icono{
+	font-family: Verdana;
+	font-size: 14px;
+	color:  #000000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.icono:hover{
+	font-family: Verdana;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+ 	color: #575858;
+}
+
+.icono:hover img{
+	width: 90px;
+ 	height: 90px;
+}
+
+.desactivado{
+	font-family: Verdana;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+ 	color: #575858;
+}
+
+.subicono{
+	font-family: Verdana;
+	font-size: 14px;
+	color:  #000000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.subicono:hover{
+	font-family: Verdana;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+ 	color: #575858;
+}
+
+.subicono:hover img{
+	width: 50px;
+ 	height: 80px;
+}
+
+footer {
+	margin-top: 40%;
+}
+
+.principal {
+	display: none;
+}
+
+.principal.move {
+	display: block;	
+}
+
+.inicio {
+	position: absolute;
+	top:  40%; 
+  left: 40%;
+	transform: translate(0, 0);
+  transition: transform 500ms;
+  will-change: transform;
+}
+
+.vehiculos {
+	position: absolute;
+	top:  40%; 
+  left: 40%;
+  opacity: 0;
+	transform: translate(0, 0);
+  transition: transform 500ms;
+  will-change: transform;
+}
+
+.vehiculos.move {
+	position: absolute;
+  transform: translate(250px, 0px);
+  animation-name: movingOut;
+  animation-duration: 500ms;
+  opacity: 1;
+}
+
+.vehiculos.movein {
+	position: absolute;
+  transform: translate(0px, 0px);
+  animation-name: movingIn;
+  animation-duration: 500ms;
+  opacity: 0;
+}
+
+.personal {
+	position: absolute;
+	top:  40%; 
+  left: 40%;
+  opacity: 0.0;
+	transform: translate(0, 0);
+  transition: transform 500ms;
+  will-change: transform;
+}
+
+.personal.move {
+	position: absolute;
+  transform: translate(-200px, 0px);
+  animation-name: movingOut;
+  animation-duration: 500ms;
+  opacity: 1;
+}
+
+.personal.movein {
+	position: absolute;
+  transform: translate(0px, 0px);
+  animation-name: movingIn;
+  animation-duration: 500ms;
+  opacity: 0;
+}
+
+.salir {
+	position: absolute;
+	top:  40%; 
+  left: 40%;
+  opacity: 0;
+  transition: transform 500ms;
+  will-change: transform;
+}
+
+.salir.move {
+	position: absolute;	
+  animation-name: movingOut;
+  transform: translate(30px, 250px);
+  animation-duration: 500ms;
+  opacity: 1;
+}
+
+.salir.movein {
+	position: absolute;
+  animation-name: movingIn;
+  transform: translate(0, 0);
+  animation-duration: 500ms;
+  opacity: 0;
+}
+
+@keyframes movingOut {
+  0% {
+  	transform: translate(0, 0);
+    opacity: 0.0;
+  }
+
+  25% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes movingIn {
+  0% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

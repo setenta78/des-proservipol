@@ -1,0 +1,121 @@
+<?
+Class dbFuncionarios
+{			
+	
+		function buscaFuncionarios($codigoFuncionario, $funcionarios){
+				
+	    $sql1 = "
+      SELECT 
+        FUNCIONARIO.FUN_CODIGO,
+        FUNCIONARIO.FUN_APELLIDOPATERNO,
+        FUNCIONARIO.FUN_APELLIDOMATERNO,
+        FUNCIONARIO.FUN_NOMBRE,
+        FUNCIONARIO.FUN_NOMBRE2,
+
+        GRADO.GRA_DESCRIPCION,
+          
+        FUNCIONARIO.UNI_CODIGO,
+        UNIDAD.UNI_DESCRIPCION,
+        UNIDAD.UNI_TIPOUNIDAD,
+        UNIDAD.UNI_ESPECIALIDAD,
+
+        UNIDAD.UNI_PADRE,
+
+        USUARIO.UNI_CODIGO AS UNI_CODIGO_1,
+        UNIDAD1.UNI_DESCRIPCION AS UNI_DESCRIPCION_1,
+        UNIDAD1.UNI_TIPOUNIDAD AS UNI_TIPOUNIDAD_1,
+
+        DATE_FORMAT(USUARIO.US_FECHACREACION,'%d-%m-%Y') AS US_FECHACREACION_1,
+        USUARIO.TUS_CODIGO AS TUS_CODIGO_1
+
+      FROM
+        FUNCIONARIO
+        INNER JOIN GRADO ON (FUNCIONARIO.ESC_CODIGO = GRADO.ESC_CODIGO) AND (FUNCIONARIO.GRA_CODIGO = GRADO.GRA_CODIGO)
+        LEFT OUTER JOIN UNIDAD ON (FUNCIONARIO.UNI_CODIGO = UNIDAD.UNI_CODIGO)
+        LEFT OUTER JOIN USUARIO ON (FUNCIONARIO.FUN_CODIGO = USUARIO.FUN_CODIGO)
+        LEFT OUTER JOIN UNIDAD UNIDAD1 ON (USUARIO.UNI_CODIGO = UNIDAD1.UNI_CODIGO)
+          
+      WHERE
+        FUNCIONARIO.FUN_CODIGO = '".$codigoFuncionario."'";
+
+
+	    	//echo $sql;
+	    	    
+				$i=0;
+
+        $CONECT1 = @mysql_connect(DB_HOST_1,DB_USER_1,DB_PASS_1);
+        mysql_select_db(DB_DB_1);
+
+        $result1 = mysql_query($sql1,$CONECT1);
+				mysql_close();
+
+
+        //$CONECT2 = @mysql_connect(DB_HOST_2,DB_USER_2,DB_PASS_2);
+        //mysql_select_db(DB_DB_2);
+
+        while($myrow1 = mysql_fetch_array($result1)){
+
+					$funcionario = new funcionario;
+					$funcionario->setCodigoFuncionario(STRTOUPPER($myrow1["FUN_CODIGO"]));
+					$funcionario->setApellidoPaterno(STRTOUPPER($myrow1["FUN_APELLIDOPATERNO"]));
+					$funcionario->setApellidoMaterno(STRTOUPPER($myrow1["FUN_APELLIDOMATERNO"]));
+					$funcionario->setPNombre(STRTOUPPER($myrow1["FUN_NOMBRE"]));
+					$funcionario->setSNombre(STRTOUPPER($myrow1["FUN_NOMBRE2"]));
+
+          $funcionario->setGradoDescripcion(STRTOUPPER($myrow1["GRA_DESCRIPCION"]));
+
+          $funcionario->setCodUnidadFuncionario($myrow1["UNI_CODIGO"]);
+          $funcionario->setDescUnidadFuncionario(STRTOUPPER($myrow1["UNI_DESCRIPCION"]));
+          $funcionario->setTipoUnidadFuncionario($myrow1["UNI_TIPOUNIDAD"]);
+          $funcionario->setEspecialidadUnidadFuncionario($myrow1["UNI_ESPECIALIDAD"]);
+
+          $funcionario->setCodUnidadPadreFuncionario($myrow1["UNI_PADRE"]);
+
+          $funcionario->setCodUnidadUsuario($myrow1["UNI_CODIGO_1"]);
+          $funcionario->setDescUnidadUsuario(STRTOUPPER($myrow1["UNI_DESCRIPCION_1"]));
+          $funcionario->setTipoUnidadUsuario($myrow1["UNI_TIPOUNIDAD_1"]);
+          $funcionario->setUsuarioFechaDesde1($myrow1["US_FECHACREACION_1"]);
+          $funcionario->setUsuarioTipo1($myrow1["TUS_CODIGO_1"]);
+
+              //$sql2 = "
+              //SELECT 
+               // DATE_FORMAT(USUARIO.US_FECHACREACION,'%d-%m-%Y') AS US_FECHACREACION_2,
+               // USUARIO.PER_CODIGO AS TUS_CODIGO_2
+
+              //FROM
+               // USUARIO
+                  
+              //WHERE
+               // USUARIO.FUN_CODIGO = '".$codigoFuncionario."'";
+
+              //$result2 = mysql_query($sql2,$CONECT2);
+
+              //while($myrow2 = mysql_fetch_array($result2))
+              //{
+               //   $funcionario->setUsuarioFechaDesde2($myrow2["US_FECHACREACION_2"]);
+              //    $funcionario->setUsuarioTipo2($myrow2["TUS_CODIGO_2"]);          
+              //}
+
+
+					$funcionarios[$i] = $funcionario;					
+					$i++;
+				}
+				
+        //mysql_close();
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+}//end class   
+?>

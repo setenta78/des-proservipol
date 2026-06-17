@@ -1,0 +1,60 @@
+
+
+USUARIO: 000106D
+CLAVE: 0001
+ 
+USUARIO: 966302H
+CLAVE: 9663
+
+/* TABLA PRUEBA*/
+
+--Tabla: licencia_medica
+
+--DROP TABLE IF EXISTS licencia_medica;
+
+CREATE TABLE licencia_medica (
+  COD_FUNC   varchar(30) NOT NULL,
+  APELLIDOP  varchar(30) NOT NULL,
+  APELLIDOM  varchar(30) NOT NULL,
+  NOMBRES    varchar(30) NOT NULL
+) ENGINE = InnoDB;
+
+txtcolor
+txtfolio
+txtrut
+txtfec1
+txtfec2
+txtdias
+txtruth
+txtfec3
+cboLicencia
+optionRecup
+optionInvalidez
+cboReposo
+optionReposo
+txtrutp
+cboEspecialidad
+optionMed
+optionAte
+
+  COLOR_LICENCIA,
+  FOLIO_LICENCIA,
+  FUN_RUT,
+  FECHA_OTORGAMIENTO,
+  FECHA_INICIO,
+  NUM_DIAS,
+  RUT_HIJO,
+  FECHA_NAC_HIJO,
+  TIPO_LICENCIA_MEDICA,
+  RECUERABILIDAD_LABORAL,
+  INICIO_TRAMITE_INVALIDEZ,
+  TIPO_REPOSO,
+  LUGAR_REPOSO,
+  RUT_PROFESIONAL,
+  TIPO_PROFESIONAL,
+  ESPECIALIDAD_PROFESIONAL,
+  TIPO_ATENCION,
+  DIR_IP_UNIDAD
+
+
+

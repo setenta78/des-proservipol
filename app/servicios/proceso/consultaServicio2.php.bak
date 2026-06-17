@@ -1,0 +1,14 @@
+<?php
+require_once("../class/class.php");
+	//print_r($_POST);	
+	  $codigo = $_POST["codigo"];
+	  $f1     = $_POST["fecha1"];
+	  $f2     = $_POST["fecha2"];
+	  $fechaPaso1 		= explode("/",$f1);
+   	$fecha1         = $fechaPaso1[2] . "-" . $fechaPaso1[1] . "-" . $fechaPaso1[0];
+   	$fechaPaso2 		= explode("/",$f2);
+   	$fecha2         = $fechaPaso2[2] . "-" . $fechaPaso2[1] . "-" . $fechaPaso2[0];
+    $objServicio=new Trabajo2;
+    $objServicio->get_servicio2($codigo, $fecha1, $fecha2);
+	//exit;
+?>

@@ -1,0 +1,328 @@
+/*Estilo principal*/
+
+
+
+#cabeceraGrilla{
+	width	: 100%;
+	position: relative;
+	background-color: #C8D0CE;
+}
+
+
+
+#nombreColumna{
+	font-weight: normal;
+	background-color: #C8D0CE;
+	font-weight: bold;
+	height:16px;
+	border-left   : 1px solid #ffffff;
+	border-top    : 1px solid #ffffff;
+	border-right  : 1px solid #909090;
+	border-bottom : 1px solid #909090;
+	padding   	  : 0px 0px 0px 0px;
+	text-align	  : center;
+}
+
+.linea{
+	background-color: #C8D0CE;
+	height: 1px;
+}
+
+#listado{
+	overflow-y: scroll;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+	height	:140px;
+}
+
+
+#fondo{
+	position:absolute;
+	z-index:1;
+	top:0px;
+	left:0px;
+	width:970px;
+	height:100%;
+	background-color: #000;
+	filter:alpha(opacity=60);
+}
+
+#cargando{
+	position:absolute;
+	top:220px;
+	left:420px;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+
+
+#listadoHojaRuta{
+	width	: 100%;
+}
+
+#listadoMedioVigilancia{
+	width	: 100%;
+}
+
+
+#listadoAnotacion{
+	width	: 100%;
+}
+
+/*Fin Estilo principal*/
+
+
+
+table{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+}
+
+.tablaLevantada{
+	border-top: 2 outset;
+	border-right: 2 outset #FCFCFC;
+	border-bottom: 2 outset #FCFCFC;
+	border-left: 2 outset;
+}
+
+.checkbox{
+	border: 0 inset;
+}
+
+
+.label{
+	text-align: right;
+}
+
+.dato{
+	background-color: #DDDDDD;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.dato table{
+	font-weight: bold;
+	width:98%;
+}
+
+.Boton_100 {
+	font-family: Verdana, Arial, sans-serif;
+	width:100%;
+	font-weight: normal;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	border: 2 outset;
+	background-color: #C8D0CE;
+}
+
+.Boton_ {
+	font-family: Verdana, Arial, sans-serif;
+	width:60px;
+	font-weight: normal;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	border: 2 outset;
+	background-color: #C8D0CE;
+}
+
+.BotonFicha {
+	font-family: Verdana, Arial, sans-serif;
+	width:60px;
+	font-weight: normal;
+	font-size: 8px;
+	text-align: center;
+	cursor: auto;
+	border: 2 outset;
+	background-color: #C8D0CE;
+}
+
+
+.Boton_2 {
+	font-family: Verdana, Arial, sans-serif;
+	font-weight: normal;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	border: 2 outset;
+	background-color: #C8D0CE;
+}
+
+
+.Boton_Resaltado {
+	font-family: Verdana, Arial, sans-serif;
+	width:100%;
+	font-weight: bold;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	background-color: #C8D0CE;
+}
+
+
+
+.linea{
+	background-color: #909090;
+	height: 1px;
+}
+
+.linea_Lista{
+	background-color: #C8D0CE;
+	height: 1px;
+}
+
+.textArea{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 11px;
+	color: #3C475B;
+	width: 100%;
+	font-weight: normal;
+	border: 2 inset;
+	/*text-transform: uppercase;*/
+}
+
+.campoTexto{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 9px;
+	color: #3C475B;
+	width: 100%;
+	/*text-transform: uppercase;*/
+}
+
+.campoTexto2{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 9px;
+	color: #3C475B;
+	/*width: 100%;*/
+	text-transform: uppercase;
+}
+
+.campoTextoDeshabilitado{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 9px;
+	background-color : #ECECF0;
+	width	 : 100%;
+}
+
+.campoTextoDeshabilitado2{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 9px;
+	background-color : #ECECF0;
+	/*width	 : 100%;*/
+}
+
+.campoSelect{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 11px;
+	color: #3C475B;
+	width: 100%;
+	/*text-transform: uppercase;*/
+}
+
+.campoSelectMultiple{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 9px;
+	color: #3C475B;
+	width: 100%;
+	/*text-transform: uppercase;*/
+}
+
+
+
+.linea1{
+	height:19px;
+	background-color: #E9E9E0;
+}
+
+.linea2{
+	height:19px;
+	background-color: #F2F2F2;
+}
+
+.lineaMarcada{
+	background-color: #003300;
+	cursor: hand;
+	vertical-align: middle;
+	height:19px;
+	color : #ffffff;
+}
+
+
+
+.Boton {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	color: #3D475A;
+}
+
+
+/*Estilo para submenu*/
+.opcionSubmenu
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #999999;
+	cursor: hand;
+}
+
+.opcionSubmenuResaltado
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000000;
+	cursor: hand;
+}
+
+.tituloSubmenu
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #999999;
+}
+/*------------*/
+
+iframe{
+	border: none;
+	width: 100%;
+	border: 2 outset;
+}
+
+
+.barra{
+	SCROLLBAR-FACE-COLOR:#DEDED1; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #DEDED1; 
+	SCROLLBAR-SHADOW-COLOR: #DEDED1; 
+	SCROLLBAR-3DLIGHT-COLOR: #EBEBEB;
+	SCROLLBAR-ARROW-COLOR: #EBEBEB; 
+	SCROLLBAR-TRACK-COLOR: #E3E3E3; 
+	SCROLLBAR-DARKSHADOW-COLOR: #000000;
+
+}
+
+.tabActiva{
+	font-weight		: bold;
+	color			: #3C475B;
+	background-image: url(asistentePlanificacion/img/tabActivo.jpg);
+	text-align		: center;
+	width			: 118px;
+}
+
+.tabDesactiva{
+	font-size		: 8px;
+	font-weight		: bold;
+	vertical-align	: middle;
+	color			: #3C475B;
+	background-image: url(asistentePlanificacion/img/tabDesactivo.jpg);
+	text-align		: center;
+	cursor			: hand;
+	width			: 118px;
+}

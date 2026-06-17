@@ -1,0 +1,56 @@
+<?
+##############################
+# CONFIGURACION BASICA
+
+	//Nombre del Proyecto
+		
+		define ("SITIOWEB" , "Carabineros");
+		define ("TITLEWEB" , "Sistema de Servicios Policiales");
+		define ("RUTA_ROOT",$DOCUMENT_ROOT."/interno/");
+		define ("INDEX","index.php");
+
+	//DespliegaMenu
+		
+################################################################
+#		CONFIGURACION DE LA CONEXION A LA BASE DE DATOS				#
+################################################################
+	
+	// Host de conexion para mysql
+		define ("HOST" , "168.88.11.185");
+   // Usuario de conexion para Base de Datos
+		 define ("DB_USER" , "msanmartin");
+		//define ("DB_USER" , "proservipol");
+	// Password de conexion para la Base de Datos
+		define ("DB_PASS" , "msanmartin");
+		// define ("DB_PASS" , "carta77");
+	// Base de Datos seleccionada..
+		 // define ("DB" , "DBServicios");
+		 define ("DB" , "DB_Proservipol");
+//----------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------
+
+################################################################
+#		CONFIGURACION DE ENVIO DE EMAIL EN CASO DE ERRORES			#
+################################################################
+
+	//1 SI ENVIA -- 2 NO ENVIA EMAIL
+		define ("MSGEMAILERROR" , "2");
+
+	//Configuracion de Mensaje de Error :
+		define ("TOO" , "Paolo Viera <soporte@futbolchileno.com>");
+		define ("FFROM" , "Paolo Viera <soporte@futbolchileno.com>");
+
+
+	//SI DESEA ENVIAR CON MAS DE UNA COPIA ELIMINAR LOS COMENTARIOS DE LAS SIGUIENTES LINEAS Y ASIGNAR EL EMAIL CORRECTO
+	//con copia a :
+	//define ("CC" , "Paolo Viera <paoloviera@yahoo.com>");
+	//y con copia oculta a
+	//define ("BCC" , "Paolo Viera <paoloviera@yahoo.com>");
+	
+#########################################################################################
+	
+	//error_reporting(0);
+	//LLAMADA A CLASS
+	//include("../baseDatos/Conexion.class.php");
+?>

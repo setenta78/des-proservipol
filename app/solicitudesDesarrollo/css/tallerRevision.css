@@ -1,0 +1,102 @@
+.modal-wrapper {
+   visibility: hidden;
+   opacity: 0;
+   margin-top: -500px;
+}
+ 
+.modal-wrapperTarget {
+   visibility:visible;
+   opacity: 1;
+   background-color: rgba(0,0,0,0.8);
+   position: fixed;
+   top:0;
+   left:0;
+   right:0;
+   bottom:0;
+   margin:0;
+   margin-top: 100px;
+   z-index: 999;
+   -webkit-transition:all 1s;
+   -moz-transition:all 1s;
+   transition:all 1s;
+}
+
+.modal-wrapperTarget2 {
+   visibility:visible;
+   opacity: 1;
+   background-color: rgba(0,0,0,0.8);
+   position: fixed;
+   top:0;
+   left:0;
+   right:0;
+   bottom:0;
+   margin:0;
+   margin-top: 300px;
+   z-index: 999;
+   -webkit-transition:all 1s;
+   -moz-transition:all 1s;
+   transition:all 1s;
+}
+
+.popup-contenedor {
+   position: relative;
+   margin:7% auto;
+   padding:30px 50px;
+   background-color: #CCEFD4;
+   color:#333;
+   border-style: groove;
+   behavior: url(css/pie.htc);
+   border-width: 8px;
+   width:40%;
+   font-size: 14px;
+   zoom: 1;
+   
+   -webkit-border-radius: 15px;
+   -moz-border-radius: 15px;
+   border-radius: 15px;
+   behavior: url(css/pie.htc);
+   
+}
+a.popup-cerrar {
+   position: absolute;
+   top:3px;
+   right:3px;
+   background-color: #A32634;
+   padding:7px 10px;
+   font-size: 20px;
+   text-decoration: none;
+   line-height: 1;
+   color:#fff;
+   -webkit-border-radius: 10;
+   -moz-border-radius: 10;
+   border-radius: 10px;
+   behavior: url(css/pie.htc);
+   cursor: hand;
+}
+
+a.popup-cerrar:hover {
+  background: #333;
+}
+
+
+.btnPractica {
+	position: absolute;
+  bottom:1px;
+  right:3px;
+  background: #31BAAF;
+  -webkit-border-radius: 15;
+  -moz-border-radius: 15;
+  border-radius: 15px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 18px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  behavior: url(css/pie.htc);
+  cursor: hand;
+}
+
+.btnPractica:hover {
+  background: #207d75;
+  text-decoration: none;
+}

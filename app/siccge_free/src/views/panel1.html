@@ -1,0 +1,729 @@
+
+<style>  
+	
+			article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+				display: block;
+			}
+
+			.content-header {
+			  position: relative;
+			  padding: 15px 15px 15px 15px;
+			}
+			.content-header > h1 {
+			  margin: 0;
+			  font-size: 28px;
+			}
+			.content-header > h1 > small {
+			  font-size: 15px;
+			  display: inline-block;
+			  padding-left: 4px;
+			  font-weight: 300;
+			}
+			.content-header > .breadcrumb {
+			  float: right;
+			  background: transparent;
+			  margin-top: 0;
+			  margin-bottom: 0;
+			  font-size: 12px;
+			  padding: 7px 5px;
+			  position: absolute;
+			  top: 15px;
+			  right: 10px;
+			  border-radius: 2px;
+			}
+			.content-header > .breadcrumb > li > a {
+			  color: #444;
+			  text-decoration: none;
+			  display: inline-block;
+			}
+			.content-header > .breadcrumb > li > a > .fa,
+			.content-header > .breadcrumb > li > a > .glyphicon,
+			.content-header > .breadcrumb > li > a > .ion {
+			  margin-right: 5px;
+			}
+			.content-header > .breadcrumb > li + li:before {
+			  content: '>\00a0';
+			}
+			@media (max-width: 991px) {
+			  .content-header > .breadcrumb {
+			    position: relative;
+			    margin-top: 5px;
+			    top: 0;
+			    right: 0;
+			    float: none;
+			    background: #d2d6de;
+			    padding-left: 10px;
+			  }
+			  .content-header > .breadcrumb li:before {
+			    color: #97a0b3;
+			  }
+			}
+
+			.tile-stats .count {
+				font-size: 25px;
+			}
+			                                   
+			.tile-stats p {
+				font-size: 12px;
+				font-weight:bold;
+				text-transform: uppercase;
+			} 
+			                                   
+			.h3, h3 {
+				font-size: 18px;
+			}            
+
+			.tile-stats:hover{
+					border: 1px outset #003300;
+					background: rgba(255,255,255,1);
+					background: -moz-linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 0%, rgba(255,255,255,1) 100%);
+					background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(0%, rgba(242,242,242,1)), color-stop(100%, rgba(255,255,255,1)));
+					background: -webkit-linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 0%, rgba(255,255,255,1) 100%);
+					background: -o-linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 0%, rgba(255,255,255,1) 100%);
+					background: -ms-linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 0%, rgba(255,255,255,1) 100%);
+					background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 0%, rgba(255,255,255,1) 100%);
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );
+					
+					box-shadow: 0px 0px 5px #003300;
+			}             
+
+		 @media only screen and (max-width:1200px){
+		 	#iconoDotacionEnMiCuartel{
+		 		 top:66px;
+		 	}
+		 	
+		 }
+     
+     @media only screen and (min-width:1200px){
+		 #cuadroMiDotacion{
+		 	 height:237px;
+		 }
+		 
+		 #iconoDotacionEnMiCuartel{
+		 	 left:10px;
+		 	 top:122px;
+		 }
+		 
+		 #cuadroOperativoApoyo{
+		 	 height:95px;
+		 }
+		 
+		 #cuadroOperativoAdmLogistica{
+		 	 height:95px;
+		 }
+		 
+		 #cuadroIntracuartelFijo h6{
+		 	 text-align:center;
+		 }
+		 
+		 
+		 
+		 #cuadroIntracuartelVariable{
+		 	 padding-top: 11px;
+		 	 height:143px;
+		 }
+		 
+		 #cuadroDestinadosTerritorio{
+		 	 padding-top: 11px;
+		 	 height:143px;
+		 }
+		 
+		 #cuadroDisponiblesTerritorio{
+		 	 padding-top: 11px;
+		 	 height:143px;
+		 }
+		 
+		 #cuadroEfectivosTerritorio{
+		 	 padding-top: 11px;
+		 	 height:143px;
+		 }
+		 
+		 #cuadroDisponiblesTerritorio2{
+		 	 /*padding-top: 11px;*/
+		 	 height:130px;*/
+		 }
+		 
+		 #cuadroMiDotacion2{
+		 	 height:223px;
+		 }
+		 
+		 #iconoDotacionEnMiCuartel2{
+		 	 left:13px;
+		 	 top:150px;
+		 }
+		 
+		  
+		 
+		 media only screen and (max-width:1200px){
+		 #iconoDotacionEnMiCuartel2{
+		 	 right:55px;
+		 	 top:65px;
+		 }
+
+
+</style>
+
+  <body>
+  <div id="bloquea" style="position:fixed;display:none;width:100%;height:100%;overflow:hidden;z-index:10000;filter:alpha(opacity=50); opacity:0.7;background:#000000;">
+				<img  style="background:url(./img/espera2.gif); width:100%;height:100%;text-align:center;background-position:center;background-repeat:no-repeat">
+	</div>
+				    
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">            
+            <div class="navbar nav_title" style="border: 0;">
+              <a style="font-family: BebasNeueBold; color:#FFF; font-size:30px; padding-left:5px" class="site_title"><i class="fa fa-bar-chart"></i> <span>SIICGE 2.0</span></a>
+            </div>
+            
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="http://fototipcar.carabineros.cl/{{usuario.codFuncionario}}.jpg" onerror="this.src='images/user.png'" class="img-circle profile_img" style="width:56px;">
+              </div>
+              <div class="profile_info">
+                <span>Bienvenido,</span>
+                <h2>{{usuario.nombreUsuario}}</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>Servicios Disponibles</h3>
+                <ul class="nav side-menu" id="menu"></ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="http://fototipcar.carabineros.cl/{{usuario.codFuncionario}}.jpg" onerror="this.src='images/user.png'">{{usuario.nombreUsuario}}
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+    
+                    <li><a ng-click="loading('perfilUsuario')">Perfil del Usuario</a></li>
+                    <li><a ng-click="loading('manualesUsuarios')">Manuales de Usuario</a></li>
+                    
+                    <li ng-if="usuario.codFuncionario != 0"><a ng-click="cerrarSesion()"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesión</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="clearfix"></div>
+						<div class="row">
+						<section class="content-header">
+					      <h1>
+					        Panel de Indicadores
+					        <!--<small>Version 2.0</small>-->
+					      </h1>
+					      <ol class="breadcrumb">
+					        <li><a href="#panel1"><i class="fa fa-home"></i> Inicio</a></li>
+					        <!--<li>Indicadores</li>-->
+					        <li class="active">Panel 1</li>
+					      </ol>
+					    </section>
+
+							<!-- SECCION NUEVA DE FILTROS -->
+							<div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                  	<img  src="./img/iconFiltro.fw.png" width="15px" height="15px" style="float:left;margin-right: 5px; margin-top:6px;">
+                    
+                    <h2>
+                     	Filtro: 
+                    	<span class="text-capitalize">{{cuartelElegido}} {{mesElegido}} {{yearElegido}} {{especialidadElegido}}</span>
+                    </h2>
+                    
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  
+                   
+                  <div class="x_content">
+	                		<div> 	
+													<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 form-group">
+												 		<div ng-model="cmbFiltroEspecialidades" custom-select="itemEspecialidades.COD_CUARTEL as itemEspecialidades.DES_CUARTEL for itemEspecialidades in especialidades | filter: $searchTerm" ng-change="cambiaFiltroEspecialidad()" custom-select-options="filtroEspecialidadesOptions" style="width:100%" name="cmbFiltroEspecialidades" id="cmbFiltroEspecialidades" required></div>
+			                 		</div>
+				                  <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 form-group">
+				                    <select ng-model="cmbFiltroMeses" ng-options="itemMonth.ID_MES as itemMonth.NOMBRE_MES for itemMonth in months" ng-change="changeFiltroAnnoMeses()" class="form-control" name="cmbFiltroMeses" id="cmbFiltroMeses" required>
+			                      	<option class="form-control" value="">Seleccionar Mes</option>                      	
+			                      </select>
+				                  </div>
+				                  <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 form-group">
+			                      <select ng-model="cmbFiltroYears" ng-options="itemYear.YEAR as itemYear.YEAR for itemYear in years" ng-change="changeFiltroAnnoMeses()" class="form-control" name="cmbFiltroYears" id="cmbFiltroYears" required>
+			                      	<option class="form-control" value="">Seleccionar Año</option>                      
+			                      </select>
+				                  </div>
+				                  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 form-group">
+											 			<div ng-model="cmbFiltroZonas" custom-select="itemZonas.COD_CUARTEL as itemZonas.DES_CUARTEL for itemZonas in zonas | filter: $searchTerm" ng-change="cambiaFiltroZona()" custom-select-options="filtroZonasOptions" style="width:100%" name="cmbFiltroZona" id="cmbFiltroZonas" required></div>
+			                 		</div>
+	                		</div>
+	                		
+	                		<div> 	
+			                  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 form-group">
+											 		<div ng-model="cmbFiltroPrefecturas" custom-select="itemPrefecturas.COD_CUARTEL as itemPrefecturas.DES_CUARTEL for itemPrefecturas in prefecturas | filter: $searchTerm" ng-change="cambiaFiltroPrefectura(0)" custom-select-options="filtroPrefecturasOptions" style="width:100%" name="cmbFiltroPrefecturas" id="cmbFiltroPrefecturas" required></div>
+			                  </div>
+			                 	<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 form-group">
+											 		<div ng-model="cmbFiltroComisarias" custom-select="itemComisarias.COD_CUARTEL as itemComisarias.DES_CUARTEL for itemComisarias in comisarias | filter: $searchTerm" ng-change="cambiaFiltroComisaria(0)" custom-select-options="filtroComisariasOptions" style="width:100%" name="cmbFiltroComisarias" id="cmbFiltroComisarias" required></div>
+			                  </div>
+			                	<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 form-group">
+									 				<div ng-model="cmbFiltroDestacamentos" custom-select="itemDestacamentos.COD_CUARTEL as itemDestacamentos.DES_CUARTEL for itemDestacamentos in destacamentos | filter: $searchTerm" ng-change="cambiaFiltroDestacamento(0)" custom-select-options="filtroDestacamentosOptions" style="width:100%" name="cmbFiltroDestacamentos" id="cmbFiltroDestacamentos" required></div>
+	                  		</div>
+											</div>
+											
+											<div>
+												<div class="col-xl-6 col-lg-4 col-md-12 col-sm-12 col-xs-12 form-group"></div>
+		                   	<div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+								        		<a class="btn btn-success btn-block" ng-click="limpiarFiltro()" role="button">Limpiar Filtro</a>
+								        </div>
+		                   	<div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+								        		<a class="btn btn-success btn-block" ng-click="buscar()" role="button">Aplicar Filtro</a>
+								        </div>
+							      	</div>  			  
+  								</div>
+  								
+   						</div>				
+  					</div>
+						<!-- FIN SECCION NUEVA DE FILTROS -->
+
+						<div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                	
+                  <div class="x_title">
+										
+										<img  src="./img/icon1.fw.png" width="25px" height="25px" style="float:left;margin-right: 5px;">
+                    <h2> 
+                    	
+                    	Oferta Real {{titleOfertaReal}}
+                    </h2>
+                    
+                    <ul class="nav navbar-right panel_toolbox">                    	
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  
+                  <div class="x_content">
+										  <!-- INICIO OFERTA RRHH CON MENOS CAJAS -->
+										  <div class="panel panel-default">
+										    <i style="cursor:pointer; font-style:normal;" data-toggle="collapse" href="#70291516059420-1-1">
+										    <div class="panel-heading">										    
+										      <h0 class="panel-title">										    
+   
+										          Oferta de Carabineros de Orden y Seguridad <!--(Alterno)-->
+										        <span class="pull-right">										        
+										         <ul class="list-inline prod_color">
+	                        		</ul>
+                        		</span>										        
+										      </h0>										     
+										    </div>
+										    </i> 
+											    
+										    <div id="70291516059420-1-1" class="panel-collapse collapse in">
+										      <div class="panel-body">
+										      	<div class="row">
+					                      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" style="padding:0px 0px 0px 0px">
+ 	                        		     <a ng-click="loading('panel1-1')" style="cursor:pointer">                   
+	                            			 <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																        <div class="tile-stats" id="cuadroMiDotacion2">
+																						<div class="icon" id="iconoDotacionEnMiCuartel2"><img  src="./img/icon1.fw.png" width="300%" height="300%"></div>
+																            <div class="count" style="font-size: 50px;">{{dotacionCuartel}}</div>
+																            <h3>Dotación</h3>
+																            <p>EN MI CUARTEL</p>
+																            <ul class="list-inline prod_color">
+									                        	</ul>
+																        </div>
+																     </div>
+															     </a>
+													 			</div>
+
+					                      <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" style="padding:0px 0px 0px 0px">
+										                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													              <div class="x_panel">
+																                <div class="x_title">
+																                  <h2>De la Dotación en Mi Cuartel</h2>
+																									<!--<h2>De la Dotación en Mi Cuartel</h2>-->
+																                  <div class="clearfix"></div>
+																                </div>
+																                
+																                <div class="x_content">
+																                			
+																	                		<div class="animated flipInY col-lg-6 col-md-6 col-sm-6 col-xs-12">
+																					            <!--<a href="#panel1-3">-->
+																					            <a ng-click="loading('panel1-3_NEW')" style="cursor:pointer">
+																					                <div class="tile-stats" id="cuadroDisponiblesTerritorio2">
+																					                  <div class="count"><label style="{{colorIndicadorFeriadosPermisosLicencias}}">{{dotacionFeriadosPwermisosLicenciasOtros}}</label></div>
+																					                  <h3>Dotación</h3>
+																					                  <p style="margin-right: 10px;">FERIADOS, PERMISOS, LICENCIAS, ACTIVIDADES Y SERVICIOS FUERA DEL CUARTEL</p>
+																					                </div>
+																					            </a>
+																					            </div>
+
+																					            <div class="animated flipInY col-lg-6 col-md-6 col-sm-6 col-xs-12">
+																				              <!--<a href="#panel1-4">-->
+																				              <a ng-click="loading('panel1-22')" style="cursor:pointer">
+																				              <!--<a ng-click="loading('panel1-22')" style="cursor:pointer">-->
+																					                <div class="tile-stats" id="cuadroDisponiblesTerritorio2">
+																					                  <div class="count"><label style="{{colorIndicadorDotacionServiciosEfectivos}}">{{dotacionServiciosEfectivos}}</label></div>
+																					                  <h3>Dotación</h3>
+																					                  <p style="margin-right: 10px;">SERVICIOS EFECTIVOS</p>
+																					                  
+																					                </div>
+																				              </a>																					            
+																					            </div>
+
+																                </div>
+													              </div>
+												            </div>
+                            			</div>
+  
+					                    </div>
+										      </div>
+										    </div>
+ 								    			  
+										  </div>
+										  
+										  <!-- FIN OFERTA RRHH CON MENOS CAJAS -->
+
+									    <div class="panel panel-default">
+									    	<i style="cursor:pointer; font-style:normal;" data-toggle="collapse" href="#70291516059420-2">
+										    <div class="panel-heading">
+										      <h0 class="panel-title" >										        
+										          Oferta de Vehículos										        
+										        <span class="pull-right">										        
+										         <ul class="list-inline prod_color">
+										         		<li>
+			                            <div class="{{semaforoIndicador06}}"></div>
+			                          </li>
+
+	                        		</ul>
+                        		</span>
+										      </h0>
+										    </div>
+										    </i>
+
+										    <div id="70291516059420-2" class="panel-collapse collapse in">
+										    <!--<div id="70291516059420-2" class="panel-collapse collapse">-->									      
+										      <div class="panel-body">
+										      	<div class="row">
+					                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					                        <div class="tile-stats">
+					                        <!--<a href="#panel1-5">-->
+					                        <a ng-click="loading('panel1-5')" style="cursor:pointer">
+					                          <div class="icon" style="font-size: 50px; top:-10px; right: 23px;">
+					                          	<ul class="list-inline prod_color">
+					                          	
+					                          	<!-- Semáforo 7.- Oferta de Vehiculos -->
+					                          	<li>
+							                            <div class="{{semaforoIndicador07}}"></div>
+							                        </li>
+							                        
+					                          	</ul>
+					                          </div>
+					                          <div class="icon" style="top:28px;right:48px;"><img  src="./img/iconVehiculo.fw.png" width="300%" height="300%"></div>
+					                          <div class="count">{{vehiculosCuartelTOTAL}}</div>
+					
+					                          <h3>Vehículos</h3>
+					                          <p>en mi cuartel</p>
+					                          </a>
+					                        </div>
+					                      </div>
+					                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					                        <div class="tile-stats">
+					                        <!--<a href="#panel1-6">-->
+					                        <a ng-click="loading('panel1-6')" style="cursor:pointer">
+					                          <div class="icon" style="top:28px;right:48px;"><img  src="./img/iconVehiculoReparacion.fw.png" width="300%" height="300%"></div>
+					                          <div class="count" style="{{semaforoIndicador08}}">{{vehiculosDISPONIBLESTOTAL}}</div>
+					                          <h3>Vehículos</h3>
+					                          <p>disponibles para el servicio</p>
+					                          </a>
+					                        </div>
+					                      </div>
+					                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					                        <div class="tile-stats">
+					                        <a ng-click="loading('panel1-7')" style="cursor:pointer">
+					                          <div class="icon" style="right:85px;top:23px;"><img  src="./img/iconVehiculoUtilizado.fw.png" width="490%" height="400%"></div>
+					                          <div class="count" style="{{semaforoIndicador09}}">{{vehiculosTERRITORIOTOTAL}}</div>
+					                          <h3>Utilización</h3>
+					                          <p>de vehículos en el territorio</p>
+					                          </a>
+					                        </div>
+					                      </div>						                      
+					                    </div>         
+										      </div>
+										    </div>
+										  </div>
+  						</div>
+  						</div>				
+  					</div>
+
+  					<div class="col-md-12 col-sm-12 col-xs-12" ng-if="especialidad == 0 || especialidad == 1">
+              <div class="x_panel">
+                <div class="x_title">
+                	<img  src="./img/icon2.fw.png" width="25px" height="25px" style="float:left;margin-right: 5px;">
+                  <h2>Victimización <!--(Victimización = 99% Exposición Frente al Delito = 99%)--></h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                	
+                	<div class="panel panel-default">
+									    	<i style="cursor:pointer; font-style:normal;" data-toggle="collapse" href="#70291516059420-4">
+										    <div class="panel-heading">
+										      <h0 class="panel-title" >
+										          Interacción con la Comunidad
+										        <span class="pull-right">
+										         <ul class="list-inline prod_color">
+                        		 </ul>
+                        		</span>
+										      </h0>
+										    </div>
+										    </i>
+										    
+										    <div id="70291516059420-4" class="panel-collapse collapse in">
+										    <!--<div id="70291516059420-2" class="panel-collapse collapse">-->
+										      <div class="panel-body">
+										      	<div class="row">
+					                      <div class="animated flipInY col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					                        <div class="tile-stats">
+					                        <!--<a href="#panel1-8">-->
+					                        <a ng-click="loading('panel1-8')" style="cursor:pointer">
+					                        
+					                          <div class="icon" style="top:28px;"><img  src="./img/icon7.fw.png" width="300%" height="300%"></div>
+					                          <div class="count" style="{{colorIndicador10}}">{{tiempoRespuestaINDICADOR}}</div>
+					                          
+					                          <h3>Tiempo de Respuesta </h3>
+					                          <p>Robo Efectuandose (Desde la llamada hasta la llegada al lugar)</p>
+					                          </a>
+					                        </div>
+					                      </div>
+
+					                      <div class="animated flipInY col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					                        <div class="tile-stats">
+					                        <!--<a href="#panel1-9">-->
+					                        <a ng-click="loading('panel1-9')" style="cursor:pointer">
+
+					                         	<div class="icon" style="top:32px;right:40px;"><img  src="./img/icon8.fw.png" width="250%" height="250%"></div>
+					                          
+					                          <div ng-if="flechaPredictorPanel1 != ''" class="count" style="font-size:25px">
+						                          		<i ng-if="flechaPredictorPanel1 != '-'" class="{{flechaPredictorPanel1}}" style="color:{{colorPredictorPanel1}}"></i>  
+						                          		<div ng-if="flechaPredictorPanel1 == '-'">-</div>    		
+						                        </div>
+						                        						                        
+						                        <div ng-if="flechaPredictorPanel1 == ''" class="count" style="font-size:25px; padding:0px 6px 0px 0px;">
+						                        			&asymp;
+						                        </div>
+
+					                          <h3>Tendencia</h3>
+					                          <p>del Delito</p>
+					                          </a>
+					                        </div>
+					                      </div>
+
+					                    </div>
+										      </div>
+										    </div>
+										  </div>
+
+									<div class="panel panel-default">
+									    	<i style="cursor:pointer; font-style:normal;" data-toggle="collapse" href="#70291516059420-5">
+										    <div class="panel-heading">
+										      <h0 class="panel-title" >
+										          Resultados de las Operaciones
+										        <span class="pull-right">
+										         <ul class="list-inline prod_color">
+	                        		</ul>
+                        		</span>
+										      </h0>
+										    </div>
+										    </i>
+										    
+										<div id="70291516059420-5" class="panel-collapse collapse in">
+								    <!--<div id="70291516059420-2" class="panel-collapse collapse">-->
+								      <div class="panel-body">
+								      	<div class="row">
+
+			                      <div class="animated flipInY col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			                        <div class="tile-stats">
+			                        <!--<a href="#panel1-12">-->
+			                        <a ng-click="loading('panel1-12')" style="cursor:pointer">
+
+			                          <div class="icon" style="top:32px;right:42px;"><img  src="./img/icon2.fw.png" width="250%" height="250%"></div>
+			                          <div class="count" style="{{semaforoIndicador12}}">{{cumplimientoOrdenesJudiciales}}</div>
+			                          
+			                          <h3>Cumplimiento de Ordenes Judiciales</h3>
+			                          <p>Aprehensión y Detención</p>
+			                          </a>
+			                        </div>
+			                      </div>
+
+			                    <div class="animated flipInY col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			                    	<div class="tile-stats">
+			                          <a ng-click="loading('panel1-13')" style="cursor:pointer">
+			                          <div class="icon" style="top:30px;right:42px;"><img  src="./img/icon6.fw.png" width="250%" height="250%"></div>
+			                          <div class="count" style="{{semaforoIndicador13}}">{{controlesINDICADOR}}</div>
+			                          
+			                          <h3>Controles</h3>
+			                          <p>de Identidad</p>
+			                        </a>
+			                    	</div>
+			                    </div>
+			                    
+			                  </div>
+								      </div>
+										</div>
+									</div>
+  						</div>
+  						</div>				
+  					</div>  					
+
+  					<div class="col-md-12 col-sm-12 col-xs-12" ng-if="especialidad == 0 || especialidad == 1">
+                <div class="x_panel">
+                  <div class="x_title">
+                  	<img  src="./img/icon3.fw.png" width="25px" height="25px" style="float:left;margin-right: 5px;">
+                    <h2>Relaciones Comunitarias</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+ 			
+                	<div class="panel panel-default">
+									    	<i style="cursor:default; font-style:normal;" data-toggle="collapse" href="#70291516059420-6">
+										    <div class="panel-heading">
+										      <h0 class="panel-title" >
+										          <!-Gestión de Mes-->
+										        <span class="pull-right">
+										         <ul class="list-inline prod_color">
+	                        		</ul>
+                        		</span>
+										      </h0>
+										    </div>
+										    </i>
+
+										      <div class="panel-body">
+										      	<div class="row">
+										      		
+					                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					                        <div class="tile-stats">
+					                        <!--<a href="#panel1-14">-->
+					                        <a ng-click="loading('panel1-14')" style="cursor:pointer">
+					                          <div class="icon" style="top:28px;right:48px;"><img  src="./img/icon3.fw.png" width="300%" height="300%"></div>
+					                          <div class="count" style="{{colorFuenteOrgVigentes}}">{{nroOrganizacionVigentes}}</div>
+					                          
+					                          <h3>Nro. de Organizaciones</h3>
+					                          <p>Vigentes</p>
+					                          </a>
+					                        </div>
+					                      </div>
+				                      
+					                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					                        <div class="tile-stats">
+					                        <!--<a href="#panel1-15">-->
+					                        <a ng-click="loading('panel1-15')" style="cursor:pointer">
+					                          <div class="icon" style="top:28px;right:49px;"><img  src="./img/icon5.fw.png" width="300%" height="300%"></div>
+					                          <div class="count" style="{{colorFuenteOrgParticipantes}}">{{nroOrganizacionParticipantes}}</div>
+					                          
+					                          <h3>Nro. de Organizaciones</h3>
+					                          <p>Distintas que participaron en reuniones</p>
+					                          </a>
+					                        </div>
+					                      </div>
+			                      
+					                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					                        <div class="tile-stats">
+					                        <!--<a href="#panel1-17">-->
+					                        <a ng-click="loading('panel1-17')" style="cursor:pointer">
+
+					                          <div class="icon" style="top:30px;right:48px;"><img  src="./img/icon4.fw.png" width="300%" height="300%"></div>
+					                          <div class="count" style="{{colorFuente}}">{{nroProblemasResueltos}}</div>
+					                          
+					                          <h3>Problemas</h3>
+					                          <p>Resueltos en el mes</p>
+					                          </a>
+					                        </div>
+					                      </div>
+					  								</div>
+										      </div>
+										   <!--</div>-->
+										  </div>
+
+  						</div>
+  						</div>				
+  					</div>
+  					<div id="mensaje"></div>
+        </div>
+
+        <!-- /page content -->
+
+        <!-- footer content -->
+        
+        <footer>
+          <div class="pull-right">
+            Departamento Control de Gestión y Sistemas de Información
+          </div>
+          
+          <div class="clearfix"></div>
+        </footer>
+        
+        <!-- /footer content -->
+      </div>
+    </div>
+ 
+
+
+    <!-- jQuery -->
+    <!--<script src="vendors/jquery/dist/jquery.min.js"></script>-->
+    <!-- Bootstrap -->
+    <!--<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>-->
+    
+    
+    <!-- FastClick -->
+    <!--<script src="vendors/fastclick/lib/fastclick.js"></script>-->
+    
+    <!-- NProgress -->
+    <!--<script src="vendors/nprogress/nprogress.js"></script>-->
+    
+    <!-- jQuery custom content scroller -->
+    <script src="vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+
+		<!-- Chart.js -->
+    <!--<script src="vendors/Chart.js/dist/Chart.js"></script>-->
+    
+    <!-- Custom Theme Scripts -->
+    <script src="build/js/custom.js"></script>
+    
+    <!--
+    <script type="text/javascript">
+		    $('.selectpicker').selectpicker({
+		      });
+		</script>
+    -->
+    
+  </body>

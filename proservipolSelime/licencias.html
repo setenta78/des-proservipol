@@ -1,0 +1,246 @@
+<html>
+<head>
+<title>LICENCIAS MEDICAS ...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<script type="text/javascript" src="./js/creaObjeto.js"></script>
+<script type="text/javascript" src="./js/aplicacion.js"></script>
+<script type="text/javascript" src="./calendario/popcalendar.js"></script>
+<script type="text/javascript" src="./js/licenciaMedica.js"></script> 
+
+<link href="./css/aplicacion.css" rel="stylesheet" type="text/css">
+<link href="./css/fichaServicio.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="./ventana/js/prototype.js"> </script>
+<script type="text/javascript" src="./ventana/js/window.js"> </script>
+<script type="text/javascript" src="./ventana/js/effects.js"> </script>
+<script type="text/javascript" src="./ventana/js/window_effects.js"> </script>
+<script type="text/javascript" src="./ventana/js/debug.js"> </script>
+
+<link href="./ventana/css/default.css" 	rel="stylesheet" type="text/css"></link>
+<link href="./ventana/css/debug.css" 	rel="stylesheet" type="text/css"></link>
+<link href="./ventana/css/mac_os_x.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body style="margin-top:10; margin-left:10; background-color:#d0d0d0" scroll="no">
+	
+<div id="mensajeCargando" style="display:none;">
+<table width="100%"><tr><td align="right" width="35%"><img src='./img/ajax_loader.gif' width="20" height="20"></td><td width="65%" align="left">&nbsp;CARGANDO DATOS, ESPERE POR FAVOR ......</td></table>
+</div>
+
+<div id="marcoLevantado">
+
+<br>
+<div id="seccion2">
+<div id="seccion1" align="right">
+<table id="tabla1" border="0" width="30%">
+<tr>
+<td align="right"><b>(*) COLOR:</b></td>	
+<td><input type="text" id="txttipo" name="txttipo" size="1" value="F"></td>
+</tr>
+<tr>
+<td align="right"><b>(*) FOLIO:</b></td>
+<td><input type="text" id="txtnum" name="txtnum" size="15" value=""></td>
+</tr>
+</table>
+</div>
+<u><b>SECCION A: USO Y RESPONSABILIDAD EXCLUSIVA DEL PROFESIONAL</b></u>
+<br><br>
+<fieldset>
+<legend><b>A.1 IDENTIFICACION DEL TRABAJADOR</b></legend>
+<br>
+<table id="tabla2" width="90%" border="0">
+<tr>
+<td align="center"><input type="text" id="txtape1" name="txtape1" size="15" value="TICCHIONE"></td>
+<td align="center"><input type="text" id="txtape2" name="txtape2" size="15" value="TRONCOSO"></td>
+<td align="center"><input type="text" id="txtnom" name="txtnom" size="15" value="GILDA DELIA"></td>
+<td align="center"><input type="text" id="txtrut" name="txtrut" size="15" value="12266095-6"></td>
+<td><img src="img/busqueda.png"  width="33" height="33" alt="Consultar Datos ..."/></td>
+<td rowspan="6"><img id="fotoFuncionario" width="121" height="119" align="left" src="./img/sinFoto.gif" onerror="this.src='./img/sinFoto.gif'"></td>
+</tr>
+<tr>
+<td align="center">APELLIDO PATERNO</td>
+<td align="center">APELLIDO MATERNO</td>
+<td align="center">NOMBRES</td>
+<td align="center">(*) RUN EJ: 14146765-4</td>
+<td></td>
+</tr>
+<tr>
+<td align="center"><input type="text" id="txtfec1" name="txtfec1" size="10" value=""></td>
+<td><input name="idFechaServicio" type="image" src="./img/calendarIconVerde.gif" width="15" height="13" onClick="popUpCalendar(txtfec1, txtfec1,'dd-mm-yyyy','300','-1');"></td>
+<td align="center"><input type="text" id="txtfec2" name="txtfec2" size="10" value=""></td>
+<td><input name="idFechaServicio" type="image" src="./img/calendarIconVerde.gif" width="15" height="13" onClick="popUpCalendar(txtfec2, txtfec2,'dd-mm-yyyy','300','-1');"></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">(*) FECHA OTORGAMIENTO</td>
+<td></td>
+<td align="center">(*) FECHA INCIO REPOSO</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center"><input type="text" id="txtdias" name="txtdias" size="2" value="05"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">(*) N° DE DIAS</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+</fieldset>
+</div>
+<div id="seccion3" style="display:yes;">
+<br>
+<fieldset>
+<legend><b>A.2 IDENTIFICACION DEL HIJO</b></legend>
+<br>
+Solo para licencias por enfermedad grave hijo menor de un año y post natales (Art. 199 y 200 del C. del trabajo) y juicio de adopcion plena (Ley 18.867)
+<br><br>
+<table id="tabla3" border="0">
+<tr>
+<td align="center"><input type="text" id="txtruth" name="txtruth" size="15" value="12266095-6"></td>
+<td align="center"><input type="text" id="txtfec3" name="txtfec3" size="10" value=""></td>
+<td><input name="idFechaServicio" type="image" src="./img/calendarIconVerde.gif" width="15" height="13" onClick="popUpCalendar(txtfec3, txtfec3,'dd-mm-yyyy','300','-1');"></td>
+</tr>
+<tr>
+<td align="center">RUN</td>
+<td align="center">FECHA DE NACIMIENTO</td>
+<td></td>
+</tr>
+</table>
+</fieldset>
+</div>
+
+<br>
+<div id="seccion4">
+<fieldset>
+<legend><b>A.3 TIPO LICENCIA</b></legend>
+<br>
+<table id="tabla4" border="0">
+<tr>
+<td><select id="cbolicencia">
+  <option value="0">SELECCIONE UNA OPCION ...</option>
+  <option value="1">ENFERMEDAD O ACCIDENTE COMUN</option>
+  <option value="2">PRORROGA MEDICINA PREVENTIVA</option>
+  <option value="3">LICENCIA MATERNAL PRE Y POST NATAL</option>
+  <option value="4">ENFERMEDAD GRAVE HIJO MENOR DE UN AÑO</option>
+  <option value="5">ACCIDENTE DEL TRABAJO</option>
+  <option value="6">ENFERMEDAD PROFESIONAL</option>
+  <option value="7">PATOLOGIA DEL EMBARAZO</option>
+</select></td>
+<td></td>
+</tr>
+
+</table>
+
+<br>
+
+<div id="seccion4b">
+<table id="seccion4b" border="0">
+<tr>
+<td><b>(*) RECUPERABILIDAD LABORAL:</b></td>
+<td>SI</td>
+<td><input type="checkbox" name="optionLicencia"></td>
+<td>NO</td>
+<td><input type="checkbox" name="optionLicencia"></td>
+</tr>
+<tr>
+<td><b>(*) INICIO TRAMITE INVALIDEZ:</b></td>
+<td>SI</td>
+<td><input type="checkbox" name="optionLicencia"></td>
+<td>NO</td>
+<td><input type="checkbox" name="optionLicencia"></td>
+</tr>
+</table>
+</fieldset>
+</div>
+
+<br>
+<div id="seccion5">
+<fieldset>
+<legend><b>A.4 CARACTERISTICAS DEL REPOSO</b></legend>
+<br>
+<table id="tabla5" border="0">
+<tr>
+<td><select id="cborep">
+  <option value="0">SELECCIONE UNA OPCION ...</option>
+  <option value="1">REPOSO LABORAL TOTAL</option>
+  <option value="2">REPOSO LABORAL PARCIAL</option> 
+</select></td>
+<td></td>
+</tr>
+</table>
+<div id="seccion5b">
+<br>
+<table id="tabla5b" border="0">
+<tr>
+<td><b>(*) LUGAR DE REPOSO:</b></td>
+<td>DOMICILIO</td>
+<td><input type="checkbox" name="optionreposo"></td>
+<td>HOSPITAL</td>
+<td><input type="checkbox" name="optionreposo"></td>
+<td>OTRO DOMICILIO</td>
+<td><input type="checkbox" name="optionreposo"></td>
+</tr>
+</table>
+ </div>
+</div>
+<br>
+<div id="seccion6">
+<fieldset>
+<legend><b>A.5 IDENTIFICACION DEL PROFESIONAL</b></legend>
+<br>
+<table id="tabla6" border="0">
+<tr>
+<td><input type="text" id="txtrut" name="txtrutp" size="15" value="12266095-6"></td>
+<td><select id="cboesp">
+  <option value="0">SELECCIONE UNA OPCION ...</option>
+  <option value="1">TRAUMATOLOGIA Y ORTOPEDIA</option>
+</select></td>
+</tr>
+<tr>
+<td align="center">(*) RUN</td>
+<td align="center">(*) ESPECIALIDAD</td>
+</tr>
+</table>
+<br>
+<div id="seccion6b">
+<table id="tabla6" border="0">
+<tr>
+<td><b>(*) TIPO PROFESIONAL</b></td>
+<td>:&nbsp;MEDICO<input type="checkbox" name="optionmed"></td>
+<td>DENTISTA<input type="checkbox" name="optionmed"></td>
+<td>MATRONA</td>
+<td><input type="checkbox" name="optionmed"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><b>(*) ATENCION INTRA/EXTRA INSTITUCIONAL</b></td>
+<td>:&nbsp;SI<input type="checkbox" name="optionate">&nbsp;&nbsp;NO<input type="checkbox" name="optionate"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+</fieldset>
+<br><br>
+</div>
+</div>
+<br>
+<table align="right">
+<tr>
+<td width="17%"><input name="btnGuardarOrganizacion" type="button" id="btn100" value="GRABAR" disabled></td>
+<td width="14%"><input name="btnCerrarFichaFuncionario" type="button" id="btn100" value="CERRAR" onClick="top.cerrarVentana();"></td>	
+</tr>	
+</table>
+</body>
+</html>

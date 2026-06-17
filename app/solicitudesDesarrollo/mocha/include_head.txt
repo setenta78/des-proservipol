@@ -1,0 +1,26 @@
+<head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Prototipo</title>
+
+<script type="text/javascript" src="include_js/calendario/popcalendar.js"></script>
+
+<link rel="stylesheet" type="text/css" href="include_css/default.css">
+
+	<link rel="stylesheet" href="include_js/mocha/css/mocha.css" type="text/css" />
+	
+	<!--[if IE]>
+		<script type="text/javascript" src="include_js/mocha/scripts/excanvas-compressed.js"></script>		
+	<![endif]-->
+	
+	<script type="text/javascript" src="include_js/mocha/scripts/mootools-1.2-core.js"></script>
+	<script type="text/javascript" src="include_js/mocha/scripts/mootools-1.2-more.js"></script>	
+	
+	<!-- mocha-javascript.php is for development. It is not recommended for live use -->	 
+	<script type="text/javascript" src="include_js/mocha/scripts/source/Utilities/mocha.js.php"></script>	
+
+	<script type="text/javascript">
+			MochaUI.Modal = new MochaUI.Modal();		
+	</script>	
+</head>

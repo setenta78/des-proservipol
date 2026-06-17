@@ -1,0 +1,10 @@
+#txttipo, #txtnum, #txtape1, #txtcolor, #txtape2, #txtnom, #txtrut, #Listcolor, #txtdig, #txtfec1, #txtfec2, #txtfolio, #txtdias, 
+#txtfec3, #txtruth, #txtdigh, #txtlic, #txtrec, #txtinv, #txtrep, #txtcarep, #txtrutp, #txtesp, #txtmed, #txtfecF, #fechaReal, 
+#textFechaTermino, #seccion1a, #cboLicencia, #cboReposo, #cboEspecialidad, #cboMes, #txtbandas, #txtinfra3, #txtinfra19, #txtinfra93, 
+#txtfisc3, #txtfisca19, #txtfisca93, #txtunicpp, #txtunicpr, #txtcantr, #txtcantc, #txtcantcc, #txtent, #txtos11inf, #txtos11fisc{
+	font-family	  			: Verdana, Arial,sans-serif;
+	font-size	  			: 10px;
+	text-transform			: uppercase;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+}

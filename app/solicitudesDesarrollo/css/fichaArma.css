@@ -1,0 +1,31 @@
+#textSerieArma, #textNumeroInstitucional, #textBCU,
+#selTipoArma, #selTipoVehiculo, #selMarca, #selModelo, #selEstado, #textFechaNuevoEstado, #textUnidadAgregado{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#ventanaSeleccionaUnidad{
+	width		  	: 450px;
+	background-color: #CCCC99;
+	padding			: 3px 3px 5px 3px;
+	position		: absolute;
+	top				: 90px;
+	left			: 325px
+}   
+
+#selectUnidad{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#cubreVentanaPersonal{               
+	position	  		: absolute;
+	width				: 100%; 
+	height				: 350px;
+	background-color	: #000;
+	filter:alpha(opacity=0);
+}

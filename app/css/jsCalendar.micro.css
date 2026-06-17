@@ -1,0 +1,27 @@
+.micro-theme.jsCalendar thead .jsCalendar-title {
+	height: 20px; line-height: 20px;
+}
+.micro-theme.jsCalendar thead .jsCalendar-title-name {
+	padding: 0px 5px; font-size: 14px;
+}
+.micro-theme.jsCalendar thead .jsCalendar-nav-left {
+	margin: 0px; width: 20px; height: 20px; line-height: 20px; font-size: 12px;
+}
+.micro-theme.jsCalendar thead .jsCalendar-nav-right {
+	margin: 0px; width: 20px; height: 20px; line-height: 20px; font-size: 12px;
+}
+.micro-theme.jsCalendar thead .jsCalendar-week-days th {
+	margin: 0px; width: 20px; height: 20px; line-height: 20px;
+}
+.micro-theme.jsCalendar tbody td {
+	margin: 0px; width: 20px; height: 20px; line-height: 20px;
+}
+.classic-theme.micro-theme.jsCalendar thead .jsCalendar-week-days th {
+	width: 23px;
+}
+.classic-theme.micro-theme.jsCalendar thead .jsCalendar-week-days th {
+	margin: -1px 0px 0px -1px;
+}
+.classic-theme.micro-theme.jsCalendar tbody td {
+	margin: -1px 0px 0px -1px;
+}

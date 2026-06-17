@@ -1,0 +1,104 @@
+html{ 
+	overflow:hidden; 
+}
+
+body{
+	font-family			: Verdana, Arial,sans-serif;
+	font-size			: 10px;
+	margin-top			: 10px;
+	margin-right		: 0;
+	margin-bottom		: 0;
+	margin-left			: 20px;
+	background-color	: #E6E6E6;
+}
+
+body table{
+	font-family			: Verdana, Arial,sans-serif;
+	font-size			: 10px;
+}
+
+#especificaServicio{
+	width				: 100%;
+	font-weight			: bold;
+	position			: relative;
+	background-color	: #003300;
+	color				: #ffffff;
+	padding				: 5px 0px 5px 7px;
+}
+
+#subtitulo{
+	width				: 99.9%;
+	font-weight			: bold;
+	position			: relative;
+	color				: #000000;
+	padding				: 3px 0px 4px 10px;
+	background-color	: #C8D0CE;
+	border-left   		: 1px solid #ffffff;
+	border-top    		: 1px solid #ffffff;
+	border-right  		: 1px solid #909090;
+	border-bottom 		: 1px solid #909090;
+}
+
+#nombreColumna{
+	background-color	: #C8D0CE;
+	font-weight			: bold;
+	height				: 16px;
+	border-left   		: 1px solid #ffffff;
+	border-top    		: 1px solid #ffffff;
+	border-right  		: 1px solid #909090;
+	border-bottom 		: 1px solid #909090;
+	padding   	  		: 0px 0px 0px 0px;
+	text-align	  		: center;
+	font-size			: 10px;
+}
+
+#personal, #vehiculos, #armamento, #animales, #accesorios{
+	padding		  		: 5px 0px 5px 0px;
+}
+
+
+.linea1{
+	height:19px;
+	background-color: #E9E9E0;
+}
+
+.linea2{
+	height:19px;
+	background-color: #F2F2F2;
+}
+
+.lineaMarcada{
+	background-color: #003300;
+	vertical-align: middle;
+	height:19px;
+	color : #ffffff;
+}
+
+#valorColumna{
+	padding: 0px 3px 0px 3px;
+}
+
+#listadoRecursosAsignados{
+	overflow-y				: auto;
+	scrollbar-track-color	: #d0d0d0;
+	scrollbar-face-color	: #d0d0d0;
+	height					: 430px;
+	position				: relative;
+	width		  			: 100%; 
+	align					: center;
+}
+
+#btn100 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	width:100%;
+	background-color: #C8D0CE;
+	font-weight: normal;
+	text-align: center;
+}
+
+#lineaSeparacion{
+	padding		  : 5px 0px 0px 0px; 
+	border-bottom : 1px solid #909090;
+}

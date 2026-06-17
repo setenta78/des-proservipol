@@ -1,0 +1,359 @@
+﻿@charset "utf-8";
+/* CSS Document */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic,700,700italic,900,900italic);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,700,300&subset=latin,cyrillic); 
+
+
+* {     
+    margin: 0; 
+} 
+html, body{     
+	height: 100%; 
+	font-family:"Roboto Condensed";
+	font-size:12px;
+	color:#464646;
+
+} 
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* franja gris claro superior*/
+.header{
+	width:100%;
+	height:15%;
+	background-color:#E2E2E4;
+}
+	/* espacio donde va el logo */
+	#headerA{
+		width:16%;
+		height:140px;
+		float:left;
+		padding-top:15px;
+		padding-left:10px;
+	}
+	
+	/* espacio donde va el menú superior */
+	#headerB{
+		width:83%;
+		height:140px;
+		float:left; 
+	}
+	
+	/* sub menú superior */
+	#menuImg{
+		float: right;
+		height: 120px;
+		width: 130px;
+	}
+
+
+.headerBajo{
+	width:100%;
+	height:6%;
+	background-color:#8F8E8E;
+}
+
+	#headerBajoA{
+		width:350px;
+		height:74%;
+		padding-top:15px;
+		margin-left:1px;
+		background-color:#AFCC4A;
+		vertical-align: middle;
+		
+	}
+	
+	#headerBajoB{
+		width:80%;
+		height:45px;
+		float:left; 
+		background-color:#8F8E8E;
+		
+	}
+	
+.headerBajo2{
+	width:100%;
+	height:29px;
+	background-color:#8F8E8E;
+}
+
+	#headerBajoA2{
+		width:16%;
+		height:29px;
+		float:left;
+		padding-top:8px;
+		background-color:#AFCC4A;
+	}
+		
+	#headerBajoB2{
+		width:84%;
+		height:29px;
+		float:left; 
+		background-color:#8F8E8E;		
+	}
+
+	
+.content{
+	max-width:48%;
+	width:100%;
+	height:69%;
+	text-align: center; 
+	margin-left:auto;
+	margin-right:auto;
+	min-height:500px;
+	/*background-color:#AFCC4A;*/
+}
+
+	#d1 { 
+		float: left; 
+		width:300px;
+		padding-top:50px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	#d2 { 
+		float:left;
+		width:300px; 
+		padding-top:50px;
+		margin-left:auto;
+		margin-right:auto;
+
+	}
+	#d3 {
+		float: left;
+		width: 300px;
+		padding-top: 50px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	#dosColumnas {
+		float: left;
+		width: 33%;
+		padding-top: 50px;
+		margin-left: auto;
+		margin-right: auto;
+}
+
+.footer{
+	width:100%;
+	height:10%;
+	background-color:#E2E2E4;
+	clear: both;
+	text-align:center;
+}
+
+.footer2{
+	width:100%;
+	height:10%;
+	background-color:#E2E2E4;
+	clear: both;
+	text-align:center;
+	border-top-style:solid;
+	border-top-color:#AFCC4A;
+    border-top-width: 10px;
+}
+
+	#footerText{
+		padding-top:30px;
+	}
+
+#login{
+	width:380px;
+	height:250px;
+	margin-top:120px;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	-ms-border-radius: 10px 10px 10px 10px;
+	border: 2px solid #AFCC4A;
+	
+}
+
+h2{
+	padding-top:20px;
+}
+
+#textUsuario{
+	font-family			:'Roboto Condensed', sans-serif;
+	background			: #eae7e7 url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png) no-repeat;
+	background-position	: 1% -2%;
+	position	 		: relative;
+ 	font-size 	 		: 14px;
+ 	color		 		: #334d55;
+	height				: 20px;
+	padding-left		: 30px;
+	width         		: 40%;
+
+}
+ 
+#textClave{
+	font-family			:'Roboto Condensed', sans-serif; 
+	background			: #eae7e7 url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png) no-repeat;
+	background-position	: 1% 45%;
+	position	 		: relative;
+ 	font-size 	 		: 14px;
+ 	color		 		: #334d55;
+	height				: 20px;
+	padding-left		: 30px;
+	width           	: 40%;
+}
+
+#loginBoton{
+	background-color	: #AFCC4A;
+	border				: 2px solid #07672B;
+	border-radius		: 5px;
+	-moz-border-radius	: 5px;
+  -webkit-border-radius	: 5px;
+  font-family			:'Roboto Condensed', sans-serif;
+	font-size			: 15px;
+	width				: 110px;
+	height				: 30px;
+}
+	
+#loginBoton:hover {
+	color: #fff;
+	font-size: 16px;
+	border: 3px solid #07672B;
+}
+
+#titulo {
+	padding-left:10px;
+	color: #fff;
+	font-size: 16px;
+}
+
+
+#back a{
+	padding-top:10px;
+	padding-left:10px;
+	color: #fff;
+	font-size: 14px;
+	text-decoration:none;
+
+}
+
+#homeAnalisisA
+{
+	width:30%;
+	float:left;
+	height:100%;
+}
+
+#homeAnalisisB
+{
+	width:60%;
+	float:left;
+	height:100%;
+}
+
+#titHome
+{
+	margin-top:120px;
+	margin-left:100px;
+	margin-right:20px;
+}
+
+#textHome
+{
+	margin-top:10px;
+	margin-left:100px;
+	margin-right:30px;
+	font-size:14px;
+	text-align:justify;	
+}
+
+#textHome2{
+	margin-top:5px;
+	margin-left:10px;
+	font-size:13px;
+	text-align:justify;	
+	float:left;
+}
+
+
+#menuAnalisis
+{
+	width:200px;
+	float:left;
+	height:200px;
+	margin-top:120px;
+	margin-left:20px;
+	margin-right:20px;
+	text-align:center;
+}
+
+
+.content2{
+	max-width:88%;
+	min-height:600px;
+	height:100%;
+	text-align: center; 
+	margin-left:auto;
+	margin-right:auto;
+	/*background-color:#AFCC4A;*/
+}
+
+
+ /* Remove margins and padding from the list, and add a black background color */
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #8F8E8E; 
+   /* background-color: #333; */
+}
+
+/* Float the list items side by side */
+ul.topnav li {float:right;} /*original left*/
+
+/* Style the links inside the list items */
+ul.topnav li a {
+    display: inline-block;
+    color: #f2f2f2; /*COLOR DEL TEXTO*/
+    text-align: center;
+    padding: 16px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+ul.topnav li a:active{background-color: #555;}
+
+
+/* Change background color of links on hover */
+ul.topnav li a:hover {background-color: #555;}
+
+/* Hide the list item that contains the link that should open and close the topnav on small screens */
+ul.topnav li.icon {display: none;}
+
+
+ /* When the screen is less than 680 pixels wide, hide all list items, except for the first one ("Home"). Show the list item that contains the link to open and close the topnav (li.icon) */
+@media screen and (max-width:680px) {
+  ul.topnav li:not(:first-child) {display: none;}
+  ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens */
+@media screen and (max-width:680px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}

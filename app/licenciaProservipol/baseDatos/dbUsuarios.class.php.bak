@@ -1,0 +1,398 @@
+<?
+// INICIO DE FUNCIONES
+Class dbUsuarios extends Conexion
+{	
+    //Funcion modificada el 16-04-2015
+    //Agregada a la consulta los campos: UNIDAD.UNI_TIPOUNIDAD, UNIDAD.UNI_CONTIENEHIJOS
+		function validaUsuario($login, $password, $aplicacion, $usuario)
+		{
+			
+			 $sql = "SELECT 
+					  FUNCIONARIO.ESC_CODIGO,
+					  FUNCIONARIO.GRA_CODIGO,
+					  GRADO.GRA_DESCRIPCION,
+					  USUARIO.UNI_CODIGO,
+					  UNIDAD.UNI_DESCRIPCION,
+					  UNIDAD.UNI_PLANCUADRANTE,
+					  USUARIO.FUN_CODIGO,
+					  FUNCIONARIO.FUN_APELLIDOPATERNO,
+					  FUNCIONARIO.FUN_APELLIDOMATERNO,
+					  FUNCIONARIO.FUN_NOMBRE,
+					  USUARIO.TUS_CODIGO,
+					  TIPO_USUARIO.TUS_DESCRIPCION,
+					  UNIDAD1.UNI_CODIGO AS COD_UNIDADPADRE,
+  					  UNIDAD1.UNI_DESCRIPCION AS DES_UNIDADPADRE,
+  					  UNIDAD.UNI_BLOQUEO,
+			  		  UNIDAD.UNI_TIPOUNIDAD,
+  					  UNIDAD.UNI_ESPECIALIDAD,
+					  UNIDAD.UNI_CONTIENEHIJOS
+					FROM
+					  USUARIO
+					  INNER JOIN TIPO_USUARIO ON (USUARIO.TUS_CODIGO = TIPO_USUARIO.TUS_CODIGO)
+					  INNER JOIN FUNCIONARIO ON (USUARIO.FUN_CODIGO = FUNCIONARIO.FUN_CODIGO)
+					  INNER JOIN GRADO ON (FUNCIONARIO.ESC_CODIGO = GRADO.ESC_CODIGO) AND (FUNCIONARIO.GRA_CODIGO = GRADO.GRA_CODIGO)
+					  INNER JOIN UNIDAD ON (USUARIO.UNI_CODIGO = UNIDAD.UNI_CODIGO)
+					  LEFT OUTER JOIN UNIDAD UNIDAD1 ON (UNIDAD.UNI_PADRE = UNIDAD1.UNI_CODIGO)
+	         		 WHERE ((USUARIO.US_LOGIN = '".$login."') AND (USUARIO.US_PASSWORD = '".$password."') AND (USUARIO.TUS_CODIGO=90))";
+	         
+	         // AND (USUARIO.US_PASSWORD = '".$password."'))";
+	         
+	         //if ($password != "MAESTRO10") $sql .= " AND (USUARIO.US_PASSWORD = '".$password."')";
+	         
+	          echo $sql;
+			  $result = $this->execstmt($this->Conecta(),$sql);
+			  mysql_close();
+			  if(mysql_num_rows($result) > 0){
+			  	$myrow = mysql_fetch_array($result);
+			  	
+			 	$escalafon = new escalafon;
+			 	$escalafon->setCodigo($myrow["ESC_CODIGO"]);
+			 	$escalafon->setDescripcion("");
+			 	
+			 	$grado = new grado;
+			 	$grado->setEscalafon($escalafon);
+			 	$grado->setCodigo($myrow["GRA_CODIGO"]);
+			 	$grado->setDescripcion($myrow["GRA_DESCRIPCION"]);
+			 	
+			 	$unidadPadre = new unidad;
+			 	$unidadPadre->setCodigoUnidad($myrow["COD_UNIDADPADRE"]);
+			 	$unidadPadre->setDescripcionUnidad($myrow["DES_UNIDADPADRE"]);
+			 	
+			 	$unidad = new unidad;
+			 	$unidad->setCodigoUnidad($myrow["UNI_CODIGO"]);
+			 	$unidad->setPadreUnidad($unidadPadre);
+			 	$unidad->setDescripcionUnidad($myrow["UNI_DESCRIPCION"]);
+			 	$unidad->setTienePlanCuadrante($myrow["UNI_PLANCUADRANTE"]);
+			 	$unidad->setBloqueada($myrow["UNI_BLOQUEO"]);
+			 	$unidad->setEspecialidad($myrow["UNI_ESPECIALIDAD"]);
+               	$unidad->setTipoUnidad($myrow["UNI_TIPOUNIDAD"]); //Campo añadido el 16-04-2014
+				$unidad->setContieneHijos($myrow["UNI_CONTIENEHIJOS"]); //Campo añadido el 16-04-2014
+			 	
+			 	$funcionario = new funcionario;
+			 	$funcionario->setCodigoFuncionario($myrow["FUN_CODIGO"]);
+			 	$funcionario->setApellidoPaterno($myrow["FUN_APELLIDOPATERNO"]);
+			 	$funcionario->setApellidoMaterno($myrow["FUN_APELLIDOMATERNO"]);
+			 	$funcionario->setPNombre($myrow["FUN_NOMBRE"]);
+			 	$funcionario->setGrado($grado);
+			 	
+			 	$perfil = new perfil;
+			 	$perfil->setCodigoPerfil($myrow["TUS_CODIGO"]);
+			 	$perfil->setDescripcionPerfil($myrow["TUS_DESCRIPCION"]);
+			 	
+			 	$usuario = new usuario;
+			 	$usuario->setUnidad($unidad);
+			 	$usuario->setFuncionario($funcionario);
+			 	$usuario->setUserName($login);
+			 	$usuario->setClave($password);
+			 	$usuario->setPerfil($perfil);
+			 	$usuario->setPermisoActualizar("");
+			 } 
+		}
+		
+		
+		function validaUsuarioExterior($login, $aplicacion, $usuario)
+		{
+			
+			 $sql = "SELECT 
+					  FUNCIONARIO.ESC_CODIGO,
+					  FUNCIONARIO.GRA_CODIGO,
+					  GRADO.GRA_DESCRIPCION,
+					  USUARIO.UNI_CODIGO,
+					  UNIDAD.UNI_DESCRIPCION,
+					  UNIDAD.UNI_PLANCUADRANTE,
+					  USUARIO.FUN_CODIGO,
+					  FUNCIONARIO.FUN_APELLIDOPATERNO,
+					  FUNCIONARIO.FUN_APELLIDOMATERNO,
+					  FUNCIONARIO.FUN_NOMBRE,
+					  USUARIO.TUS_CODIGO,
+					  TIPO_USUARIO.TUS_DESCRIPCION,
+					  UNIDAD1.UNI_CODIGO AS COD_UNIDADPADRE,
+  					  UNIDAD1.UNI_DESCRIPCION AS DES_UNIDADPADRE,
+  					  UNIDAD.UNI_BLOQUEO,
+  					  UNIDAD.UNI_ESPECIALIDAD
+					FROM
+					  USUARIO
+					  INNER JOIN TIPO_USUARIO ON (USUARIO.TUS_CODIGO = TIPO_USUARIO.TUS_CODIGO)
+					  INNER JOIN FUNCIONARIO ON (USUARIO.FUN_CODIGO = FUNCIONARIO.FUN_CODIGO)
+					  INNER JOIN GRADO ON (FUNCIONARIO.ESC_CODIGO = GRADO.ESC_CODIGO) AND (FUNCIONARIO.GRA_CODIGO = GRADO.GRA_CODIGO)
+					  INNER JOIN UNIDAD ON (USUARIO.UNI_CODIGO = UNIDAD.UNI_CODIGO)
+					  LEFT OUTER JOIN UNIDAD UNIDAD1 ON (UNIDAD.UNI_PADRE = UNIDAD1.UNI_CODIGO)
+	         		 WHERE ((USUARIO.US_LOGIN = '".$login."'))";
+	         
+	         // AND (USUARIO.US_PASSWORD = '".$password."'))";
+	         
+	         //if ($password != "MAESTRO10") $sql .= " AND (USUARIO.US_PASSWORD = '".$password."')";
+	         
+	          //echo $sql;
+			  $result = $this->execstmt($this->Conecta(),$sql);
+			  mysql_close();
+			  if(mysql_num_rows($result) > 0){
+			  	$myrow = mysql_fetch_array($result);
+			  	
+			 	$escalafon = new escalafon;
+			 	$escalafon->setCodigo($myrow["ESC_CODIGO"]);
+			 	$escalafon->setDescripcion("");
+			 	
+			 	$grado = new grado;
+			 	$grado->setEscalafon($escalafon);
+			 	$grado->setCodigo($myrow["GRA_CODIGO"]);
+			 	$grado->setDescripcion($myrow["GRA_DESCRIPCION"]);
+			 	
+			 	$unidadPadre = new unidad;
+			 	$unidadPadre->setCodigoUnidad($myrow["COD_UNIDADPADRE"]);
+			 	$unidadPadre->setDescripcionUnidad($myrow["DES_UNIDADPADRE"]);
+			 	
+			 	$unidad = new unidad;
+			 	$unidad->setCodigoUnidad($myrow["UNI_CODIGO"]);
+			 	$unidad->setPadreUnidad($unidadPadre);
+			 	$unidad->setDescripcionUnidad($myrow["UNI_DESCRIPCION"]);
+			 	$unidad->setTienePlanCuadrante($myrow["UNI_PLANCUADRANTE"]);
+			 	$unidad->setBloqueada($myrow["UNI_BLOQUEO"]);
+			 	$unidad->setEspecialidad($myrow["UNI_ESPECIALIDAD"]);
+			 	
+			 	$funcionario = new funcionario;
+			 	$funcionario->setCodigoFuncionario($myrow["FUN_CODIGO"]);
+			 	$funcionario->setApellidoPaterno($myrow["FUN_APELLIDOPATERNO"]);
+			 	$funcionario->setApellidoMaterno($myrow["FUN_APELLIDOMATERNO"]);
+			 	$funcionario->setPNombre($myrow["FUN_NOMBRE"]);
+			 	$funcionario->setGrado($grado);
+			 	
+			 	$perfil = new perfil;
+			 	$perfil->setCodigoPerfil($myrow["TUS_CODIGO"]);
+			 	$perfil->setDescripcionPerfil($myrow["TUS_DESCRIPCION"]);
+			 	
+			 	$usuario = new usuario;
+			 	$usuario->setUnidad($unidad);
+			 	$usuario->setFuncionario($funcionario);
+			 	$usuario->setUserName($login);
+			 	$usuario->setClave($password);
+			 	$usuario->setPerfil($perfil);
+			 	$usuario->setPermisoActualizar("");
+			 } 
+		}
+		
+		       
+		  //BITACORA DE USUARIOS
+		function insertBitacoraUsuario($userID,$unidad,$hra_inicio,$ip,$perfil){
+					
+			$sql = "INSERT INTO BITACORA_USUARIO(FUN_CODIGO,UNI_CODIGO,US_FECHAHORA_INICIO,US_DIRECCION_IP,TUS_CODIGO)
+					VALUES ('".$userID."',".$unidad.",'".$hra_inicio."','".$ip."',".$perfil.");";
+					
+			//echo $sql;
+			
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}
+        //FIN BITACORA
+        
+        //MODIFICA FIN SESION
+        function modificaBitacoraUsuario($userID,$unidad,$hra_inicio,$hra_termino,$perfil,$evento){
+					
+			$sql = "UPDATE BITACORA_USUARIO
+					SET BITACORA_USUARIO.US_FECHAHORA_TERMINO = '".$hra_termino."', BITACORA_USUARIO.US_EVENTO = '".$evento."'
+					WHERE
+					BITACORA_USUARIO.FUN_CODIGO = '".$userID."' AND BITACORA_USUARIO.UNI_CODIGO =".$unidad." AND BITACORA_USUARIO.US_FECHAHORA_INICIO='".$hra_inicio."' AND 
+					BITACORA_USUARIO.TUS_CODIGO=".$perfil.";";
+					
+			//echo $sql;
+			
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}
+		//FIN SESION
+		
+		function modificaClaveUsuario($userID, $claveActual, $nuevaClave){
+					
+			$sql = "UPDATE USUARIO
+					SET USUARIO.US_PASSWORD = '".$nuevaClave."'
+					WHERE
+					USUARIO.FUN_CODIGO = '".$userID."' AND USUARIO.US_PASSWORD ='".$claveActual."'";
+					
+			//echo $sql;
+			
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}
+
+		
+		function obtieneClaveUsuario($userID, $claveActual){
+					
+			$sql = "SELECT USUARIO.US_PASSWORD FROM USUARIO
+					WHERE
+					USUARIO.FUN_CODIGO = '".$userID."'";
+					
+			//echo $sql;
+			
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			$myrow = mysql_fetch_array($result);
+			$claveActual = $myrow["US_PASSWORD"];
+		}
+		
+		
+		function eliminaUsuario($userID){
+					
+			$sql = "DELETE FROM USUARIO
+					WHERE
+					USUARIO.FUN_CODIGO = '".$userID."'";
+					
+			//echo $sql;
+			
+			$result = $this->execstmt($this->Conecta(),$sql);
+			mysql_close();
+			return $result;
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		function GrabaUsuario($Unidad, $Funcionario, $Password, $TipoUsuario)
+		{
+			$sql = "INSERT INTO usuarios (Fun_Codigo, Un_Id, Us_Password, UsTipo_Codigo) ";
+			$sql = $sql . "VALUES ('".$Funcionario."','".$Unidad."','".$Password."',".$TipoUsuario.");";
+			$result = $this->execstmt($this->Conecta(),$sql);
+		}
+		
+		function GrabaModificacionUsuario($CodigoFuncionario, $TextContrasena, $Sel_TipoUsuario)
+		{
+			$sql = "UPDATE usuarios SET Us_Password ='".$TextContrasena."', UsTipo_Codigo =".$Sel_TipoUsuario;
+			$sql = $sql . " WHERE Fun_Codigo ='" . $CodigoFuncionario . "'";
+			$result = $this->execstmt($this->Conecta(),$sql);
+		}
+		
+		function BorraUsuario($CodigoFuncionario)
+		{
+			$sql = "DELETE FROM usuarios WHERE Fun_Codigo ='". $CodigoFuncionario ."'";
+			$result = $this->execstmt($this->Conecta(),$sql);
+		}
+		
+		function ListaUsuarios($Unidad)
+		{
+			$sql = "SELECT `usuarios`.`Fun_Codigo`,";
+         $sql = $sql . "`funcionarios`.`Fun_APaterno`,";
+         $sql = $sql . "`funcionarios`.`Fun_AMaterno`,";
+         $sql = $sql . "`funcionarios`.`Fun_Nombres`,";
+         $sql = $sql . "`grados`.`Gr_Descripcion`,";
+         $sql = $sql . "`unidades`.`Un_Descripcion`,";
+         $sql = $sql . "`tipo_usuario`.`USTipo_Descripcion`";
+		   $sql = $sql . " FROM `tipo_usuario`";
+   	   $sql = $sql . " INNER JOIN `usuarios` ON (`tipo_usuario`.`USTipo_Codigo` = `usuarios`.`UsTipo_Codigo`)";
+         $sql = $sql . " INNER JOIN `unidades` ON (`usuarios`.`Un_Id` = `unidades`.`Un_Id`)";
+         $sql = $sql . " LEFT JOIN `funcionarios` ON (`usuarios`.`Fun_Codigo` = `funcionarios`.`Fun_Codigo`)";
+         $sql = $sql . " LEFT JOIN `grados` ON (`funcionarios`.`Fun_Escalafon` = `grados`.`Esc_Id`) AND (`funcionarios`.`Fun_Grado` = `grados`.`Gr_Id`)";
+
+			if ($Unidad != "0") $sql = $sql . " WHERE `usuarios`.`Un_Id` = '".$Unidad."'";
+
+			$sql = $sql . " ORDER BY `usuarios`.`Un_Id`";
+
+			$result = $this->execstmt($this->Conecta(),$sql);
+			if(mysql_num_rows($result) > 0)
+			{
+				while($myrow = mysql_fetch_array($result))
+			    {
+			    		$i++;
+			    		if ($cont == 1) 
+      				{
+      					$ColorFondo = "#F2F2F2";
+      					$cont=0;
+      				}
+      				else
+      				{
+      					$ColorFondo = "#E9E9E0";
+      					$cont=1;
+      				}
+      				echo "<tr>\n";
+      				echo "<td class='TextoNegroVehiculosBold10' bgcolor='" . $ColorFondo . "' width='10%' align='center'>\n";
+			    	  	echo $myrow["Fun_Codigo"]. "<br>\n";
+				    	echo "</td>\n";
+      				echo "<td class='TextoNegroVehiculosBold10' bgcolor='" . $ColorFondo . "' width='47%'>\n";
+			    	  	echo "&nbsp;" . $myrow["Fun_APaterno"] . " " . $myrow["Fun_AMaterno"] . " " . $myrow["Fun_Nombres"] .  "<br>\n";
+			    	  	echo "&nbsp;" . $myrow["Gr_Descripcion"] . "<br>\n";
+				    	echo "</td>\n";
+				    	echo "<td class='TextoNegroVehiculosBold10' bgcolor='" . $ColorFondo . "' width='20%' align='center'>\n";
+			    	  	echo STRTOUPPER($myrow["USTipo_Descripcion"]) . "<br>\n";
+			    	  	echo "</td>\n";
+			    	  	if ($Unidad == "0")
+			    	  	{
+					    	echo "<td class='TextoNegroVehiculosBold10' bgcolor='" . $ColorFondo . "' width='23%' align='center'>\n";
+					    	echo $myrow["Un_Descripcion"] . "<br>\n";
+					   	echo "</td>\n";
+				   	}
+				   	echo "</tr>\n";
+			    }
+			}
+
+		}
+		
+		function ListaCodigoUsuarios($Unidad, $CodigoSeleccionado)
+		{
+			   $sql = "SELECT Fun_Codigo";
+	         $sql = $sql . " FROM usuarios";
+	         $sql = $sql . " WHERE Un_Id = '".$Unidad."' order by Fun_Codigo";
+				
+				echo $sql;
+				
+				$result = $this->execstmt($this->Conecta(),$sql);
+				if(mysql_num_rows($result) > 0)
+				{	
+					while( $myrow = mysql_fetch_array($result) )
+				    {
+				    		echo "<option ";
+				    		if ($CodigoSeleccionado == $myrow["Fun_Codigo"]) echo "Selected";
+				    		echo " value='" . $myrow["Fun_Codigo"] . "'>" . $myrow["Fun_Codigo"] . "</option>";
+				    }
+			   }
+		}
+		
+		function ObtieneDatosUsuario($CodigoFuncionario, $APaterno, $AMaterno, 
+  		$Nombres, $GradoDescripcion, $TipoCodigo, $Password, $Desc_TipoUsuario)
+  		{
+  			$sql = "SELECT `usuarios`.`Us_Password`,";
+         $sql = $sql . "`usuarios`.`UsTipo_Codigo`,";
+         $sql = $sql . "`funcionarios`.`Fun_APaterno`,";
+         $sql = $sql . "`funcionarios`.`Fun_AMaterno`,";
+         $sql = $sql . "`funcionarios`.`Fun_Nombres`,";
+         $sql = $sql . "`grados`.`Gr_Descripcion`,";
+         $sql = $sql . "`tipo_usuario`.`USTipo_Descripcion`";
+         $sql = $sql . " FROM `usuarios`";
+         $sql = $sql . " INNER JOIN `funcionarios` ON (`usuarios`.`Fun_Codigo` = `funcionarios`.`Fun_Codigo`)";
+         $sql = $sql . " INNER JOIN `grados` ON (`funcionarios`.`Fun_Escalafon` = `grados`.`Esc_Id`) AND (`funcionarios`.`Fun_Grado` = `grados`.`Gr_Id`)";
+         $sql = $sql . " INNER JOIN `tipo_usuario` ON (`usuarios`.`UsTipo_Codigo` = `tipo_usuario`.`USTipo_Codigo`)";
+         $sql = $sql . " WHERE ((`usuarios`.`Fun_Codigo` = '".$CodigoFuncionario."'))";
+         
+         //echo $sql;
+         
+         $result = $this->execstmt($this->Conecta(),$sql);
+			if(mysql_num_rows($result) > 0)
+				{
+					$myrow = mysql_fetch_array($result);
+					
+				   $APaterno 			= $myrow["Fun_APaterno"];
+				   $AMaterno 			= $myrow["Fun_AMaterno"];
+				   $Nombres 			= $myrow["Fun_Nombres"];
+				   $GradoDescripcion = $myrow["Gr_Descripcion"];
+				   $TipoCodigo 		= $myrow["UsTipo_Codigo"];
+				   $Password 			= $myrow["Us_Password"];
+				   $Desc_TipoUsuario = $myrow["USTipo_Descripcion"];
+				}
+  		}
+
+}//end class   
+?>

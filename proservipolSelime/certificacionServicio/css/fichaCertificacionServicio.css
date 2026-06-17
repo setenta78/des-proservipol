@@ -1,0 +1,87 @@
+.campoSelect{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #3C475B;
+	width: 100%;
+	/*text-transform: uppercase;*/
+}
+
+#cabeceraGrilla{
+	width			: 100%;
+	background-color: #C8D0CE;
+}
+
+
+#nombreColumna{
+	font-weight: normal;
+	background-color: #C8D0CE;
+	font-weight: bold;
+	height:16px;
+	border-left   : 1px solid #ffffff;
+	border-top    : 1px solid #ffffff;
+	border-right  : 1px solid #909090;
+	border-bottom : 1px solid #909090;
+	padding   	  : 0px 0px 0px 0px;
+	text-align	  : center;
+}
+
+#nombreColumna2{
+	font-family		: Verdana, Arial, Helvetica, sans-serif;
+	font-size		: 9px;
+	background-color: #C8D0CE;
+	font-weight		: bold;
+	height			: 20px;
+	padding   	  	: 0px 0px 0px 4px;
+	border			: 1px solid #DDDDDD;
+}
+
+
+#listadoServicios{
+	width	: 100%;
+}
+
+
+#listado2{
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+	height	:400px;
+}
+
+
+
+.lineaMarcada{
+	background-color: #003300;
+	cursor: hand;
+	vertical-align: middle;
+	height:19px;
+	color : #ffffff;
+}
+
+.lineaMarcada td{
+	font-weight: normal;
+	border: 0 inset;
+	cursor: hand;
+	font-weight: normal;
+}
+
+
+.lineaMarcada td table td{
+	border: none;
+	vertical-align: middle;
+	font-weight: normal;
+	cursor: hand;
+}
+
+
+.linea1{
+	height:19px;
+	background-color: #E9E9E0;
+}
+
+.linea2{
+	height:19px;
+	background-color: #F2F2F2;
+}
+

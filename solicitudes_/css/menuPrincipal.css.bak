@@ -1,0 +1,121 @@
+.menuPrincipal * { 
+	font-family			: Verdana, Arial,sans-serif;
+	font-weight			: bold;
+	font-size			: 10px;
+	list-style			: none; 
+	text-decoration		: none; 
+	margin				: 0; 
+	padding				: 0; 
+}   
+
+
+.menuPrincipal > li { 
+	float				: left;
+	width				: 14%; 
+	border-left			: 1px solid #ffffff; 
+}   
+
+.menuPrincipal li a { 
+	color				: #FFF; 
+	display				: block;
+	padding				: 2px 0px 2px 0px;
+	text-align			: center;
+}   
+
+.menuPrincipal li a:hover { 
+	color				: #000000;
+} 
+
+/*
+.menuPrincipal li ul { 
+	display				: none; 
+	position			: absolute; 
+	min-width			: 350px; 
+	background-image	: url(../img/barra.jpg);
+	border-left			: 1px solid #ffffff; 
+	border-top			: 1px solid #ffffff; 
+	border-right		: 1px solid #000000; 
+	border-bottom		: 1px solid #000000; 
+} 
+*/
+
+.menuPrincipal li ul {
+	display				: none;
+	position			: absolute;
+	min-width			: 300px;
+	/*background-image	: url(../img/barra.jpg);*/
+	background-image	: url(../img/NewBarra.png);
+	border-left			: 1px solid #ffffff;
+	border-top			: 1px solid #ffffff;
+	border-right		: 1px solid #000000;
+	border-bottom		: 1px solid #000000;
+}
+
+.menuPrincipal li ul a { 
+	padding				: 7px 7px;
+	text-align			: left;
+	border-left			: 1px solid #ffffff; 
+	border-top			: 1px solid #ffffff; 
+	border-right		: 1px solid #000000; 
+	border-bottom		: 1px solid #000000;
+} 
+
+.menuPrincipal li:hover > ul { 
+	display				: block; 
+} 
+
+/*
+#contenedorMenu{
+	width				: 100%;
+	background-image	: url(../img/barra.jpg);
+	height				: 23px;
+}
+*/
+
+#contenedorMenu{
+	width				: 100%;
+	/*background-image	: url(../img/barra.jpg);*/
+	background-image	: url(../img/NewBarra.png);
+	height				: 24px;
+}
+
+.nav li ul li ul {
+	right				: -300px;
+}
+
+/* Desde aca 
+
+* {
+				margin:0px;
+				padding:0px;
+  }
+			
+
+ul, ol {
+				list-style:none;
+			}
+			
+.nav > li {
+				float:left;
+			}
+			
+.nav li ul {
+				display:none;
+				position:absolute;
+				min-width:140px;
+			}
+			
+.nav li:hover > ul {
+				display:block;
+			}
+			
+.nav li ul li {
+				position:relative;
+			}
+			
+.nav li ul li ul {
+				right:-140px;
+				top:0px;
+	}
+	
+*/

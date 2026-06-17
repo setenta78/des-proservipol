@@ -1,0 +1,87 @@
+.textoNegrilla{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	font-weight: bold;
+}
+
+table{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #3C475B;
+}
+
+.label{
+	text-align: right;
+}
+
+.dato{
+	background-color: #e1edde;
+	font-family		: Verdana, Arial, Helvetica, sans-serif;
+	font-size		: 9px;
+	font-weight		: bold;
+	padding			: 4px 5px 4px 5px;
+	text-transform	: uppercase;
+	height			: 20px;
+}
+
+.dato table{
+
+	font-weight		: bold;
+	width			:98%;
+}
+
+/*
+.Boton_100 {
+	font-family		: Verdana, Arial, Helvetica, sans-serif;
+	width			:100%;
+	font-weight		: normal;
+	font-size		: 9px;
+	text-align		: center;
+	cursor			: auto;
+	border			: 2 outset;
+	background-color: #C8D0CE;
+}
+*/
+
+.Boton_100 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	padding: 2px 2px;
+	color:  #fff;
+	font-weight: normal;
+	text-align: center;
+	width:90%;
+	background-color: #a6c99c;
+	border-width: 0px; 
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  box-shadow: 2px 3px #666;
+  behavior: url(css/pie.htc);
+  font-weight: bold;
+}
+
+.Boton_100:hover {
+	background-color:  #88b77b;
+	color: #fff;
+	text-transform: uppercase;
+}
+
+.Boton_100:disabled,
+.Boton_100[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  box-shadow: 1px 1px #666;
+}
+
+.linea{
+	border-top		: 1px solid #909090;
+  border-bottom	: 1px solid #f0f0f0;
+  margin			: 4px 0px;
+}
+
+#observaciones{
+	padding 		: 4px 4px 4px 4px;
+}

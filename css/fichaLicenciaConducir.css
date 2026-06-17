@@ -1,0 +1,69 @@
+#textCodigoFuncionario, #textGrado, #textNombreCompleto, #textCargoActual, 
+#selMunicipalidad, #textNumeroLicenciaMunicipal, #textFechaUltimoControlMunicipal, #textFechaProximoControlMunicipal, #selClaseMunicipalOpciones, #selClaseMunicipalOpcionesSeleccionadas,
+#selRestriccionMunicipalOpciones, #selRestriccionMunicipalOpcionesSeleccionadas, #textObservacionesMunicipal,
+#selEvaluacionSemep, #textFechaHabilitacionSemep, #textFechaRenovacionSemep, #selTipoVehiculoSemepOpciones, #selTipoVehiculoSemepOpcionesSeleccionadas, #selRestriccionSemepOpciones,
+#selRestriccionSemepOpcionesSeleccionadas, #textObservacionesSemep {
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+
+#nombreArchivoSubir { 
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+}
+
+#cubreVentanaPersonalLC{
+	position	  	: absolute;
+	width			: 99%; 
+	height			: 530;
+	background-color: #000;
+	opacity : 0.75;
+	filter:alpha(opacity=75);
+}
+
+.deshabilidado
+{
+	background-color:#eff9ec;
+} 
+
+.habilidado
+{
+	background-color:#f5fbf3;
+} 
+
+.calendarioDeshabilidado
+{
+	width:0;
+	height: 0;
+} 
+
+.calendarioHabilidado
+{
+	width:15;
+	height: 13;
+} 
+
+#btnSeleccionaClaseLicenciaMunicipal, #btnQuitaSeleccionClaseLicenciaMunicipal, #btnSeleccionaRestriccionLicenciaMunicipal, #btnQuitaSeleccionRestriccionLicenciaMunicipal,
+#btnSeleccionaTipoVehiculoSemep, #btnQuitaSeleccionTipoVehiculoSemep, #btnSeleccionaRestriccionSemep, #btnQuitaSeleccionRestriccionSemep, #archivo, #btnSubir {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	width:100%;
+	background-color: #e1edde;
+	font-weight: normal;
+	text-align: center;
+}
+
+#divSubirArchivo{
+	padding		  	: 5px 5px 5px 5px;
+	position	  	: absolute;
+	background-color: #d2e4ce;
+	width			: 620px; 
+	height			: 35px;
+	z-index			: 1
+}
+

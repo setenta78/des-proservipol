@@ -1,0 +1,34 @@
+#textCodigoFuncionario, #textGrado, #textApellidoPaterno, #textApellidoMaterno, #textPrimerNombre, #textSegundoNombre, 
+#textCargo, #selGrado, #selTipoUsuarioPROSERVIPOL,#selTipoUsuarioRRCC, #selUnidadUsuario, #selEscalafon, #selEstado, #textFechaUltimoCargo, #textUnidadAgregado,
+#listaArbolUnidad
+{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#selectUnidad{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#ventanaSeleccionaUnidad{
+	width		  	: 450px;
+	background-color: #CCCC99;
+	padding			: 10px 20px 10px 20px;
+	position		: absolute;
+	top				: 125px;
+	left			: 325px
+}
+
+#cubreVentanaPersonal{
+	position	  	: absolute;
+	width			: 620px; 
+	height			: 350px;
+	background-color: #000;
+	filter:alpha(opacity=0);
+}
+

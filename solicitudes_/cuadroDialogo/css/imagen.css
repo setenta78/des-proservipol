@@ -1,0 +1,25 @@
+#loginImagen{
+    position     :absolute;
+    left         :25px;
+    top          :25px;
+	float		 :left;
+	width		 :0%;
+
+}
+#loginCalendar{
+    position     :absolute;
+    right        :0;
+    top          :220px;
+	float		 :right;;
+	width		 :35%;
+
+}
+
+#capacitacion{
+    position     :absolute;
+    left         :1px;
+    top          :65px;
+	float		 :left;
+	width		 :35%;
+
+}

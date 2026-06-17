@@ -1,0 +1,54 @@
+#textPatente, #textNumeroInstitucional, 
+#selProcedencia, #selTipoVehiculo, #selMarca, #selOrigen2,#selModelo, #selEstado, #selLugarReparacion, #textFechaNuevoEstado,#selTipoFalla,
+#textDocumentoNuevoEstado, #textNumeroBCU, #textUnidadAgregado, #textFechaVentanaFecha, #textTipoMovimentoVentanaFecha,#fallasPosibles, #fallasPresente,
+#textNombre,#textRaza,#textFechaNacimiento,#selColor,#selPelaje,#selSexo,#selTipoAnimal,#selOrigen,#selTipoAnimal2,#selEstado2,#selColor2,#textFechaNacimiento2,
+#textRaza2, #textNombre2, #textNumeroBCU2,#textUnidadAgregado2, #textDocumentoNuevoEstado2, #textFechaNuevoEstado2{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#selectUnidad{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#ventanaSeleccionaUnidad{
+	width		  	: 450px;
+	background-color: #CCCC99;
+	padding			: 3px 3px 5px 3px;
+	position		: absolute;
+	top				: 120px;
+	left			: 325px
+}                          
+
+
+#ventanaIngresoFecha{
+	font-family	    : Verdana, Arial,sans-serif;
+	font-size	    : 10px;
+	width		  	: 450px;
+	background-color: #CCCC99;
+	padding			: 10px 20px 10px 20px;
+	position		: absolute;
+	top				: 110px;
+	left			: 215px
+}
+          
+                                     
+#cubreVentanaPersonal{               
+	position	  		: absolute;
+	width				: 100%; 
+	height				: 350px;
+	background-color	: #000;
+	filter:alpha(opacity=0);
+}
+
+#textAnnoFab{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 15%;
+	text-transform: uppercase;
+}

@@ -1,0 +1,142 @@
+#bodyLogin{
+	margin		 : 0px;
+}
+
+#tableLogin{
+	width		 : 100%;
+	
+}
+
+#loginIngresaContrasena{
+	float		 : left;
+	width		 : 100%;
+	padding		 : 100px 0px 0px 0px;
+}
+
+#loginIzquierda{
+	float		 : left;
+	width		 : 45.5%;
+	border-right : 2px inset #FCFCFC;
+	text-align	 : right;
+	padding		 : 5px 10px 10px 0px;
+}
+
+#loginDerecha{
+	float		 : right;
+	width		 : 52%;
+	border-left	 : 2px solid #f0f0f0;
+	text-align	 : center;
+	padding		 : 30px 0px 27px 10px;
+}
+
+
+#loginEspacioInferior{
+	position	 	: relative;
+	float			: left;
+	font-family	  	: Verdana, Arial,sans-serif;
+	font-size     	: 11px;
+	text-align    	: center;
+	width		  	: 100%;
+	border-bottom 	: 2px inset #FCFCFC;
+	padding		 	: 65px 0px 100px 0px;
+}
+
+#loginMenu{
+	font-family: Verdana, Arial,sans-serif;
+	padding: 2px 0px 10px 10px;
+	color: #cccccc;
+}
+
+#loginMenu a {
+	font-size: 11px;
+	color: #006699;
+}
+
+#loginMenu a:visited {
+	font-size: 11px;
+	color: #006699;
+}
+
+#loginHref {
+	float: left;
+	width: 50%;
+}
+
+#loginInspectoria {
+	font-family: Verdana, Arial,sans-serif;
+	font-size: 11px;
+	text-align: right;
+	width: 49%;
+	padding: 3px 0px 0px 0px;
+}
+
+#loginMensajeMantencion {
+	font-family: Verdana, Arial,sans-serif;
+	font-size: 15px;
+	text-align: left;
+	padding: 0px 0px 0px 0px;
+}
+
+
+#loginNombreSistema{
+	position	 	 : relative;
+	font-family	 : Verdana,Arial,sans-serif;
+ 	font-size 	 : 18px;
+ 	font-weight	 : bold;
+ 	color		 : #334d55;
+ 	text-align	 : left;
+ 	line-height  : 18px;
+ 	padding		 : 0px 0px 10px 0px;
+}
+
+#loginLabel{
+	position	 : relative;
+	font-family	 : Verdana,Arial,sans-serif;
+ 	font-size 	 : 10px;
+ 	font-weight	 : bold;
+ 	color		 : #334d55;
+ 	text-align	 : left;
+ 	padding		 : 0px 0px 0px 0px;
+}
+
+#loginText{
+	position	 : relative;
+	font-family	 : Verdana,Arial,sans-serif;
+ 	font-size 	 : 10px;
+ 	font-weight	 : bold;
+ 	color		 : #334d55;
+ 	text-align	 : left;
+ 	text-transform: uppercase;
+ 	
+ }
+ 
+ #loginNombreUsuario{
+ position	 	 : relative;
+	width		 : 100%;
+	float		 : left;
+ }
+ 
+ #loginClaveUsuario{
+ position	 	 : relative;
+	float		 : left;
+	width		 : 100%;
+ }
+ 
+#loginBoton {
+position	 	 : relative;
+	font-family	: Verdana, Arial, Helvetica, sans-serif;
+	width		:100px;
+	font-weight	: normal;
+	font-size	: 9px;
+	text-align	: center;
+	border		: 2 outset;
+	background-color: #C8D0CE;
+	height      : 23px;
+}
+
+.loginImg { 
+position	 	 : relative;
+   background-image : url(../img/logo-trans.png);
+   height  : 500px;
+   width   : 150px;
+} 

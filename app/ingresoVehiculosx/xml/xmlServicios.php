@@ -1,0 +1,44 @@
+<?
+
+	header ('content-type: text/xml');
+	include("configuracionBD2.php");
+	require("../db/dbServicios.class.php");
+	require("../objetos/servicio.class.php");
+		
+	$codigo				= $_POST['codigo'];
+	$fecha1 			= $_POST['fecha1'];
+	$fecha2				= $_POST['fecha2'];
+	
+	$fechaPaso 		= explode("-",$fecha1);
+  $fechaBuscar1 = $fechaPaso[2] . $fechaPaso[1] . $fechaPaso[0];
+   	
+  $fechaPaso 		= explode("-",$fecha2);
+  $fechaBuscar2 = "'".$fechaPaso[2] . $fechaPaso[1] . $fechaPaso[0]."'";
+	
+	if($fechaBuscar2=="''") $fechaBuscar2 = "('".$fechaBuscar1."'+ INTERVAL 30 DAY)";
+	
+	$objServicios = new dbServicios;
+	$objServicios->RevisaServicios($codigo, $fechaBuscar1, $fechaBuscar2, &$servicios);
+	$cantidad = count($servicios);
+	if ($servicios != ""){		
+  	echo "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>";
+  	echo "<root>";
+   	for ($i=0; $i < $cantidad; $i++){
+   		$fechaPaso 		= explode("-",$servicios[$i]->getFecha());
+   		$fechaMostrar   = $fechaPaso[2] . "-" . $fechaPaso[1] . "-" . $fechaPaso[0];
+	   		
+   		echo "<servicio>";
+   		echo "<unidad>".$servicios[$i]->getUnidad()."</unidad>";
+   		echo "<correlativoServicio>".$servicios[$i]->getCorrelativo()."</correlativoServicio>";
+   		echo "<fecha>".$fechaMostrar."</fecha>";
+   		echo "<servicio>".$servicios[$i]->getTipoServicio()."</servicio>";
+   		echo "<horaInicio>".$servicios[$i]->getHoraInicio()."</horaInicio>";
+   		echo "<horaTermino>".$servicios[$i]->getHoraTermino()."</horaTermino>";
+   		echo "</servicio>";
+	 	}
+		echo "</root>";
+	} else {
+		echo "VACIO";
+	}
+	
+ ?>

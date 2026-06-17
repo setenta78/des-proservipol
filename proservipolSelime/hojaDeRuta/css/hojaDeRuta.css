@@ -1,0 +1,334 @@
+html { 
+	overflow:hidden; 
+}
+
+body{
+	font-family		: Verdana, Arial,sans-serif;
+	font-size		  : 10px;
+	margin-top		: 0;
+	margin-right	: 0;
+	margin-bottom	: 0;
+	margin-left		: 0;
+	overflow:hidden; 
+}
+
+#titulo{
+	font-family: Verdana, Arial Black, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #3C475B;
+	width:100%;	
+}
+
+#subtitulo{
+	font-size: 10px;
+	color: #3C475B;
+	font-weight: bold;
+}
+
+
+#cargando{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 11px;
+	color: #3C475B;
+}
+
+
+/*
+#textBuscar{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	width:97%;
+	text-transform: uppercase;
+}
+*/
+
+.linea{
+	background-color: #C8D0CE;
+	height: 1px;
+}
+
+#listado{
+	overflow-y: scroll;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+	height	:150px;
+}
+
+#listadoHojaRuta{
+	width	: 100%;
+}
+
+#listadoMedioVigilancia{
+	width	: 100%;
+}
+
+
+
+#cabeceraGrilla{
+	width	: 100%;
+	position: relative;
+	background-color: #C8D0CE;
+}
+
+#nombreColumna{
+	font-weight: normal;
+	background-color: #C8D0CE;
+	font-weight: bold;
+	height:16px;
+	border-left   : 1px solid #ffffff;
+	border-top    : 1px solid #ffffff;
+	border-right  : 1px solid #909090;
+	border-bottom : 1px solid #909090;
+	padding   	  : 0px 0px 0px 0px;
+	text-align	  : center;
+}
+
+
+
+
+.linea1{
+	height:19px;
+	background-color: #E9E9E0;
+}
+
+.linea2{
+	height:19px;
+	background-color: #F2F2F2;
+}
+
+.lineaMarcada{
+	background-color: #003300;
+	cursor: hand;
+	vertical-align: middle;
+	height:19px;
+	color : #ffffff;
+}
+
+
+
+#valorColumna{
+	padding: 0px 2px 0px 3px;
+}
+
+
+
+/*Fin Estilo principal*/
+
+
+
+
+.TextoMenu_Opcion
+{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #EBF3EF;
+	font-style: normal;
+	/*text-transform: uppercase;*/
+}
+
+.textoNegrilla{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	font-weight: bold;
+}
+
+.linkMarcado{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	font-weight: bold;
+}
+
+.link{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+table{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+}
+
+
+.tablaLevantada{
+	border-top: 2 outset;
+	border-right: 2 outset #FCFCFC;
+	border-bottom: 2 outset #FCFCFC;
+	border-left: 2 outset;
+}
+*/
+.checkbox{
+	border: 0 inset;
+}
+
+
+
+.tableNombreColumnas{
+	font-size: 10px;
+	background-color: #C8D0CE;
+	font-weight: bold;
+	height:20px;
+	border: 2 outset;    
+}
+
+
+
+
+.label{
+	text-align: right;
+}
+
+.dato{
+	background-color: #DDDDDD;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.dato table{
+	font-weight: bold;
+	width:98%;
+}
+
+.Boton_100 {
+	font-family: Verdana, Arial,  sans-serif;
+	width:100%;
+	font-weight: normal;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	border: 2 outset;
+	background-color: #C8D0CE;
+}
+
+.Boton_ {
+	font-family: Verdana, Arial, sans-serif;
+	width:60px;
+	font-weight: normal;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	border: 2 outset;
+	background-color: #C8D0CE;
+}
+
+
+.Boton_2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	border: 2 outset;
+	background-color: #C8D0CE;
+}
+
+
+.Boton_Resaltado {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	width:100%;
+	font-weight: bold;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	background-color: #C8D0CE;
+}
+
+.linea{
+	border-top: 1px solid #909090;
+  	border-bottom: 1px solid #f0f0f0;
+  	margin: 4px 2px;
+}
+
+.linea_Lista{
+	background-color: #C8D0CE;
+	height: 1px;
+}
+
+.textArea{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #3C475B;
+	width: 100%;
+	font-weight: normal;
+	border: 2 inset;
+	/*text-transform: uppercase;*/
+}
+
+.campoTexto{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #3C475B;
+	width: 100%;
+	/*text-transform: uppercase;*/
+}
+
+.campoTexto2{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #3C475B;
+	/*width: 100%;*/
+	text-transform: uppercase;
+}
+
+.campoTextoDeshabilitado{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	background-color : #ECECF0;
+	width	 : 100%;
+}
+
+.campoTextoDeshabilitado2{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	background-color : #ECECF0;
+	/*width	 : 100%;*/
+}
+
+.campoSelect{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #3C475B;
+	width: 100%;
+	/*text-transform: uppercase;*/
+}
+
+.campoSelectMultiple{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #3C475B;
+	width: 100%;
+	/*text-transform: uppercase;*/
+}
+
+
+.lineaMarcada td{
+	font-weight: normal;
+	border: 0 inset;
+	cursor: hand;
+	font-weight: normal;
+}
+
+
+.lineaMarcada td table td{
+	border: none;
+	vertical-align: middle;
+	font-weight: normal;
+	cursor: hand;
+}
+
+.Boton {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	color: #3D475A;
+}
+
+

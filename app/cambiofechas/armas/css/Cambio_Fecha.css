@@ -1,0 +1,68 @@
+.texto{
+	font-family	  : Verdana;
+	font-size	  : 10px;
+	font-weight	  : bold;
+}
+
+.texto2{
+	font-family	  : Verdana;
+	font-size	  : 12px;
+}
+
+.linea1{
+	height:19px;
+	background-color: #E9E9E0;
+}
+
+.linea2{
+	height:19px;
+	background-color: #F2F2F2;
+}
+
+.lineaMarcada{
+	background-color: #003300;
+	cursor: hand;
+	vertical-align: middle;
+	height:19px;
+	color : #ffffff;
+}
+
+#nombreColumna{
+	font-weight: normal;
+	background-color: #C8D0CE;
+	font-weight: bold;
+	height:16px;
+	border-left   : 1px solid #ffffff;
+	border-top    : 1px solid #ffffff;
+	border-right  : 1px solid #909090;
+	border-bottom : 1px solid #909090;
+	padding   	  : 0px 0px 0px 0px;
+	text-align	  : center;
+}
+
+#textCodigoFuncionario{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	text-transform: uppercase;
+}
+
+#btn{
+	font-family	  : Verdana;
+	font-size	  : 10px;
+	color		  : #3C475B;
+	width		  : 15%;
+	background-color  : #C8D0CE;
+	text-aling        : center;
+}
+#lista{
+	font-family	  : Verdana;
+	font-size	  : 10px;
+	font-weight	  : bold;
+	display : none; 
+}
+#listaFechas{
+	font-family	  : Verdana;
+	font-size	  : 10px;
+	font-weight	  : bold;
+	display : none;
+}

@@ -1,0 +1,62 @@
+#textCodigoFuncionario, #textGrado, #textApellidoPaterno, #textApellidoMaterno, #textPrimerNombre, #textSegundoNombre, 
+#textCargo, #selGrado, #selCargo, #selCuadrante, #selEscalafon, #selEstado, #textFechaUltimoCargo, #textUnidadAgregado,
+#textFechaVentanaFecha, #textTipoMovimentoVentanaFecha,#textRutFuncionario, #selCategoriaCargo, #selSeccion, #textTituloContrasena{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#textCantDias{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 10%;
+	text-transform: uppercase;
+}
+
+#selectUnidad{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#ventanaSeleccionaUnidad{
+	width		  	: 450px;
+	background-color: #D1EAC1;
+	padding			: 10px 20px 10px 20px;
+	position		: absolute;
+	top				: 125px;
+	left			: 325px
+}
+
+#ventanaIngresoFecha{
+	font-family	    : Verdana, Arial,sans-serif;
+	font-size	    : 10px;
+	width		  	: 450px;
+	background-color: #D1EAC1;
+	padding			: 10px 20px 10px 20px;
+	position		: absolute;
+	top				: 110px;
+	left			: 215px
+}
+
+#cubreVentana{
+	position	  	: absolute;
+	width			: 100%; 
+	height			: 100%;
+	background-color: #000;
+	opacity : 0.75;
+	filter:alpha(opacity=75);
+}
+
+#ventanaIngresoContrasena{
+	font-family	    : Verdana, Arial,sans-serif;
+	font-size	    : 10px;
+	width		  	: 450px;
+	background-color: #D1EAC1;
+	padding			: 10px 20px 10px 20px;
+	position		: absolute;
+	top				: 110px;
+	left			: 215px
+}

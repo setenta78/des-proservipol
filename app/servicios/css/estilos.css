@@ -1,0 +1,93 @@
+.campos{
+      background-color:#FFFFFF; 
+      border: 1px solid #666666; 
+      font-size:9pt; 
+      color: #000000;
+}
+.texto{
+	font-family: Verdana;
+	font-size: 10px;
+	color:  #000000;
+	font-weight: bold;	
+}
+.texto2{
+	font-family: Verdana;
+	font-size: 14px;
+	color:  #000000;
+	font-weight: bold;	
+}
+.texto3{
+	font-family: Verdana;
+	font-size: 12px;
+	color:  #000000;
+	font-weight: ;	
+}
+#formu{   
+   width:50%
+   text-align: center;
+}
+
+#marca {
+	font-family: Verdana;
+	font-size: 10px;
+	color:  #000000;
+	background-position: center;
+}
+.lineaDatos1  {
+  border: 1px solid transparent;
+	font-family: 'Helvetica Neue',Helvetica,Arial,'lucida grande',tahoma,verdana,arial,sans-serif;
+	font-size: 12px;
+	color:  #000000;
+	background-position: center;
+}
+table tr.lineaDatos1:hover td{
+	color : #000000;
+	cursor: pointer;
+	background-color: #F1F1F1;
+	background-position: center;	
+}
+.lineaDatos2 {
+	border: 1px solid transparent;
+	font-family: 'Helvetica Neue',Helvetica,Arial,'lucida grande',tahoma,verdana,arial,sans-serif;
+	font-size: 12px;
+	font-weight: bold;	
+	color:   #000000;
+	background-color: ;
+}
+
+#btn{
+	font-family: Verdana;
+	font-size: 10px;
+	color: #3C475B;
+	width:10%;
+	background-color: #C8D0CE;
+	font-weight: ;
+	text-align: center;
+}
+#btn2{
+	font-family: Verdana;
+	font-size: 10px;
+	color: #3C475B;
+	width:15%;
+	background-color: #C8D0CE;
+	font-weight: ;
+	text-align: center;
+}
+
+input[type=button] {
+    background-color: #3A4B7B;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+    background-color: #3A4B7B;
+}
+
+input[type=button]:hover {
+    background-color: #3A4B7B;
+}

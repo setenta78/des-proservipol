@@ -1,0 +1,11 @@
++"&idServicio="+idServicio+"&idFuncionario="+idFuncionario+"&idRut="+idRut;
+	parametros +="&idNombre="+idNombre+"&idUsuario="+idUsuario+"&idFolio="+idFolio+"&idBCU="+idBCU+"&idTipoAnimal="+idTipoAnimal;
+	parametros +="&idBCU2="+idBCU2+"&idPatente="+idPatente+"&idSerie="+idSerie+"&idTarjeta="+idTarjeta+"&idSerie2="+idSerie2;
+	parametros +="&idModelo="+idModelo+"&idDescUnidad="+idDescUnidad+"&idDescUnidad2="+idDescUnidad2;
+	parametros +="&idFecha2="+idFecha2+"&idFecha3="+idFecha3+"&idFecha4="+idFecha4+"&idFecha5="+idFecha5+"&idFecha6="+idFecha6+"&idUnidad2="+idUnidad2; 
+	
+	parametros +="&idFuncionario2="+idFuncionario2+"&idFuncionario3="+idFuncionario3+"&idRut2="+idRut2+"&idFuncionario4="+idFuncionario4+"&idRut3="+idRut3+"&idFuncionario5="+idFuncionario5;       
+  
+parametros +="&idFuncionario6="+idFuncionario6+"&idUnidad3="+idUnidad3+"&idFuncionario7="+idFuncionario7+"&idFuncionario8="+idFuncionario8+"&idFuncionario9="+idFuncionario9+"&idFuncionario10="+idFuncionario10;     
+	parametros +="&idFuncionario11="+idFuncionario11+"&idFolio2="+idFolio2+"&idBCU2="+idBCU2+"&idBCU3="+idBCU3+"&idBCU4="+idBCU4+"&idBCU5="+idBCU5+"&idBCU6="+idBCU6+"&idPatente2="+idPatente2+"&idBCU7="+idBCU7; 
+  parametros +="&idPatente3="+idPatente3+"&idBCU8="+idBCU8+"&idSerie3="+idSerie3+"&idSerie4="+idSerie4+"&idSerie5="+idSerie5+"&idSerie6="+idSerie6+"&idSerie7="+idSerie8+"&idSerie6="+idSerie8+"&idUnidad3="+idUnidad3; 

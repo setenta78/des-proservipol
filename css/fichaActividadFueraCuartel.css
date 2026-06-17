@@ -1,0 +1,7 @@
+#cboTipo, #txtnom, #txtape1, #txtape2, #txtrut, #txtfec1, #txtfec2, #txtComision, #numComision, #txtFechaTerminoReal{
+	font-family	  			: Verdana, Arial,sans-serif;
+	font-size	  			: 10px;
+	text-transform			: uppercase;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+}

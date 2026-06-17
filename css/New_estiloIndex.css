@@ -1,0 +1,433 @@
+﻿@charset "utf-8";
+/* CSS Document */
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic,700,700italic,900,900italic");
+@import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,700,300&subset=latin,cyrillic"); 
+
+* {     
+    margin: 0; 
+} 
+html, body{     
+	height: 100%; 
+	font-family:"Roboto Condensed";
+	font-size:12px;
+	color:#464646;
+	Scrollbar: none;
+} 
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header{
+	background-image: url("../images/banner_backgroundV_full.png");
+	background-repeat: repeat;
+	background-size:cover;
+	margin: 0px;
+	padding: 0px;
+	height: 280px;
+	max-height:280px;
+	width:100%;
+	background-color:#f5fbf3;
+	position: absolute;
+}
+
+.logo{
+	padding-top:25px;
+	padding-left:20px;
+	position: absolute;
+}
+
+.bannerImg{
+	padding-top:15px;
+	padding-left:560px;
+	filter:alpha(opacity=45);
+	opacity: 0.45;
+	position: absolute;
+}
+
+.bannerImg2{
+	padding-top:15px;
+	padding-left:1200px;
+	filter:alpha(opacity=45);
+	opacity: 0.45;
+	position: absolute;
+}
+
+.links{
+	top:15px;
+	left:40%;
+	position: absolute;
+}
+
+.bannerManuales{
+	top:15px;
+	left:0px;
+	filter:alpha(opacity=60);
+	opacity: 0.60;
+	position: absolute;
+}
+
+.bannerManuales:hover{
+	filter:alpha(opacity=100);
+	opacity: 1;
+}
+
+.bannerCapacitacion{
+	top:15px;
+	left:150px;
+	filter:alpha(opacity=60);
+	opacity: 0.60;
+	position: absolute;
+}
+
+.bannerCapacitacion:hover{
+	filter:alpha(opacity=100);
+	opacity: 1;
+}
+
+.bannerSiicge{
+	top:15px;
+	left:300px;
+	filter:alpha(opacity=60);
+	opacity: 0.60;
+	position: absolute;
+}
+
+.bannerSiicge:hover{
+	filter:alpha(opacity=100);
+	opacity: 1;
+}
+
+.bannerValidarCertificado{
+	top:25px;
+	left:440px;
+	filter:alpha(opacity=60);
+	opacity: 0.60;
+	position: absolute;
+}
+
+.bannerValidarCertificado:hover{
+	filter:alpha(opacity=100);
+	opacity: 1;
+}
+
+.bannerTitle{
+	padding-top:60px;
+	padding-left:200px;
+	position: absolute;
+}
+
+.backHeader{
+	background-color:#000;
+	filter:alpha(opacity=50);
+	opacity : 0.5;
+	top	: 245px;
+	height	: 30px;
+	padding-top:5px;
+	position: relative;
+	z-index: 5;
+}
+
+#bannerP{
+	background-image: url(../images/banner_backgroundV.png);
+	margin: 0px;
+	padding: 0px;
+	height: 150px;
+	background-color: #003300;
+	max-height:150px;
+}
+
+.logoP{
+	padding-top:5px;
+	padding-left:20px;
+	position: absolute;
+}
+
+.bannerTitleP{
+	padding-top:20px;
+	padding-left:120px;
+	position: absolute;
+}
+
+.content{
+	max-width:100%;
+	max-height:850px;
+	width:100%;
+	text-align: center; 
+	margin-left:auto;
+	margin-right:auto;
+	min-height:800px;
+	top	: 280px;
+	background-color:#f5fbf3;
+	position: absolute;
+}
+
+.footer{
+	width: 100%;
+    height: 125px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+	background-color:#e1edde;
+	text-align:center;
+	border-top-style:solid;
+	border-top-color:#AFCC4A;
+
+/*	width:100%;
+	min-height:125px;
+	max-height:125px;
+    border-top-width: 10px;
+	top	: 850px;
+	position: absolute;*/
+}
+
+#titulosIconos{
+	font-family:"Roboto Condensed";
+	font-size:18px;
+	text-decoration: none;
+	color:#464646;
+}
+
+#footerText{
+	padding-top:20px;
+}
+
+#login{
+	width:400px;
+	height:280px;
+	margin-top:200px;
+	left:40%;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	-ms-border-radius: 10px 10px 10px 10px;
+	border: 2px solid #AFCC4A;
+	position: absolute;
+}
+
+h2{
+	padding-top:20px;
+}
+
+#textUsuario{
+	font-family			:'Roboto Condensed', sans-serif;
+	background			: #f7f0f0 url("../images/login_icon.png") no-repeat;
+	background-position	: 1% -2%;
+	position	 		: relative;
+ 	font-size 	 		: 14px;
+ 	color		 		: #334d55;
+	height				: 20px;
+	width         		: 40%;
+	padding-top: 5px;
+	padding-left: 30px;
+}
+ 
+#textClave{
+	font-family			:'Roboto Condensed', sans-serif; 
+	background			: #f7f0f0 url(../images/login_icon.png) no-repeat;
+	background-position	: 1% 45%;
+	position	 		: relative;
+ 	font-size 	 		: 14px;
+ 	color		 		: #334d55;
+	height				: 20px;
+	width           	: 40%;
+	padding-top: 5px;
+	padding-left: 30px;
+}
+
+#loginBoton{
+	background-color	: #D1EAC1;
+	border				: 2px solid #07672B;
+	border-radius		: 5px;
+	-moz-border-radius	: 5px;
+  -webkit-border-radius	: 5px;
+  font-family			:'Roboto Condensed', sans-serif;
+	font-size			: 15px;
+	width				: 110px;
+	height				: 30px;
+}
+	
+#loginBoton:hover {
+	color: #fff;
+	background-color	: #88b77b;
+	font-size: 16px;
+	border: 3px solid #07672B;
+}
+
+#titulo {
+	padding-left:10px;
+	color: #fff;
+	font-size: 16px;
+}
+
+#back a{
+	padding-top:10px;
+	padding-left:10px;
+	color: #fff;
+	font-size: 14px;
+	text-decoration:none;
+}
+
+#homeAnalisisA{
+	width:30%;
+	float:left;
+	height:100%;
+}
+
+#homeAnalisisB{
+	width:60%;
+	float:left;
+	height:100%;
+}
+
+#titHome{
+	margin-top:120px;
+	margin-left:100px;
+	margin-right:20px;
+}
+
+#textHome{
+	margin-top:10px;
+	margin-left:100px;
+	margin-right:30px;
+	font-size:14px;
+	text-align:justify;	
+}
+
+#textHome2{
+	margin-top:5px;
+	margin-left:10px;
+	font-size:13px;
+	text-align:justify;	
+	float:left;
+}
+
+#menuAnalisis{
+	width:200px;
+	float:left;
+	height:200px;
+	margin-top:120px;
+	margin-left:20px;
+	margin-right:20px;
+	text-align:center;
+}
+
+.content2{
+	max-width:100%;
+	max-height:850px;
+	width:100%;
+	text-align: center; 
+	margin-left:auto;
+	margin-right:auto;
+	min-height:850px;
+	background-color:#f5fbf3;
+	position: absolute;
+}
+
+ /* Remove margins and padding from the list, and add a black background color */
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #8F8E8E; 
+   /* background-color: #333; */
+}
+
+/* Float the list items side by side */
+ul.topnav li {float:right;} /*original left*/
+
+/* Style the links inside the list items */
+ul.topnav li a {
+    display: inline-block;
+    color: #f2f2f2; /*COLOR DEL TEXTO*/
+    text-align: center;
+    padding: 16px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+ul.topnav li a:active{background-color: #555;}
+
+
+/* Change background color of links on hover */
+ul.topnav li a:hover {background-color: #555;}
+
+/* Hide the list item that contains the link that should open and close the topnav on small screens */
+ul.topnav li.icon {display: none;}
+
+
+ /* When the screen is less than 680 pixels wide, hide all list items, except for the first one ("Home"). Show the list item that contains the link to open and close the topnav (li.icon) */
+@media screen and (max-width:680px) {
+  ul.topnav li:not(:first-child) {display: none;}
+  ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens */
+@media screen and (max-width:680px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}
+
+.footer{
+	width			 : 100%;
+	min-height		 : 120px;
+	max-height		 : 120px;
+	background-color : #e1edde;
+	text-align		 : center;
+	border-top-style : solid;
+	border-top-color : #AFCC4A;
+	border-top-width : 10px;
+	top				 : 970px;
+	position		 : absolute;
+}
+
+.footerText{
+	padding-top	: 20px;
+}
+
+.footerBrowser{
+	position	: absolute;
+	left		: 80%;
+	padding-top	: 25px;
+	font-family	: 'Roboto Condensed', sans-serif;
+	font-size	: 14px;
+}
+
+.footerBrowserIcon{
+	opacity		: 0.75;
+	filter		: alpha(opacity=75);
+}
+
+#footerText{
+	padding-top	: 50px;
+}
+
+#footerBrowser{
+	position	: absolute;
+	left		: 80%;
+	padding-top	: 25px;
+	font-family	: 'Roboto Condensed', sans-serif;
+	font-size	: 14px;
+}
+
+#footerBrowserIcon{
+	opacity		: 0.75;
+	filter		: alpha(opacity=75);
+}

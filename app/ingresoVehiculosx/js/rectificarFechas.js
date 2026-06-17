@@ -1,0 +1,181 @@
+var correlativo;
+
+function guardarFicha(){
+	Valcorrelativo();
+	if (validarFicha()){
+		if(validarServicios()){
+			var msj=confirm("ATENCIÓN :\nSE MODIFICARÁN LOS DATOS DE ESTE VEHÍCULO EN LA BASE DE DATOS.          \n¿DESEA CONTINUAR?");
+			if (msj) actualizarFecha();
+			else return false;
+		}
+	}
+}
+
+function Valcorrelativo(){
+	var objHttpXML	= new AJAXCrearObjeto();
+	var fechaH			= document.getElementById("textFechaH").value;
+	var fechaD			= document.getElementById("textFechaD").value;
+	var codigoV			= document.getElementById("textCodigo").value;
+	if(fechaH=="--"){
+		correlativo = 0;
+		}
+	else{
+			objHttpXML.open("POST","./xml/xmlFecha.php",false);
+			objHttpXML.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+			objHttpXML.send(encodeURI("codigo="+codigoV+"&fecha="+fechaD+"&tipo=D"));
+			var xml = objHttpXML.responseXML;
+			if (objHttpXML.responseText != "VACIO"){
+				correlativo = xml.getElementsByTagName('correlativo')[0].firstChild.data;
+			 	}
+			objHttpXML.close;
+		}
+}
+
+function validarFicha(){
+	var fechaD			= document.getElementById("textFechaD").value;
+	var fechaH			= document.getElementById("textFechaH").value;
+	var fechaDNueva = document.getElementById("textFechaDNueva").value;
+	var fechaHNueva	= document.getElementById("textFechaHNueva").value;
+	var Desde				= new Date(fechaD.slice(6,10),fechaD.slice(3,5),fechaD.slice(0,2));
+	var Hasta				= new Date(fechaH.slice(6,10),fechaH.slice(3,5),fechaH.slice(0,2));
+	var DesdeN			= new Date(fechaDNueva.slice(6,10),fechaDNueva.slice(3,5),fechaDNueva.slice(0,2));
+	var HastaN			= new Date(fechaHNueva.slice(6,10),fechaHNueva.slice(3,5),fechaHNueva.slice(0,2));
+  //if(Desde <=  DesdeN){
+  	if(correlativo == 0)return true;
+		if(DesdeN < HastaN){
+			if(Hasta <= HastaN){
+				if(validarFechaHasta())return true;
+				}
+			else{
+				alert("LA FECHA HASTA NO PUEDE SER INFERIOR A "+fechaH);
+				}
+			}
+		else{
+			alert("LA FECHA DESDE NO PUEDE SER SUPERIOR O IGUAL A LA FECHA HASTA");
+			}
+	//}
+	/*
+	else{
+		alert("LA FECHA DESDE NO PUEDE SER INFERIOR A "+fechaD);
+		}
+	*/
+	return false;
+}
+
+function validarServicios(){
+  var objHttpXMLVehiculos = new AJAXCrearObjeto();
+	var codigoV	= document.getElementById("textCodigo").value;
+	var fechaD 	= document.getElementById("textFechaDNueva").value;
+	var fechaH	= document.getElementById("textFechaHNueva").value;
+
+ 	objHttpXMLVehiculos.open("POST","./xml/xmlServicios.php",false);
+ 	objHttpXMLVehiculos.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+ 	objHttpXMLVehiculos.send(encodeURI("codigo="+codigoV+"&fecha1="+fechaD+"&fecha2="+fechaH));  
+  var xml = objHttpXMLVehiculos.responseXML;
+  //alert(objHttpXMLVehiculos.responseText);
+  if (objHttpXMLVehiculos.responseText != "VACIO"){
+  	alert("ATENCIÓN :\nNO SE PUEDE REALIZAR NINGUN CAMBIO YA QUE POSEE SERVICIOS ASIGNADOS ENTRE LAS FECHAS INDICADAS");
+		return false;
+		}
+	return true;
+}
+
+function validarFechaHasta(){
+	var objHttpXML	= new AJAXCrearObjeto();
+	var codigoF 		= document.getElementById("textCodigo").value;
+	var fechaD1 		= document.getElementById("textFechaH").value;
+	var fechaH2 		= document.getElementById("textFechaHNueva").value;
+	var Hasta2			= new Date(fechaH2.slice(6,10),fechaH2.slice(3,5),fechaH2.slice(0,2));
+	objHttpXML.open("POST","./xml/xmlFecha.php",false);
+	objHttpXML.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	objHttpXML.send(encodeURI("codigo="+codigoF+"&fecha="+fechaD1));
+	var xml 				= objHttpXML.responseXML;
+	if (objHttpXML.responseText != "VACIO"){
+		var fechaH1		= "";
+		fechaH1	 		 	= xml.getElementsByTagName('fechaH')[0].firstChild.data;
+		if(fechaH1=="--")return true;
+		var Hasta1		= new Date(fechaH1.slice(6,10),fechaH1.slice(3,5),fechaH1.slice(0,2));
+		if(Hasta1 > Hasta2)return true;
+		}
+	alert("LA FECHA HASTA NO PUEDE SER SUPERIOR O IGUAL A " + fechaH1);
+	return false;
+}
+
+//-----------------------------------------------------Modificar-----------------------------------------------------//
+
+function actualizarFecha(){
+	var codigoF			= document.getElementById("textCodigo").value;
+	var fechaD 			= document.getElementById("textFechaD").value;
+	var fechaH			= document.getElementById("textFechaH").value;
+	var fechaDNueva = document.getElementById("textFechaDNueva").value;
+	var fechaHNueva	= document.getElementById("textFechaHNueva").value;
+	var parametros 	= "codigo="+codigoF+"&fechaD="+fechaD+"&fechaH="+fechaH+"&NfechaD="+fechaDNueva+"&NfechaH="+fechaHNueva;
+	var objHttpXMLFecha = new AJAXCrearObjeto();
+	objHttpXMLFecha.open("POST","./xml/xmlActualizarFecha.php",true);
+	objHttpXMLFecha.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	objHttpXMLFecha.send(encodeURI(parametros));
+	objHttpXMLFecha.onreadystatechange=function(){
+		if(objHttpXMLFecha.readyState == 4){   
+			if (objHttpXMLFecha.responseText != "VACIO"){
+				var xml = objHttpXMLFecha.responseXML;
+				for(i=0;i<xml.getElementsByTagName('resultado').length;i++){
+					var codigo = xml.getElementsByTagName('resultado')[i].firstChild.data;
+						if (codigo == 1){
+					 		alert('LOS DATOS FUERON INGRESADOS CON EXITO A LA BASE DE DATOS ......        ');
+					 		top.cerrarVentana();
+					 		top.Solicitud_Fecha(codigoF);
+						}
+						else {
+							alert('LOS DATOS NO FUERON INGRESADOS A LA BASE DE DATOS ....		\nCODIGO RECIBIDO : ' + codigo);
+							top.cerrarVentana();
+					 		top.Solicitud_Fecha(codigoF);
+						}
+				}
+			}
+		}
+	}
+}
+
+//-----------------------------------------------------Eliminar-----------------------------------------------------//
+
+function eliminarFicha(){
+	Valcorrelativo();
+	if(validarServicios()){
+		var msj=confirm("ATENCIÓN :\nSE ELIMINARÁN LOS DATOS DE ESTE FUNCIONARIO EN LA BASE DE DATOS.          \n¿DESEA CONTINUAR?");
+		if (msj) eliminarFecha();
+		else return false;
+	}
+}
+
+function eliminarFecha(){
+	var codigoF		= document.getElementById("textCodigo").value;
+	var fechaD 		= document.getElementById("textFechaD").value;
+	var fechaH		= document.getElementById("textFechaH").value;
+	var parametros = "";
+	parametros += "codigo="+codigoF+"&fechaD="+fechaD+"&fechaH="+fechaH+"&correlativo="+correlativo;
+	var objHttpXMLFecha = new AJAXCrearObjeto();
+	objHttpXMLFecha.open("POST","./xml/xmlEliminarFecha.php",true);
+	objHttpXMLFecha.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	objHttpXMLFecha.send(encodeURI(parametros));
+	objHttpXMLFecha.onreadystatechange=function(){
+		if(objHttpXMLFecha.readyState == 4){    
+			if (objHttpXMLFecha.responseText != "VACIO"){
+				var xml = objHttpXMLFecha.responseXML;
+				for(i=0;i<xml.getElementsByTagName('resultado').length;i++){
+					var codigo = xml.getElementsByTagName('resultado')[i].firstChild.data;
+					if (codigo == 1){
+				 		alert('LOS DATOS FUERON ELIMINADOS CON EXITO A LA BASE DE DATOS ......        ');
+				 		top.cerrarVentana();
+				 		top.Solicitud_Fecha(codigoF);
+						}
+					else {
+						alert('LOS DATOS NO FUERON ELIMINADOS DE LA BASE DE DATOS ....		\nCODIGO RECIBIDO : ' + codigo);
+						top.cerrarVentana();
+				 		top.Solicitud_Fecha(codigoF);
+						}
+					}
+				}
+		}
+	}
+	objHttpXML.close;
+}

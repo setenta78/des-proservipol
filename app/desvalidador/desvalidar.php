@@ -1,0 +1,148 @@
+<?php
+require_once("class/class.php");
+//require("../class/class.php");
+//require_once("solicitudesDesarrollo/js/valida.php");
+
+//Incluimos el archivo con la función o simplemente pegamos la función
+//require('fechaTexto.php');
+if (isset($_SESSION["session_video_14"])) {
+	$codigo = $_SESSION["session_video_14"];
+	$grado  = $_SESSION["session_video_15"];
+	$nombre = $_SESSION["session_video_16"];
+
+	$tipo = $_SESSION["session_video_17"];
+
+	$datos  = "(" . $grado . ")" . " - " . $nombre;
+	//echo $codigo." ".$user." ".$descripcion
+	//La fecha que queremos pasar a castellano
+
+	//$miFecha = date('l jS \of F Y h:i:s A'); // date("d-m-Y h:m:s");
+
+//if (isset($_POST["grabar"]) and $_POST["grabar"]=="si")
+//{
+	//print_r($_POST);
+	//$obj=new Trabajo();
+    //$desv=$obj->get_certificado();
+	//exit;
+//}
+if (isset($_POST["grabar2"]) and $_POST["grabar2"]=="si")
+{
+	//print_r($_POST);
+	$obj=new Trabajo();
+	$del=$obj->desvalidar();
+	//exit;
+}
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DESVALIDADOR</title>
+<script src="js/autocompletar.js" type="text/javascript" language="javascript"></script>
+<script src="js/funciones.js" type="text/javascript" language="javascript"></script>
+<script src="js/popcalendar.js" type="text/javascript" language="javascript"></script>
+<link rel="stylesheet" href="css/autocompletar.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/estilos.css" type="text/css" media="all" />
+</head>
+<body onload="document.formulario.reset();">
+<div id="pagina">
+<div id="logo" class="texto">
+<table class="texto" border="0">
+<tr>
+<td><img src="img/logo_depto.jpg" alt="Logo Departamento" align="middle"></td>
+<td align="center">CARABINEROS DE CHILE<br>SUBCONTRALORIA GENERAL<br>DEPTO. CONTROL DE GESTION Y SIST. DE INFORMACION</td>
+</tr>
+</table>
+</div>
+<div class="texto3">
+			<?php
+			$fecha = date("d/m/Y");
+			echo "<table border='0'>";
+			echo "<tr>";
+			echo "<td></td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td></td>";
+			echo "<td></td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td></td>";
+			echo "<td></td>";
+			echo "</tr>";
+			echo "</table>";
+			echo "<b>" . " &nbsp;&nbsp;&nbsp;Bienvenid@" . "</b>" . ": " . $datos;
+			echo "<br>";
+			echo "&nbsp;&nbsp;&nbsp; VOLVER <a href='http://proservipol.carabineros.cl/app/aplicativos.php'><img src='../img/icono_volver.jpg' border='0'  width='30' align='middle' alt='Salir'/></a>";
+			echo "<br>";
+			?>
+		</div>
+<div class="texto3">
+<?php 
+echo "<br>";
+$fecha=date("d/m/Y");
+echo "<br>";
+echo "<b>"." La fecha de hoy es: "."</b>".$fecha;
+echo "<br>";
+echo "<br>";
+?>
+</div>
+<div id="form" class="texto3">
+<form name="formulario" method="post" action="">
+<fieldset style="width:60%; height:130px;border:2px groove #ccc;">
+<legend style="font-weight:bold;font-family:Verdana;font-size: 12px;color:#00000;">BUSCAR DIAS PARA DESVALIDAR</legend>
+<br>
+<table border="0">
+<tr>
+<td>&nbsp;Fecha desde</td>
+<td>:&nbsp;<input type="text" id="dateArrival1" name="dateArrival1" class="campos" size="10" value="2023-11-01"/></td>
+</tr>
+<tr>
+<td>&nbsp;Fecha hasta</td>
+<td>:&nbsp;<input type="text" id="dateArrival2" name="dateArrival2"  class="campos" size="10" value="2023-11-30"/></td>
+</tr>
+<tr>
+<td>&nbsp;Unidad</td>
+<td>:&nbsp;<input type="text" id="input" name="texto" class="campos" size="40" style='text-transform:uppercase;' onKeyUp="autocompletar('lista',this.value);" /><input type="hidden" id="input2" name="texto2"/></td>
+</tr>
+</table>
+</fieldset>
+<div id="lista" class="autocompletar"></div>
+<!--<div id="reloj"><img src="images/preloder.gif" /></div>-->
+<br />
+<input type="submit" id="btn"  value="CONSULTAR" title="CONSULTAR"/><input type="hidden" name="grabar" value="si">
+<input type="reset" id="btn"  value="LIMPIAR" title="LIMPIAR"/>
+<div id="muestra">
+
+</div>
+</form>
+</div>
+<div id="delete">
+<form name="form" method="post" action="" onsubmit="validate(this);">
+<?php
+//if (isset($_POST["grabar"]) and $_POST["grabar"]=="si")
+//{
+	//print_r($_POST);
+	$obj=new Trabajo();
+    $desv=$obj->get_certificado();
+	
+	//exit;
+//}
+
+?>
+<input type="submit" id="btn" value="DESVALIDAR" title="DESVALIDAR" onclick="return confirmar('&iquest;DESEA REALIZAR LA DESVALIDACION?')"/><input type="hidden" name="grabar2" value="si">
+</form>
+</div>
+</div>
+</body>
+</html>
+<?php
+} else {
+	echo "
+	<script type='text/javascript'>
+	alert('DEBE INICIAR SESI\u00D3N PARA ACCEDER A ESTE CONTENIDO');
+	window.location='http://proservipol.carabineros.cl/app/';
+	</script>
+	";
+}
+?>

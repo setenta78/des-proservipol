@@ -1,0 +1,54 @@
+#textSerieArma, #textNumeroInstitucional, #textBCU, #selSeccion, #textFechaVentanaFecha, #textTipoMovimentoVentanaFecha,
+#selTipoArma, #selTipoVehiculo, #selMarca, #selModelo, #selEstado, #textFechaNuevoEstado, #textUnidadAgregado, #textTituloContrasena{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#ventanaSeleccionaUnidad{
+	width		  	: 450px;
+	background-color: #D1EAC1;
+	padding			: 3px 3px 5px 3px;
+	position		: absolute;
+	top				: 90px;
+	left			: 325px
+}   
+
+#selectUnidad{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#cubreVentana{               
+	position	  		: absolute;
+	width				: 100%; 
+	height			: 100%;
+	background-color	: #000;
+	opacity : 0.75;
+	filter:alpha(opacity=75);
+}
+
+#ventanaIngresoFecha{
+	font-family	    : Verdana, Arial,sans-serif;
+	font-size	    : 10px;
+	width		  	: 450px;
+	background-color: #D1EAC1;
+	padding			: 10px 20px 10px 20px;
+	position		: absolute;
+	top				: 110px;
+	left			: 215px
+}
+
+#ventanaIngresoContrasena{
+	font-family	    : Verdana, Arial,sans-serif;
+	font-size	    : 10px;
+	width		  	: 450px;
+	background-color: #D1EAC1;
+	padding			: 10px 20px 10px 20px;
+	position		: absolute;
+	top				: 110px;
+	left			: 215px
+}

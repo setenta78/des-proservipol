@@ -1,0 +1,43 @@
+<?
+Class dbFuncionarios extends Conexion{	
+	
+	function listaTotalFuncionarios($codigo,$funcionarios){
+				  
+		$sql = "SELECT 	F.FUN_CODIGO,
+							F.FUN_APELLIDOPATERNO,
+							F.FUN_APELLIDOMATERNO,
+							F.FUN_NOMBRE,
+							F.FUN_NOMBRE2,
+							G.GRA_DESCRIPCION,
+							IF(ISNULL(U.UNI_DESCRIPCION),'SIN UNIDAD',U.UNI_DESCRIPCION) UNI_DESCRIPCION
+						FROM FUNCIONARIO F
+						JOIN GRADO G ON G.GRA_CODIGO = F.GRA_CODIGO
+						JOIN ESCALAFON E ON E.ESC_CODIGO = G.ESC_CODIGO AND E.ESC_CODIGO = F.ESC_CODIGO
+						LEFT JOIN UNIDAD U ON U.UNI_CODIGO = F.UNI_CODIGO
+						WHERE F.FUN_CODIGO like '".$codigo."%'
+						ORDER BY F.FUN_CODIGO ASC";	  
+						
+						//	LIMIT 21
+							
+				$i=0;
+				$result = $this->execstmt($this->Conecta(),$sql);
+				mysql_close();
+				while($myrow = mysql_fetch_array($result)){
+					
+					$persona = new funcionario;
+					$persona->setCodigoFuncionario(STRTOUPPER($myrow["FUN_CODIGO"]));
+					$persona->setApellidoPaterno(STRTOUPPER($myrow["FUN_APELLIDOPATERNO"]));
+					$persona->setApellidoMaterno(STRTOUPPER($myrow["FUN_APELLIDOMATERNO"]));
+					$persona->setPNombre(STRTOUPPER($myrow["FUN_NOMBRE"]));
+					$persona->setSNombre(STRTOUPPER($myrow["FUN_NOMBRE2"]));
+					$persona->setGrado(STRTOUPPER($myrow["GRA_DESCRIPCION"]));
+					$persona->setUnidad(STRTOUPPER($myrow["UNI_DESCRIPCION"]));
+					
+					$funcionarios[$i] = $persona;			
+					$i++;
+				}	
+	}
+	
+}
+	
+?>

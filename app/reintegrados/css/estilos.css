@@ -1,0 +1,68 @@
+.campos{
+      background-color:#F2F2F2; 
+      border: 1px solid #666666; 
+      font-size:9pt; 
+      color: #000000;
+}
+.texto{
+	font-family: Verdana;
+	font-size: 10px;
+	color:  #000000;
+	font-weight: bold;	
+}
+.texto2{
+	font-family: Verdana;
+	font-size: 14px;
+	color:  #000000;
+	font-weight: bold;	
+}
+.texto3{
+	font-family: Verdana;
+	font-size: 12px;
+	color:  #000000;
+	font-weight: ;	
+}
+#formu{   
+   width:50%
+   text-align: center;
+}
+
+#marca {
+	font-family: Verdana;
+	font-size: 10px;
+	color:  #000000;
+	background-position: center;
+}
+.lineaDatos1  {
+    font-family: Verdana;
+	font-size: 10px;
+	color:  #000000;
+	background-position: center;
+}
+table tr.lineaDatos1:hover td{
+	color : #ffffff;
+	cursor: pointer;
+	background-color: #669966;
+	background-position: center;	
+}
+.lineaDatos2 {
+	font-family: Verdana;
+	font-size: 10px;
+	font-weight: bold;	
+	color:  #000000;
+	background-color: #d0d0d0;
+}
+
+#btn{
+	font-family: Verdana;
+	font-size: 10px;
+	color: #3C475B;
+	width:10%;
+	background-color: #C8D0CE;
+	font-weight: ;
+	text-align: center;
+}
+
+
+
+

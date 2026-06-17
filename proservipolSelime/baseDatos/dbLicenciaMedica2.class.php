@@ -1,0 +1,103 @@
+<?
+Class dbLicencia extends Conexion
+{		
+function buscaFichaLicencia($codFuncionario, $color, $folio, $funcionarios){
+						  	    
+	    $sql = "SELECT 
+				  				FUNCIONARIO.FUN_CODIGO,
+				  				FUNCIONARIO.FUN_RUT,
+                  LICENCIA_MEDICA.COLOR_LICENCIA,
+                  LICENCIA_MEDICA.FOLIO_LICENCIA,
+                  FUNCIONARIO.UNI_CODIGO,				  
+				  				FUNCIONARIO.FUN_APELLIDOPATERNO,
+				  				FUNCIONARIO.FUN_APELLIDOMATERNO,
+				  				FUNCIONARIO.FUN_NOMBRE,
+				  				FUNCIONARIO.FUN_NOMBRE2,
+                  LICENCIA_MEDICA.FECHA_OTORGAMIENTO,
+                  LICENCIA_MEDICA.FECHA_INICIO,
+                  LICENCIA_MEDICA.NUM_DIAS,
+                  LICENCIA_MEDICA.FECHA_REAL,
+                  LICENCIA_MEDICA.TIPO_LICENCIA_MEDICA,
+                  LICENCIA_MEDICA.RECUERABILIDAD_LABORAL,
+                  LICENCIA_MEDICA.INICIO_TRAMITE_INVALIDEZ,
+                  LICENCIA_MEDICA.TIPO_REPOSO,
+                  LICENCIA_MEDICA.LUGAR_REPOSO,
+                  LICENCIA_MEDICA.RUT_PROFESIONAL,
+                  LICENCIA_MEDICA.TIPO_PROFESIONAL,
+                  LICENCIA_MEDICA.ESPECIALIDAD_PROFESIONAL,
+                  LICENCIA_MEDICA.TIPO_ATENCION,
+                  LICENCIA_MEDICA.RUT_HIJO,
+                  LICENCIA_MEDICA.FECHA_NAC_HIJO,
+                  LICENCIA_MEDICA.NOMBRE_ARCHIVO	  
+				  
+				FROM FUNCIONARIO
+		    JOIN LICENCIA_MEDICA ON LICENCIA_MEDICA.FUN_RUT = FUNCIONARIO.FUN_RUT
+				WHERE FUNCIONARIO.FUN_CODIGO = '".$codFuncionario."'
+				AND LICENCIA_MEDICA.COLOR_LICENCIA = '".$color."'
+				AND LICENCIA_MEDICA.FOLIO_LICENCIA = ".$folio."
+				AND LICENCIA_MEDICA.ESTADO_LICENCIA = 1";
+	    	    //echo $sql;
+	    	    
+				$i=0;
+				$result = $this->execstmt($this->Conecta(),$sql);
+				mysql_close();
+				while($myrow = mysql_fetch_array($result)){
+
+					$licencia = new licenciaMedica;			
+					$licencia->setColor(STRTOUPPER($myrow["COLOR_LICENCIA"]));
+					$licencia->setFolio(STRTOUPPER($myrow["FOLIO_LICENCIA"]));
+					$licencia->setFecha1(STRTOUPPER($myrow["FECHA_OTORGAMIENTO"]));
+					$licencia->setFecha2(STRTOUPPER($myrow["FECHA_INICIO"]));
+					$licencia->setDias(STRTOUPPER($myrow["NUM_DIAS"]));
+					$licencia->setFechaReal(STRTOUPPER($myrow["FECHA_REAL"]));
+					$licencia->setTipoLicencia(STRTOUPPER($myrow["TIPO_LICENCIA_MEDICA"]));
+					$licencia->setRecuperacion(STRTOUPPER($myrow["RECUERABILIDAD_LABORAL"]));
+					$licencia->setInvalidez(STRTOUPPER($myrow["INICIO_TRAMITE_INVALIDEZ"]));
+					$licencia->setTipoReposo(STRTOUPPER($myrow["TIPO_REPOSO"]));
+					$licencia->setLugarReposo(STRTOUPPER($myrow["LUGAR_REPOSO"]));
+					$licencia->setRutProfesional(STRTOUPPER($myrow["RUT_PROFESIONAL"]));
+					$licencia->setTipoProfesional(STRTOUPPER($myrow["TIPO_PROFESIONAL"]));
+					$licencia->setEspecialidad(STRTOUPPER($myrow["ESPECIALIDAD_PROFESIONAL"]));
+					$licencia->setAtencion(STRTOUPPER($myrow["TIPO_ATENCION"]));
+					$licencia->setRutHijo(STRTOUPPER($myrow["RUT_HIJO"]));
+					$licencia->setFecha3(STRTOUPPER($myrow["FECHA_NAC_HIJO"]));				
+					$licencia->setArchivoLicenciaMedica(STRTOUPPER($myrow["NOMBRE_ARCHIVO"]));
+
+					$funcionario = new funcionario;
+					$funcionario->setCodigoFuncionario(STRTOUPPER($myrow["FUN_CODIGO"]));
+					$funcionario->setApellidoPaterno(STRTOUPPER($myrow["FUN_APELLIDOPATERNO"]));
+					$funcionario->setApellidoMaterno(STRTOUPPER($myrow["FUN_APELLIDOMATERNO"]));
+					$funcionario->setPNombre(STRTOUPPER($myrow["FUN_NOMBRE"]));
+					$funcionario->setRutFuncionario(STRTOUPPER($myrow["FUN_RUT"]));
+					$funcionario->setSNombre(STRTOUPPER($myrow["FUN_NOMBRE2"]));
+					
+					$funcionario->setTipoLicencia($licencia);					
+					$funcionarios[$i] = $funcionario;					
+					$i++;
+				}
+		}
+		
+		function buscaTipoLicencia($tipoServicio){
+						  	    
+	    $sql = "SELECT 
+  							TIPO_SERVICIO.TSERV_CODIGO,
+  							TIPO_SERVICIO.TSERV_DESCRIPCION
+							FROM TIPO_SERVICIO
+							WHERE TIPO_SERVICIO.TSERV_GRUPO IN ('MATERNIDAD','ENFERMEDAD','LABORAL','PREVENTIVA')";
+	    	    //echo $sql;
+	    	    
+				$i=0;
+				$result = $this->execstmt($this->Conecta(),$sql);
+				mysql_close();
+				while($myrow = mysql_fetch_array($result)){
+					
+					$tipo = new tipoServicio;
+		 			$tipo->setCodigo(STRTOUPPER($myrow["TSERV_CODIGO"]));
+		 			$tipo->setDescripcion(STRTOUPPER($myrow["TSERV_DESCRIPCION"]));
+			
+					$tipoServicio[$i] = $tipo;
+					$i++;
+				}
+		}
+}//end class   
+?>

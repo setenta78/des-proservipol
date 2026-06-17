@@ -1,0 +1,100 @@
+INICIO
+
+REQUIERE 'config.php'
+
+LEER archivo temporal, tipo, y tamaño del archivo desde $_FILES['dataCamara']
+LEER contenido del archivo en líneas
+
+SI archivo temporal está vacío o tipo no es 'text/csv' 
+    TERMINAR programa con mensaje "No se ha subido ningún archivo válido"
+FIN SI
+
+DECLARAR arrays vacíos: updateData, insertData, mvcCodigo, mvcDescripcion, modvcCodigo, modvcDescripcion
+
+// Consultar datos de la tabla MARCA_VIDEOCAMARA
+EJECUTAR consulta SQL para obtener MVC_CODIGO, MVC_DESCRIPCION de MARCA_VIDEOCAMARA
+SI se obtienen resultados
+    PARA cada resultado
+        AGREGAR MVC_CODIGO al array mvcCodigo
+        AGREGAR MVC_DESCRIPCION al array mvcDescripcion
+    FIN PARA
+FIN SI
+
+// Consultar datos de la tabla MODELO_VIDEOCAMARA
+EJECUTAR consulta SQL para obtener MODVC_CODIGO, MODVC_DESCRIPCION de MODELO_VIDEOCAMARA
+SI se obtienen resultados
+    PARA cada resultado
+        AGREGAR MODVC_CODIGO al array modvcCodigo
+        AGREGAR MODVC_DESCRIPCION al array modvcDescripcion
+    FIN PARA
+FIN SI
+
+DECLARAR diccionario 'procedencias' con las claves 'E', 'J', 'S' y valores 10, 20, 80
+
+// Procesar cada línea del archivo
+PARA cada línea en el archivo (SALTAR la primera línea)
+    DIVIDIR línea en partes usando ';' como separador
+    OBTENER los valores de procedencia, codEquipoSap, codActivoSap, nroSerie, marca, y modelo desde los datos
+
+    SI la marca no está en mvcDescripcion
+        // Obtener el último código de marca
+        EJECUTAR consulta SQL para obtener el mayor valor de MVC_CODIGO
+        SI se obtienen resultados
+            nuevoCodigo = último código + 10
+        SI NO
+            nuevoCodigo = 10
+        FIN SI
+
+        // Insertar nueva marca
+        EJECUTAR consulta SQL para insertar la marca en MARCA_VIDEOCAMARA con el nuevo código
+        SI la inserción es exitosa
+            MOSTRAR mensaje de éxito
+            AGREGAR nuevo código y marca a los arrays locales
+        SI NO
+            MOSTRAR mensaje de error
+        FIN SI
+    FIN SI
+
+    SI el modelo no está en modvcDescripcion
+        // Obtener el último código de modelo
+        EJECUTAR consulta SQL para obtener el mayor valor de MODVC_CODIGO
+        SI se obtienen resultados
+            nuevoCodigo = último código + 10
+        SI NO
+            nuevoCodigo = 10
+        FIN SI
+
+        // Insertar nuevo modelo
+        EJECUTAR consulta SQL para insertar el modelo en MODELO_VIDEOCAMARA con el nuevo código
+        SI la inserción es exitosa
+            MOSTRAR mensaje de éxito
+            AGREGAR nuevo código y modelo a los arrays locales
+        SI NO
+            MOSTRAR mensaje de error
+        FIN SI
+    FIN SI
+
+    // Verificar duplicidad de codEquipoSap
+    EJECUTAR consulta SQL para verificar si codEquipoSap ya existe en VIDEOCAMARA
+    SI no hay duplicados
+        AGREGAR datos a insertData
+    SI NO
+        AGREGAR datos a updateData
+    FIN SI
+FIN PARA
+
+// Inserción de nueva data en VIDEOCAMARA
+SI insertData no está vacío
+    EJECUTAR consulta SQL para insertar los datos de insertData en VIDEOCAMARA
+FIN SI
+
+// Actualización de data existente en VIDEOCAMARA
+SI updateData no está vacío
+    PARA cada dato en updateData
+        EJECUTAR consulta SQL para actualizar la información correspondiente en VIDEOCAMARA
+    FIN PARA
+FIN SI
+
+FIN
+
+

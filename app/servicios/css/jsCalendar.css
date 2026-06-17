@@ -1,0 +1,297 @@
+.jsCalendar * {
+	margin: 0px; padding: 0px;
+}
+.jsCalendar table {
+	border: 0px currentColor; border-image: none; box-sizing: content-box;
+}
+.jsCalendar table th {
+	border: 0px currentColor; border-image: none; box-sizing: content-box;
+}
+.jsCalendar table td {
+	border: 0px currentColor; border-image: none; box-sizing: content-box;
+}
+.jsCalendar table {
+	margin: 5px; border-radius: 4px; color: rgb(0, 0, 0); font-family: Tahoma, Geneva, sans-serif; border-collapse: collapse; box-shadow: 0px 0px 2px rgba(0,0,0,0.4); background-color: rgb(255, 255, 255);
+}
+.jsCalendar tr {
+	line-height: 0;
+}
+.jsCalendar thead .jsCalendar-title {
+	height: 40px; line-height: 40px;
+}
+.jsCalendar thead .jsCalendar-title-left {
+	float: left;
+}
+.jsCalendar thead .jsCalendar-title-right {
+	float: right;
+}
+.jsCalendar thead .jsCalendar-nav-left {
+	margin: 10px 8px; border-radius: 10px; transition:color 0.2s, background-color 0.2s; width: 20px; height: 20px; text-align: center; color: rgb(153, 153, 153); line-height: 20px; font-family: "Courier New", Courier, monospace; font-size: 12px; font-weight: bold; cursor: pointer;
+}
+.jsCalendar thead .jsCalendar-nav-right {
+	margin: 10px 8px; border-radius: 10px; transition:color 0.2s, background-color 0.2s; width: 20px; height: 20px; text-align: center; color: rgb(153, 153, 153); line-height: 20px; font-family: "Courier New", Courier, monospace; font-size: 12px; font-weight: bold; cursor: pointer;
+}
+.jsCalendar thead .jsCalendar-nav-left:hover {
+	color: rgb(0, 0, 0); background-color: rgb(226, 226, 226);
+}
+.jsCalendar thead .jsCalendar-nav-right:hover {
+	color: rgb(0, 0, 0); background-color: rgb(226, 226, 226);
+}
+.jsCalendar thead .jsCalendar-nav-left {
+	float: left;
+}
+.jsCalendar thead .jsCalendar-nav-right {
+	float: right;
+}
+.jsCalendar thead .jsCalendar-title-name {
+	padding: 0px 20px; font-size: 18px; font-weight: lighter; float: left; cursor: default;
+}
+.jsCalendar thead .jsCalendar-nav-left::after {
+	content: "<";
+}
+.jsCalendar thead .jsCalendar-nav-right::after {
+	content: ">";
+}
+.jsCalendar thead .jsCalendar-week-days th {
+	text-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+}
+.jsCalendar thead .jsCalendar-week-days th {
+	margin: 1px 2px; border-radius: 18px; transition:color 0.1s, background-color 0.2s; width: 36px; height: 36px; text-align: center; line-height: 36px; font-size: 12px; font-weight: lighter; display: inline-block; cursor: default;
+}
+.jsCalendar tbody td {
+	margin: 1px 2px; border-radius: 18px; transition:color 0.1s, background-color 0.2s; width: 36px; height: 36px; text-align: center; line-height: 36px; font-size: 12px; font-weight: lighter; display: inline-block; cursor: default;
+}
+.jsCalendar tbody td:hover {
+	background-color: rgb(230, 230, 230);
+}
+.jsCalendar tbody td.jsCalendar-selected {
+	border: 2px solid rgb(230, 230, 230); border-image: none; width: 32px; height: 32px; line-height: 32px; background-color: rgb(255, 255, 255);
+}
+.jsCalendar tbody td.jsCalendar-current {
+	border-radius: 18px; color: rgb(255, 255, 255); background-color: rgb(82, 201, 255);
+}
+.jsCalendar tbody td.jsCalendar-previous {
+	color: rgb(202, 202, 202);
+}
+.jsCalendar tbody td.jsCalendar-next {
+	color: rgb(202, 202, 202);
+}
+.jsCalendar tbody td.jsCalendar-previous:hover {
+	color: rgb(255, 255, 255);
+}
+.jsCalendar tbody td.jsCalendar-next:hover {
+	color: rgb(255, 255, 255);
+}
+.jsCalendar thead {
+	margin: 4px 4px 0px; display: block;
+}
+.jsCalendar tbody {
+	margin: 0px 4px 4px; display: block;
+}
+.jsCalendar ::selection {
+	background: rgb(131, 216, 255);
+}
+.yellow.jsCalendar tbody td.jsCalendar-current {
+	background-color: rgb(255, 227, 27);
+}
+.yellow.jsCalendar ::selection {
+	background: rgb(253, 231, 76);
+}
+.orange.jsCalendar tbody td.jsCalendar-current {
+	background-color: rgb(255, 180, 0);
+}
+.orange.jsCalendar ::selection {
+	background: rgb(255, 180, 0);
+}
+.red.jsCalendar tbody td.jsCalendar-current {
+	background-color: rgb(246, 81, 29);
+}
+.red.jsCalendar ::selection {
+	background: rgb(246, 81, 29);
+}
+.green.jsCalendar tbody td.jsCalendar-current {
+	background-color: rgb(127, 184, 0);
+}
+.green.jsCalendar ::selection {
+	background: rgb(127, 184, 0);
+}
+.material-theme.jsCalendar table {
+	border-radius: 0px;
+}
+.material-theme.jsCalendar thead {
+	margin: 0px; padding: 4px 4px 0px; color: rgb(255, 255, 255); background-color: rgb(82, 201, 255);
+}
+.material-theme.jsCalendar thead .jsCalendar-title {
+	display: block; position: relative;
+}
+.material-theme.jsCalendar thead .jsCalendar-title-name {
+	left: 15px; text-align: center; right: 15px; color: rgb(255, 255, 255); font-size: 16px; border-bottom-color: rgba(255, 255, 255, 0.4); border-bottom-width: 1px; border-bottom-style: solid; position: absolute;
+}
+.material-theme.jsCalendar thead .jsCalendar-title-left {
+	position: absolute; z-index: 1;
+}
+.material-theme.jsCalendar thead .jsCalendar-title-right {
+	position: absolute; z-index: 1;
+}
+.material-theme.jsCalendar thead .jsCalendar-nav-left {
+	color: rgb(255, 255, 255);
+}
+.material-theme.jsCalendar thead .jsCalendar-nav-right {
+	color: rgb(255, 255, 255);
+}
+.material-theme.jsCalendar thead .jsCalendar-nav-left:hover {
+	background-color: rgb(3, 169, 244);
+}
+.material-theme.jsCalendar thead .jsCalendar-nav-right:hover {
+	background-color: rgb(3, 169, 244);
+}
+.material-theme.jsCalendar thead .jsCalendar-title-right {
+	right: 0px;
+}
+.material-theme.jsCalendar thead .jsCalendar-week-days th {
+	font-size: 14px; text-shadow: none;
+}
+.yellow.material-theme.jsCalendar thead {
+	background-color: rgb(255, 227, 27);
+}
+.yellow.material-theme.jsCalendar thead .jsCalendar-nav-left:hover {
+	background-color: rgb(226, 202, 35);
+}
+.yellow.material-theme.jsCalendar thead .jsCalendar-nav-right:hover {
+	background-color: rgb(226, 202, 35);
+}
+.orange.material-theme.jsCalendar thead {
+	background-color: rgb(255, 180, 0);
+}
+.orange.material-theme.jsCalendar thead .jsCalendar-nav-left:hover {
+	background-color: rgb(212, 150, 0);
+}
+.orange.material-theme.jsCalendar thead .jsCalendar-nav-right:hover {
+	background-color: rgb(212, 150, 0);
+}
+.red.material-theme.jsCalendar thead {
+	background-color: rgb(246, 81, 29);
+}
+.red.material-theme.jsCalendar thead .jsCalendar-nav-left:hover {
+	background-color: rgb(187, 61, 22);
+}
+.red.material-theme.jsCalendar thead .jsCalendar-nav-right:hover {
+	background-color: rgb(187, 61, 22);
+}
+.green.material-theme.jsCalendar thead {
+	background-color: rgb(127, 184, 0);
+}
+.green.material-theme.jsCalendar thead .jsCalendar-nav-left:hover {
+	background-color: rgb(99, 144, 0);
+}
+.green.material-theme.jsCalendar thead .jsCalendar-nav-right:hover {
+	background-color: rgb(99, 144, 0);
+}
+.classic-theme.jsCalendar table {
+	border-radius: 0px;
+}
+.classic-theme.jsCalendar thead .jsCalendar-nav-left {
+	border-radius: 0px;
+}
+.classic-theme.jsCalendar thead .jsCalendar-nav-right {
+	border-radius: 0px;
+}
+.classic-theme.jsCalendar thead .jsCalendar-week-days th {
+	border-radius: 0px;
+}
+.classic-theme.jsCalendar tbody td {
+	border-radius: 0px;
+}
+.classic-theme.jsCalendar tbody td.jsCalendar-current {
+	border-radius: 0px;
+}
+.classic-theme.jsCalendar thead {
+	margin: 0px; padding: 4px 4px 0px; background-color: rgb(82, 201, 255);
+}
+.classic-theme.jsCalendar thead .jsCalendar-title-row {
+	width: 100%; display: block;
+}
+.classic-theme.jsCalendar thead .jsCalendar-title {
+	width: 100%; display: block;
+}
+.classic-theme.jsCalendar thead .jsCalendar-title {
+	position: relative;
+}
+.classic-theme.jsCalendar thead .jsCalendar-title-name {
+	left: 41px; text-align: center; right: 41px; color: rgb(255, 255, 255); font-size: 16px; position: absolute; text-shadow: none;
+}
+.classic-theme.jsCalendar thead .jsCalendar-title-left {
+	position: absolute; z-index: 1;
+}
+.classic-theme.jsCalendar thead .jsCalendar-title-right {
+	position: absolute; z-index: 1;
+}
+.classic-theme.jsCalendar thead .jsCalendar-title-right {
+	right: 0px;
+}
+.classic-theme.jsCalendar thead .jsCalendar-nav-left {
+	color: rgb(255, 255, 255); text-shadow: none;
+}
+.classic-theme.jsCalendar thead .jsCalendar-nav-right {
+	color: rgb(255, 255, 255); text-shadow: none;
+}
+.classic-theme.jsCalendar thead .jsCalendar-nav-left:hover {
+	background-color: rgb(3, 169, 244);
+}
+.classic-theme.jsCalendar thead .jsCalendar-nav-right:hover {
+	background-color: rgb(3, 169, 244);
+}
+.classic-theme.jsCalendar thead .jsCalendar-week-days {
+	margin: 0px -4px; display: block; background-color: rgb(255, 255, 255);
+}
+.classic-theme.jsCalendar thead .jsCalendar-week-days th {
+	height: 20px; line-height: 20px; font-size: 10px; text-shadow: none;
+}
+.classic-theme.jsCalendar tbody td {
+	margin: -1px 0px 0px -1px; padding: 1px 1px 0px; width: 38px; border-top-color: rgb(218, 218, 218); border-left-color: rgb(218, 218, 218); border-top-width: 1px; border-left-width: 1px; border-top-style: solid; border-left-style: solid;
+}
+.classic-theme.jsCalendar tbody {
+	margin: 0px;
+}
+.classic-theme.jsCalendar tbody td.jsCalendar-selected {
+	border-width: 1px 0px 0px 1px; border-style: solid none none solid; border-color: rgb(218, 218, 218) currentColor currentColor rgb(218, 218, 218); height: 36px; line-height: 36px; background-color: rgb(204, 239, 255);
+}
+.classic-theme.jsCalendar tbody td.jsCalendar-selected.jsCalendar-current {
+	text-shadow: 0px 0px 3px #000000; background-color: rgb(82, 201, 255);
+}
+.yellow.classic-theme.jsCalendar thead {
+	background-color: rgb(255, 227, 27);
+}
+.yellow.classic-theme.jsCalendar thead .jsCalendar-nav-left:hover {
+	background-color: rgb(226, 202, 35);
+}
+.yellow.classic-theme.jsCalendar thead .jsCalendar-nav-right:hover {
+	background-color: rgb(226, 202, 35);
+}
+.orange.classic-theme.jsCalendar thead {
+	background-color: rgb(255, 180, 0);
+}
+.orange.classic-theme.jsCalendar thead .jsCalendar-nav-left:hover {
+	background-color: rgb(212, 150, 0);
+}
+.orange.classic-theme.jsCalendar thead .jsCalendar-nav-right:hover {
+	background-color: rgb(212, 150, 0);
+}
+.red.classic-theme.jsCalendar thead {
+	background-color: rgb(246, 81, 29);
+}
+.red.classic-theme.jsCalendar thead .jsCalendar-nav-left:hover {
+	background-color: rgb(187, 61, 22);
+}
+.red.classic-theme.jsCalendar thead .jsCalendar-nav-right:hover {
+	background-color: rgb(187, 61, 22);
+}
+.green.classic-theme.jsCalendar thead {
+	background-color: rgb(127, 184, 0);
+}
+.green.classic-theme.jsCalendar thead .jsCalendar-nav-left:hover {
+	background-color: rgb(99, 144, 0);
+}
+.green.classic-theme.jsCalendar thead .jsCalendar-nav-right:hover {
+	background-color: rgb(99, 144, 0);
+}

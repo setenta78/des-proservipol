@@ -1,0 +1,81 @@
+<?
+include("../version.php");
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://w3.org/1999/xhtml">
+<head>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta name="author" content="Depto. Control de Gestión" />
+	<title>PROSERVIPOL - Programación de Servicios Policiales.</title>
+	<link rel="stylesheet" type="text/css" href="estiloFormularioRegistro.css?v=<?echo version?>" />
+	<link type="image/x-icon" rel="shortcut icon" href="../images/favicon.ico" />
+</head>
+<body style="background-color:#f5fbf3;" >
+	<div class="header"></div>
+	<div class="content">
+		<h1>TEST API AUTENTIFICATIC</h1>
+		<div id="formularioBusqueda">
+			</br></br>
+			<span id="labelTextRegistro"> Funciones:</span></br></br>
+			<input class="btn" type="button" id="btnLogin" onclick="login()" value="Login" /><br><br>
+			<input class="btn" type="button" id="btnRegistro" onclick="registro()" value="Registro" /><br><br>
+			<input class="btn" type="button" id="btnBuscarFuncionario" onclick="buscarFuncionario()" value="buscarFuncionario" /><br><br>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	function login(){
+		let urlLogin = 'http://autentificaticapi.carabineros.cl/api/auth/login'
+		axios.post(urlLogin, {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			rut: '152158904',
+			password: 'Ciclope7671.!$'
+		}).then(response => {
+			/* Respuesta satisfactoria */
+			console.log(response.data)
+		}).catch(error => {
+			/* Respuesta de error */
+			console.log(error.response.data)
+		})
+	}
+	
+	function registro(){
+		let urlRegisterUser = 'http://autentificaticapi.carabineros.cl/api/institutional-app-user-from-external-app';
+		axios.post(urlRegisterUser, {
+			headers: {
+				'Authorization': 'Bearer auth/token',
+				'Accept': 'application/json',
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			rut: '176608048'
+		}).then(response => {
+			/* Respuesta satisfactoria */
+			console.log(response.data)
+		}).catch(error => {
+			/* Respuesta de error */
+			console.log(error.response.data)
+		})
+	}
+	
+	function buscarFuncionario(){
+		let urlUserData = 'http://autentificaticapi.carabineros.cl/api/user-data/176608048';
+		axios.get(urlUserData, {
+			headers: {
+				 'Authorization': 'Bearer auth/token',
+				'Accept': 'application/json'
+			}   
+		}).then(response => {
+			/* Respuesta satisfactoria */
+			console.log(response.data)
+		}).catch(error => {
+			/* Respuesta de error */
+			console.log(error.response.data)
+		})
+	}
+</script>

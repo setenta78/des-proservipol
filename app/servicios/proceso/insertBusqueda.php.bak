@@ -1,0 +1,15 @@
+<?php
+require_once("../class/class.php");
+	//print_r($_POST);	
+	  $usuario = $_POST['usuario'];
+    $tipo    = $_POST['tipo'];
+    $unidad  = 20;
+    $fecha   =	date("Y/m/d H:i:s");
+    $ip      = $_SERVER['REMOTE_ADDR'];
+	  $dato1   = $_POST["codigo"];
+	  $dato2   = $_POST["fecha1"];
+	  $dato3   = $_POST["fecha2"];
+    $objServicio=new Trabajo;
+    $objServicio->insert_busqueda($usuario, $tipo, $unidad, $fecha, $ip, $dato1, $dato2, $dato3);
+	//exit;
+?>

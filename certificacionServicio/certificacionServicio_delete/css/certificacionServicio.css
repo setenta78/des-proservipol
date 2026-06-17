@@ -1,0 +1,375 @@
+html { 
+	overflow:hidden; 
+}
+
+body{
+	font-family		: Verdana, Arial,sans-serif;
+	font-size		  : 10px;
+	margin-top		: 0;
+	margin-right	: 0;
+	margin-bottom	: 0;
+	margin-left		: 0;
+	overflow:hidden;
+	background-color: #f0f6ef;
+}
+
+
+
+
+form {
+ margin: 0;
+ padding: 0;
+ }
+
+
+
+#cabeceraGrilla2{
+	width			: 100%;
+	position		: relative;
+	background-color: #C8D0CE;
+}
+
+#listado2{
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+	height	:310px;
+}
+
+#listado3{
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+	height	:310px;
+}
+
+#layerIngresoServicios{
+	width	: 98.3%;
+}
+
+
+#layerUnidadesIngresoServicios{
+	width	: 98.3%;
+}
+
+#listadoIngresoServicios{
+	width	: 100%;
+}
+
+#listadoUnidadesIngresoServicios{
+	width	: 100%;
+}
+
+#nombreColumna{
+	font-weight: normal;
+	background-color: #a6c99c;
+	font-weight: bold;
+	height:16px;
+	border-left   : 1px solid #ffffff;
+	border-top    : 1px solid #ffffff;
+	border-right  : 1px solid #909090;
+	border-bottom : 1px solid #909090;
+	padding   	  : 0px 0px 0px 0px;
+	text-align	  : center;
+}
+
+
+#nombreColumna2{
+	font-weight: normal;
+	background-color: #C8D0CE;
+	font-weight: bold;
+	height:16px;
+	padding   	  : 0px 0px 0px 0px;
+
+}
+
+
+
+
+.linea{
+	background-color: #C8D0CE;
+	height: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+/*Fin Estilo principal*/
+
+
+
+.TextoMenu_Opcion
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #EBF3EF;
+	font-style: normal;
+	/*text-transform: uppercase;*/
+}
+
+.textoNegrilla{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	font-weight: bold;
+}
+
+.linkMarcado{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	font-weight: bold;
+}
+
+.link{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+
+
+
+
+.dato{
+	background-color: #DDDDDD;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.dato table{
+	font-weight: bold;
+	width:98%;
+}
+
+/*
+.Boton_100 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	width:100%;
+	font-weight: normal;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	border: 2 outset;
+	background-color: #C8D0CE;
+}
+*/
+
+.Boton_100 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	padding: 2px 2px;
+	color:  #fff;
+	font-weight: normal;
+	text-align: center;
+	width:90%;
+	background-color: #a6c99c;
+	border-width: 0px; 
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  box-shadow: 2px 3px #666;
+  behavior: url(css/pie.htc);
+  font-weight: bold;
+}
+
+.Boton_100:hover {
+	background-color:  #88b77b;
+	color: #fff;
+	text-transform: uppercase;
+}
+
+.Boton_100:disabled,
+.Boton_100[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  box-shadow: 1px 1px #666;
+}
+
+.Boton_ {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	width:110px;
+	font-weight: normal;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	border: 2 outset;
+	background-color: #C8D0CE;
+}
+
+
+.Boton_2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	border: 2 outset;
+	background-color: #C8D0CE;
+}
+
+
+.Boton_Resaltado {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	width:100%;
+	font-weight: bold;
+	font-size: 9px;
+	text-align: center;
+	cursor: auto;
+	background-color: #C8D0CE;
+}
+
+.linea{
+	border-top: 1px solid #909090;
+  	border-bottom: 1px solid #f0f0f0;
+  	margin: 4px 2px;
+}
+
+.linea_Lista{
+	background-color: #C8D0CE;
+	height: 1px;
+}
+
+.textArea{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #3C475B;
+	width: 100%;
+	font-weight: normal;
+	border: 2 inset;
+	/*text-transform: uppercase;*/
+}
+
+.campoTexto{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #3C475B;
+	width: 100%;
+	/*text-transform: uppercase;*/
+}
+
+.campoTexto2{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #3C475B;
+	/*width: 100%;*/
+	text-transform: uppercase;
+}
+
+.campoTextoDeshabilitado{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	background-color : #ECECF0;
+	width	 : 100%;
+}
+
+.campoTextoDeshabilitado2{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	background-color : #ECECF0;
+	/*width	 : 100%;*/
+}
+
+.campoSelect{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #3C475B;
+	width: 100%;
+	/*text-transform: uppercase;*/
+}
+
+.campoSelectMultiple{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #3C475B;
+	width: 100%;
+	/*text-transform: uppercase;*/
+}
+
+
+.linea1{
+	height:19px;
+	background-color: #e1edde;
+}
+
+.linea2{
+	height:19px;
+	background-color: #f0f6ef;
+}
+
+
+
+
+
+
+
+.lineaMarcada{
+	background-color: #003300;
+	cursor: hand;
+	vertical-align: middle;
+	height:19px;
+	color : #ffffff;
+}
+
+.lineaMarcada td{
+	font-weight: normal;
+	border: 0 inset;
+	cursor: hand;
+	font-weight: normal;
+}
+
+
+.lineaMarcada td table td{
+	border: none;
+	vertical-align: middle;
+	font-weight: normal;
+	cursor: hand;
+}
+
+
+
+
+
+
+
+
+
+.Boton {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	color: #3D475A;
+}
+
+
+iframe{
+	border: none;
+	width: 100%;
+	border: 2 outset;
+}
+
+
+.barra{
+	SCROLLBAR-FACE-COLOR:#DEDED1; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #DEDED1; 
+	SCROLLBAR-SHADOW-COLOR: #DEDED1; 
+	SCROLLBAR-3DLIGHT-COLOR: #EBEBEB;
+	SCROLLBAR-ARROW-COLOR: #EBEBEB; 
+	SCROLLBAR-TRACK-COLOR: #E3E3E3; 
+	SCROLLBAR-DARKSHADOW-COLOR: #000000;
+
+}
+

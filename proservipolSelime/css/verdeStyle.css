@@ -1,0 +1,54 @@
+.textoNegrilla{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	font-weight: bold;
+}
+
+table{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #3C475B;
+}
+
+.label{
+	text-align: right;
+}
+
+.dato{
+	background-color: #DDDDDD;
+	font-family		: Verdana, Arial, Helvetica, sans-serif;
+	font-size		: 9px;
+	font-weight		: bold;
+	padding			: 4px 5px 4px 5px;
+	text-transform	: uppercase;
+	height			: 20px;
+}
+
+.dato table{
+
+	font-weight		: bold;
+	width			:98%;
+}
+
+.Boton_100 {
+	font-family		: Verdana, Arial, Helvetica, sans-serif;
+	width			:100%;
+	font-weight		: normal;
+	font-size		: 9px;
+	text-align		: center;
+	cursor			: auto;
+	border			: 2 outset;
+	background-color: #C8D0CE;
+}
+
+
+.linea{
+	border-top		: 1px solid #909090;
+  	border-bottom	: 1px solid #f0f0f0;
+  	margin			: 4px 0px;
+}
+
+#observaciones{
+	padding 		: 4px 4px 4px 4px;
+}

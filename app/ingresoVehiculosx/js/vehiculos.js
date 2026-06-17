@@ -1,0 +1,163 @@
+function leeDatosVehiculo(){
+	
+	var bcuVehiculo = document.getElementById("textNumeroBCU").value;
+	var objHttpXMLVehiculos = new AJAXCrearObjeto();
+	objHttpXMLVehiculos.open("POST","./xml/xmlDatosVehiculo.php",true);
+	objHttpXMLVehiculos.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	objHttpXMLVehiculos.send(encodeURI("bcuVehiculo="+bcuVehiculo)); 
+	objHttpXMLVehiculos.onreadystatechange=function()	{
+		//alert(objHttpXMLVehiculos.readyState);
+		if(objHttpXMLVehiculos.readyState == 4)	{       
+			//alert(objHttpXMLVehiculos.responseText);
+			if (objHttpXMLVehiculos.responseText != "VACIO"){
+				//alert(objHttpXMLVehiculos.responseText);		
+				var xml			= objHttpXMLVehiculos.responseXML.documentElement;
+				var codigo	= "";
+				if(xml.getElementsByTagName('cantidad').length>0){
+					alert("Este Vehiculo ya esta en Proservipol");
+					document.getElementById("textNumeroBCU").value = "";
+				}
+			}
+		}
+	}
+}
+
+function guardarVehiculo(){
+	var validaOk = validarFichaVehiculo();
+	if (validaOk){
+		nuevoVehiculo();
+	}
+}
+
+function nuevoVehiculo(){
+	
+	var patente				= document.getElementById("textPatente").value;
+	var numeroInstitucional = document.getElementById("textNumeroInstitucional").value;
+	var procedencia			= document.getElementById("selProcedencia").value;
+	var tipoVehiculo		= document.getElementById("selTipoVehiculo").value;
+	var marca				= document.getElementById("selMarca").value;
+	var modelo				= document.getElementById("selModelo").value;
+	var fechaEstado			= document.getElementById("textFechaEstado").value;
+	var numeroBCU			= document.getElementById("textNumeroBCU").value;
+	var unidad			= document.getElementById("selectUnidad").value;
+	var anno = document.getElementById("textAnnoFabricacion").value;
+	
+	var parametros = "";
+	parametros += "numeroBCU="+numeroBCU+"&patente="+patente+"&numeroInstitucional="+numeroInstitucional+"&procedencia="+procedencia;
+	parametros += "&tipoVehiculo="+tipoVehiculo+"&marca="+marca+"&modelo="+modelo+"&anno="+anno;
+	parametros += "&estado=10&fechaEstado="+fechaEstado+"&unidad="+unidad;
+	//alert(parametros);
+	
+	var objHttpXMLVehiculos = new AJAXCrearObjeto();
+	objHttpXMLVehiculos.open("POST","./xml/xmlNuevoVehiculo.php",true);
+	objHttpXMLVehiculos.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	objHttpXMLVehiculos.send(encodeURI(parametros));
+	
+	objHttpXMLVehiculos.onreadystatechange=function()	{
+		if(objHttpXMLVehiculos.readyState == 4)	{       
+			if (objHttpXMLVehiculos.responseText != "VACIO"){
+				//alert(objHttpXMLVehiculos.responseText);
+				var xml = objHttpXMLVehiculos.responseXML.documentElement;
+				var codigo = xml.getElementsByTagName('resultado')[0].text;
+				if (codigo == 1){
+					alert('LOS DATOS FUERON INGRESADOS CON EXITO A LA BASE DE DATOS ......        ');
+					limpiarFormulario();
+				}
+				else alert('LOS DATOS NO FUERON INGRESADOS A LA BASE DE DATOS ....		\nCODIGO RECIBIDO : ' + codigo)
+			}
+		}
+	}
+}
+
+function validarFichaVehiculo(){
+	
+	var bcuVehiculo = document.getElementById("textNumeroBCU").value;
+	if (bcuVehiculo.length < 7){
+		alert("EL CODIGO SAP DEBE ESTAR COMPUESTO DE 7 CARACTERES.      ");
+		document.getElementById("textNumeroBCU").value = "";
+		document.getElementById("textNumeroBCU").focus();
+		return false;
+	}
+	
+	var patente				 = document.getElementById("textPatente").value;
+	var numeroInstitucional  = document.getElementById("textNumeroInstitucional").value;
+	var procedencia			 = document.getElementById("selProcedencia").value;
+	var tipoVehiculo		 = document.getElementById("selTipoVehiculo").value;
+	var marca				 = document.getElementById("selMarca").value;
+	var modelo				 = document.getElementById("selModelo").value;
+	var fechaEstado			 = document.getElementById("textFechaEstado").value;
+	var annoFabricacion = document.getElementById("textAnnoFabricacion").value;
+	var date = new Date();
+	var anno = (date.getFullYear()+1);
+	
+	var texto = document.getElementById("selectUnidad").value;
+	var valida = texto.substr(texto.length-1,1);
+	
+	if (patente == "") {
+		alert("DEBE INDICAR LA PATENTE DEL VEH\u00CDCULO ...... 	     ");
+		document.getElementById("textPatente").focus();
+		return false;
+	}
+	
+	if (numeroInstitucional == "") {
+		alert("DEBE INDICAR EL N\u00DAMERO INSTITUCIONAL DEL VEH\u00CDCULO ...... 	     ");
+		document.getElementById("textNumeroInstitucional").focus();
+		return false;
+	}
+	
+	if (procedencia == 0) {
+		alert("DEBE INDICAR LA PROCEDENCIA DEL VEH\u00CDCULO ...... 	     ");
+		document.getElementById("selProcedencia").focus();
+		return false;
+	}
+	
+	if (tipoVehiculo == 0) {
+		alert("DEBE INDICAR EL TIPO DE VEH\u00CDCULO ...... 	     ");
+		document.getElementById("selTipoVehiculo").focus();
+		return false;
+	}	
+	
+	if (marca == 0) {
+		alert("DEBE INDICAR LA MARCA DEL VEH\u00CDCULO ...... 	     ");
+		document.getElementById("selMarca").focus();
+		return false;
+	}	
+	
+	if (modelo == 0) {
+		alert("DEBE INDICAR EL MODELO DEL VEH\u00CDCULO ...... 	     ");
+		document.getElementById("selModelo").focus();
+		return false;
+	}	
+	
+	if (annoFabricacion < 1950 || annoFabricacion > anno) {
+		alert("EL A\u00D1O DEBE SER UNA CIFRA ENTRE 1950 Y EL ANNO ACTUAL +1 ...... 	     ");
+		document.getElementById("textAnnoFabricacion").focus();
+		return false;
+	}
+	
+	if (fechaEstado == ""){
+		alert("DEBE INDICAR FECHA DEL ESTADO ...... 	     ");
+		return false;
+	}
+	
+	if (valida == "X" || texto == "1" || texto == "-1" || texto == ""){
+		alert("DEBE INDICAR UNA UNIDAD VALIDA ...... 	     ");
+		return false;
+	}
+	
+	return true;
+}
+
+function limpiarFormulario(){
+	document.getElementById("textNumeroBCU").value = ""
+	document.getElementById("textPatente").value = "";
+	document.getElementById("textNumeroInstitucional").value = "";
+	document.getElementById("textFechaEstado").value = "";
+	document.getElementById("textAnnoFabricacion").value = "";
+	listaUnidades('20','20','selectUnidad');
+	leeProcedenciaVehiculos('selProcedencia');
+	leeTipoVehiculos('selTipoVehiculo');
+	leeMarcaVehiculos('selMarca');
+	leeModeloVehiculos('','selModelo');
+	return true;
+}

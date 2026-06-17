@@ -1,0 +1,69 @@
+.menuPrincipal, * {
+	font-family			: Verdana, Arial,sans-serif;
+	font-weight			: bold;
+	font-size			: 9px;
+	list-style			: none;
+	text-decoration		: none;
+	margin				: 0;
+	padding				: 0;
+}
+
+.menuPrincipal > li {
+	float				: left;
+	width				: 8%;
+	border-left	: 1px solid #ffffff;
+}
+
+.SubmenuPrincipal > li {
+	float				: left;
+	width				: 8%;
+}
+
+.menuPrincipal li a {
+	color				: #FFF;
+	display				: block;
+	padding				: 2px 0px 2px 0px;
+	text-align			: center;
+}
+
+.menuPrincipal li a:hover {
+	color				: #34495E;
+	font-weight	:	bold;
+	font-size		: 9px;
+}
+
+.menuPrincipal li ul {
+	display				: none;
+	position			: absolute;
+	min-width			: 300px;
+	/*background-image	: url(../img/barra.jpg);*/
+	background-image	: url(../img/NewBarra.png);
+	border-left			: 1px solid #ffffff;
+	border-top			: 1px solid #ffffff;
+	border-right		: 1px solid #000000;
+	border-bottom		: 1px solid #000000;
+}
+
+.menuPrincipal li ul a {
+	padding				: 6px 6px;
+	text-align			: left;
+	border-left			: 1px solid #ffffff;
+	border-top			: 1px solid #ffffff;
+	border-right		: 1px solid #000000;
+	border-bottom		: 1px solid #000000;
+}
+
+.menuPrincipal li:hover > ul {
+	display				: block;
+}
+
+#contenedorMenu{
+	width				: 100%;
+	/*background-image	: url(../img/barra.jpg);*/
+	background-image	: url(../img/NewBarra.png);
+	height				: 24px;
+}
+
+.nav li ul li ul {
+	right				: -300px;
+}

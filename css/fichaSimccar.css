@@ -1,0 +1,50 @@
+#textSerie, #textTarjeta, #textImei, #selMarca, #selModelo, #textAnno, #selOrigen, #selEstado, #textFechaNuevoEstado, #textDocumentoNuevoEstado, #textUnidadAgregado, #selSeccion, #labSeccion, #selSeccion2, #labSeccion2,
+#textTipoMovimentoVentanaFecha, #textFechaVentanaFecha, #textSerie2, #textTarjeta2, #textImei2, #selMarca2, #selModelo2, #textAnno2, #selOrigen2, #selEstado2, #textFechaNuevoEstado2, #textDocumentoNuevoEstado2, #textUnidadAgregado2 {
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#selectUnidad{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 100%;
+	text-transform: uppercase;
+}
+
+#ventanaSeleccionaUnidad{
+	width		  	: 450px;
+	background-color: #D1EAC1;
+	padding			: 3px 3px 5px 3px;
+	position		: absolute;
+	top				: 120px;
+	left			: 325px
+}                          
+
+#ventanaIngresoFecha{
+	font-family	    : Verdana, Arial,sans-serif;
+	font-size	    : 10px;
+	width		  	: 450px;
+	background-color: #D1EAC1;
+	padding			: 10px 20px 10px 20px;
+	position		: absolute;
+	top				: 110px;
+	left			: 215px
+}
+                  
+#cubreVentana{               
+	position	  		: absolute;
+	width				: 100%; 
+	height			: 100%;
+	background-color	: #000;
+	opacity : 0.75;
+	filter:alpha(opacity=75);
+}
+
+#textAnnoFab{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	width		  : 15%;
+	text-transform: uppercase;
+}

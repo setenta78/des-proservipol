@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+
+</head>
+
+<body>
+
+<form id="formulario" method="Post">
+	<input type="text" id="rut"/>
+	<input type="text" id="password"/>
+	<input type="button" name="enviar" value="iniciar sesion" onclick="iniciar_sesion();"/><br>
+</form>
+
+<button id="user_get" onclick="obtener_datos_de_usuario();">Obtener datos de usuario</button> 
+<button id="validate_token" onclick="validar_token();">Validar Token</button> 
+<button id="logout_post" onclick="cerrar_sesion();">Cerrar Sesion</button>
+
+
+<script src="js/axios.min.js"></script>
+
+
+<script>	
+	var access_token = '';
+	var token_type = '';
+
+	function obtener_datos_de_usuario(){
+		var urlGetUser = 'http://autentificaticapi.carabineros.cl/api/auth/user';
+		axios.get(urlGetUser, {	
+		headers: {
+			'Authorization': token_type+' '+access_token,
+			'Accept': 'application/json',
+			'Content-Type': 'application/x-www-form-urlencoded'
+		}
+		}).then(response => {
+			console.log(response.data);	
+		}).catch(error => {
+			console.log(error.response.data.message);
+		});
+	}
+
+	function iniciar_sesion(){
+
+		var urlLogin = 'http://autentificaticapi.carabineros.cl/api/auth/login';
+		axios.post(urlLogin, {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			rut: document.getElementById("rut").value,
+			password: document.getElementById("password").value	
+		}).then(response => {
+			console.log(response.data);
+			access_token= response.data.success.access_token;
+			token_type = response.data.success.token_type;
+			document.getElementById("rut").value = '';
+			document.getElementById("password").value = '';
+		}).catch(error => {
+			console.log(error.response.data);
+		});
+        
+      } 
+
+
+      function validar_token(){
+		var urlGetUser = 'http://autentificaticapi.carabineros.cl/api/auth/validate-token';
+		axios.get(urlGetUser, {	
+		headers: {
+			'Authorization': token_type+' '+access_token,
+			'Accept': 'application/json',
+			'Content-Type': 'application/x-www-form-urlencoded'
+		}
+		}).then(response => {
+			console.log(response.data);	
+		}).catch(error => {
+			console.log(error.response.data.message);
+		});
+	}
+
+	function cerrar_sesion(){
+		var urllogout= 'http://autentificaticapi.carabineros.cl/api/auth/logout';
+		axios.get(urllogout, {	
+		headers: {
+			'Authorization': token_type+' '+access_token,
+			'Accept': 'application/json'
+		}
+		}).then(response => {
+			console.log(response.data.message);	
+		}).catch(error => {
+			console.log(error.response.data.message);
+		});
+	}
+
+</script>
+</body>
+
+</html>

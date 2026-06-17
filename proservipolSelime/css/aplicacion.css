@@ -1,0 +1,289 @@
+html { 
+	overflow:hidden; 
+}
+
+body{
+	font-family		: Verdana, Arial,sans-serif;
+	font-size		: 10px;
+	margin-top		: 0;
+	margin-right	: 0;
+	margin-bottom	: 0;
+	margin-left		: 0;
+}
+
+#banner{
+	background-image: url(../img/proservipol.jpg);
+	margin: 0px;
+	padding: 0px;
+	height: 62px;
+	background-repeat: no-repeat;
+	background-color: #003300;
+}
+
+#usuario{
+	color: #003300;
+	font-size: 9px;
+	font-weight: bold;
+	background-color: #EBEBEB;
+	text-transform: uppercase;
+	border-bottom: 1px solid #CCC;
+	height: 38px;
+}
+
+#usuario #nombreUnidad{
+	border-bottom: 1px solid #CCC;
+	padding: 3px 0px 3px 7px;
+}
+
+#usuario #linea1{
+	overflow:hidden;
+	background-image: url(../img/back_down.jpg);
+	height:1px;
+}
+
+#usuario #nombreUsuario{
+	padding: 3px 0px 3px 7px;
+}
+
+#menu{
+	background-image: url(../img/barra.jpg);
+	height:23px;
+	text-align: right;
+	font-weight: bold;
+	color: #ffffff;
+	border-bottom: 1px solid #CCC;
+}
+
+#menu table {
+	font-size: 10px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.opcionSubmenu
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+}
+
+.opcionSubmenuResaltado
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	color: #000000;
+	cursor: hand;
+}
+
+
+#titulo{
+	font-family: Verdana, Arial Black, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #3C475B;
+	width:100%;	
+}
+
+#subtitulo, #tituloGrilla{
+	font-size: 10px;
+	color: #3C475B;
+	font-weight: bold;
+}
+
+
+#btn100 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	width:100%;
+	background-color: #C8D0CE;
+	font-weight: normal;
+	text-align: center;
+}
+
+#textBuscar{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	width:97%;
+	text-transform: uppercase;
+}
+
+#nombreColumna{
+	font-weight: normal;
+	background-color: #C8D0CE;
+	font-weight: bold;
+	height:16px;
+	border-left   : 1px solid #ffffff;
+	border-top    : 1px solid #ffffff;
+	border-right  : 1px solid #909090;
+	border-bottom : 1px solid #909090;
+	padding   	  : 0px 0px 0px 0px;
+	text-align	  : center;
+}
+
+#totalesColumna{
+	font-weight: normal;
+	background-color: #C8D0CE;
+	font-weight: bold;
+	height:16px;
+	border-left   : 1px solid #ffffff;
+	border-top    : 1px solid #ffffff;
+	border-right  : 1px solid #909090;
+	border-bottom : 1px solid #909090;
+	padding   	  : 0px 0px 0px 0px;
+}
+
+.nombreColumna{
+	font-weight		: normal;
+	background-color: #C8D0CE;
+	font-weight		: bold;
+	height			: 16px;
+	border-left   	: 1px solid #ffffff;
+	border-top    	: 1px solid #ffffff;
+	border-right  	: 1px solid #909090;
+	border-bottom 	: 1px solid #909090;
+	padding   	  	: 0px 0px 0px 0px;
+	text-align	  	: center;
+}
+
+.nombreColumna_Click{
+	font-weight		: normal;
+	background-color: #C8D0CE;
+	font-weight		: bold;
+	font-size		: 9px;
+	height			: 16px;
+	border-left   	: 1px solid #909090;
+	border-top 	  	: 1px solid #909090;
+	border-right  	: 1px solid #ffffff;
+	border-bottom 	: 1px solid #ffffff;
+	padding   	  	: 0px 0px 0px 0px;
+	text-align	  	: center;
+}
+
+.linea{
+	background-color: #C8D0CE;
+	height: 1px;
+}
+
+.linea1{
+	height:19px;
+	background-color: #E9E9E0;
+}
+
+.linea2{
+	height:19px;
+	background-color: #F2F2F2;
+}
+
+.lineaMarcada{
+	background-color: #003300;
+	cursor: hand;
+	vertical-align: middle;
+	height:19px;
+	color : #ffffff;
+}
+
+.lineaMarcada2{
+	background-color: #003300;
+	vertical-align: middle;
+	height:19px;
+	color : #ffffff;
+}
+
+#valorColumna{
+	padding: 0px 2px 0px 3px;
+}
+
+#cabeceraGrilla{
+	width			: 98.3%;
+	position		: relative;
+	background-color: #C8D0CE;
+}
+
+#listadoServicios, #listadoFuncionarios, #listadoVehiculos, #listadoArmas{
+	width	: 98.3%;
+}
+
+#listado{
+	overflow-y: scroll;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+	height	:310px;
+}
+
+
+
+
+#marcoLevantado{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	border-left   : 2px solid #ffffff;
+	border-top    : 2px solid #ffffff;
+	border-right  : 2px solid #909090;
+	border-bottom : 2px solid #909090;
+	padding		  : 5px 15px 10px 15px;
+}
+
+#marcoLevantado table{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+}
+
+
+#cuadro{
+	border-bottom : 1px solid #909090;
+	padding		  : 5px 0px 5px 0px;
+}
+
+
+#cuadro2{
+	border-bottom : 1px solid #909090;
+	padding		  : 5px 5px 5px 5px;
+}
+
+#cuadro3{
+	border-bottom : 1px solid #909090;
+	padding		  : 0px 5px 5px 5px;
+}
+
+#mensajeCargando{
+	padding		  	: 5px 5px 5px 5px;
+	position	  	: absolute;
+	background-color: #ffffcc ;
+	width			: 620px; 
+	height			: 35px;
+	z-index			: 1
+}
+
+
+#mensajeCargando table{
+	font-family		: Verdana, Arial,sans-serif;
+	font-size		: 9px;
+	font-weight		: bold;
+	text-align		: center;
+	color			: #909090;
+}
+
+
+#mensajeGuardando{
+	padding		  	: 5px 5px 5px 5px;
+	position	  	: absolute;
+	background-color: #ffffcc ;
+	width			: 620px; 
+	height			: 35px;
+	z-index			: 1
+}
+
+
+#mensajeGuardando table{
+	font-family		: Verdana, Arial,sans-serif;
+	font-size		: 9px;
+	font-weight		: bold;
+	text-align		: center;
+	color			: #909090;
+}
+

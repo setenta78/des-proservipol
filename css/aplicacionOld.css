@@ -1,0 +1,353 @@
+html{
+	overflow:hidden;
+}
+
+body{
+	font-family		: Verdana, Arial,sans-serif;
+	font-weight			: bold;
+	font-size			: 9px;
+	margin-top		: 0;
+	margin-right	: 0;
+	margin-bottom	: 0;
+	margin-left		: 0;
+	background-color: #f0f6ef;
+}
+
+#banner{
+	background-image: url(../images/banner_backgroundV.png);
+	margin: 0px;
+	padding: 0px;
+	height: 120px;
+	background-color: #003300;
+	max-height:120px;
+}
+
+.logo{
+	padding-top:5px;
+	padding-left:20px;
+	position: absolute;
+}
+
+.bannerTitle{
+	padding-top:20px;
+	padding-left:120px;
+	position: absolute;
+}
+
+.backHeader{
+	background-color:#000;
+	filter:alpha(opacity=20);
+	opacity: 0.2;
+	top	: 82px;
+	height	: 38px;
+	max-height: 38px;
+	position: absolute;
+	width: 100%;
+}
+
+#usuario{
+	color: #fff;
+	font-size: 9px;
+	font-weight: bold;
+	text-transform: uppercase;
+	border-bottom: 1px solid #CCC;
+	height: 38px;
+	max-height: 38px;
+	top	: 82px;
+	height	: 38px;
+	max-height: 38px;
+	position: absolute;
+	width: 100%;
+}
+
+#usuario #nombreUnidad{
+	border-bottom: 1px solid #fff;
+	padding: 3px 0px 3px 7px;
+}
+
+#usuario #linea1{
+	overflow:hidden;
+	background-image: url(../img/NewBarra.png);
+	height:1px;
+}
+
+#usuario #nombreUsuario{
+	padding: 3px 0px 3px 7px;
+}
+
+#menu{
+	/*background-image: url(../img/barra.jpg);*/
+	background-image	: url(../img/NewBarra.png);
+	height:23px;
+	text-align: right;
+	font-weight: bold;
+	color: #ffffff;
+	border-bottom: 1px solid #CCC;
+}
+
+#menu table {
+	font-size: 10px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.opcionSubmenu
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+}
+
+.opcionSubmenuResaltado
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	color: #000000;
+	cursor: pointer;
+}
+
+#titulo{
+	font-family: Verdana, Arial Black, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #3C475B;
+	width:100%;	
+}
+
+#subtitulo, #tituloGrilla{
+	font-size: 10px;
+	color: #3C475B;
+	font-weight: bold;
+}
+
+input[type=button]{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	padding: 2px 2px;
+	color:  #fff;
+	font-weight: normal;
+	text-align: center;
+	width:100%;
+	background-color: #a6c99c;
+	border-width: 0px; 
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  box-shadow: 2px 3px #666;
+  behavior: url(css/pie.htc);
+  font-weight: bold;
+}
+
+.input[type=button]:hover,
+.input[type=button][hover]{
+	background-color:  #88b77b;
+	color: #fff;
+	text-transform: uppercase;
+}
+
+.input[type=button]:disabled,
+.input[type=button][disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  box-shadow: 1px 1px #666;
+  behavior: url(css/pie.htc);
+}
+
+#textBuscar{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	width:97%;
+	text-transform: uppercase;
+}
+
+#nombreColumna{
+	font-weight: normal;
+	background-color: #a6c99c;
+	font-weight: bold;
+	height:16px;
+	border-left   : 1px solid #ffffff;
+	border-top    : 1px solid #ffffff;
+	border-right  : 1px solid #909090;
+	border-bottom : 1px solid #909090;
+	padding   	  : 0px 0px 0px 0px;
+	text-align	  : center;
+}
+
+#totalesColumna{
+	font-weight: normal;
+	background-color: #a6c99c;
+	font-weight: bold;
+	height:16px;
+	border-left   : 1px solid #ffffff;
+	border-top    : 1px solid #ffffff;
+	border-right  : 1px solid #909090;
+	border-bottom : 1px solid #909090;
+	padding   	  : 0px 0px 0px 0px;
+}
+
+.nombreColumna{
+	font-weight		: normal;
+	background-color: #a6c99c;
+	font-weight		: bold;
+	height			: 16px;
+	border-left   	: 1px solid #ffffff;
+	border-top    	: 1px solid #ffffff;
+	border-right  	: 1px solid #909090;
+	border-bottom 	: 1px solid #909090;
+	padding   	  	: 0px 0px 0px 0px;
+	text-align	  	: center;
+}
+
+.nombreColumna_Click{
+	font-weight		: normal;
+	background-color: #a6c99c;
+	font-weight		: bold;
+	font-size		: 9px;
+	height			: 16px;
+	border-left   	: 1px solid #909090;
+	border-top 	  	: 1px solid #909090;
+	border-right  	: 1px solid #ffffff;
+	border-bottom 	: 1px solid #ffffff;
+	padding   	  	: 0px 0px 0px 0px;
+	text-align	  	: center;
+}
+
+.linea{
+	background-color: #C8D0CE;
+	height: 1px;
+}
+
+.linea1{
+	height:19px;
+	background-color: #e1edde;
+}
+
+.linea2{
+	height:19px;
+	background-color: #f0f6ef;
+}
+
+.lineaMarcada{
+	background-color: #006600;
+	cursor: pointer;
+	vertical-align: middle;
+	height:19px;
+	color : #ffffff;
+}
+
+.lineaMarcada2{
+	background-color: #006600;
+	vertical-align: middle;
+	height:19px;
+	color : #ffffff;
+}
+
+#valorColumna{
+	padding: 0px 2px 0px 3px;
+}
+
+#cabeceraGrilla{
+	width			: 98.3%;
+	position		: relative;
+	background-color: #C8D0CE;
+}
+
+#listadoServicios, #listadoFuncionarios, #listadoVehiculos, #listadoArmas, #listadoCaballos, #listadoPerros, #listadoSimccar, #listadoLicencias{
+	width	: 98.3%;
+}
+
+#listado{
+	overflow-y: scroll;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+}
+
+#marcoLevantado{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+	border-left   : 2px solid #ffffff;
+	border-top    : 2px solid #ffffff;
+	border-right  : 2px solid #909090;
+	border-bottom : 2px solid #909090;
+	padding		  : 5px 15px 10px 15px;
+}
+
+#marcoLevantado table{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+}
+
+#cuadro{
+	border-bottom : 1px solid #909090;
+	padding		  : 5px 0px 5px 0px;
+}
+
+#cuadro2{
+	border-bottom : 1px solid #909090;
+	padding		  : 5px 5px 5px 5px;
+}
+
+#cuadro3{
+	border-bottom : 1px solid #909090;
+	padding		  : 0px 5px 5px 5px;
+}
+
+#mensajeCargando{
+	padding		  	: 5px 5px 5px 5px;
+	position	  	: absolute;
+	background-color: #ffffcc ;
+	width			: 620px; 
+	height			: 35px;
+	z-index			: 1
+}
+
+#mensajeCargando table{
+	font-family		: Verdana, Arial,sans-serif;
+	font-size		: 9px;
+	font-weight		: bold;
+	text-align		: center;
+	color			: #909090;
+}
+
+#mensajeGuardando{
+	padding		  	: 5px 5px 5px 5px;
+	position	  	: absolute;
+	background-color: #ffffcc ;
+	width			: 620px; 
+	height			: 35px;
+	z-index			: 1
+}
+
+#mensajeGuardando table{
+	font-family		: Verdana, Arial,sans-serif;
+	font-size		: 9px;
+	font-weight		: bold;
+	text-align		: center;
+	color			: #909090;
+}
+
+.linea3{
+	height:19px;
+	background-color: #F76868;
+	color : #ffffff;
+}
+
+a img {
+border:	none;
+}
+
+#cubreFondo{
+	position	  	: absolute;
+	width			: 100%; 
+	height			: 100%;
+	background-color: #000;
+	opacity 		: 0.75;
+	filter			: alpha(opacity=75);
+	top				: 0px;
+	z-index			: 2;
+}

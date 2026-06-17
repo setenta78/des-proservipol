@@ -1,0 +1,65 @@
+html { 
+	overflow:hidden; 
+}
+
+body{
+	font-family		: Verdana, Arial,sans-serif;
+	font-size		: 10px;
+	margin-top		: 0;
+	margin-right	: 0;
+	margin-bottom	: 0;
+	margin-left		: 10;
+}
+
+#textFechaServicio1, #textFechaServicio2,
+#disponibles, #asignado{
+	font-family	  			: Verdana, Arial,sans-serif;
+	font-size	  			: 10px;
+	width		  			: 100%;
+	text-transform			: uppercase;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+}
+
+#linea{
+	border-top		: 1px solid #909090;
+  	border-bottom	: 1px solid #f0f0f0;
+  	margin			: 4px 0px;
+}
+
+#marcoLevantado{
+	border-left   : 2px solid #ffffff;
+	border-top    : 2px solid #ffffff;
+	border-right  : 2px solid #909090;
+	border-bottom : 2px solid #909090;
+	padding		  : 15px 10px 10px 15px;
+}
+
+#marcoLevantado table{
+	font-family	  : Verdana, Arial,sans-serif;
+	font-size	  : 10px;
+}
+
+#tituloSelecMultiple{
+	font-weight		: normal;
+	background-color: #003300;
+	font-weight		: bold;
+	height		  	: 20px;
+	border-left   	: 1px solid #ffffff;
+	border-top    	: 1px solid #ffffff;
+	border-right  	: 1px solid #909090;
+	border-bottom 	: 1px solid #909090;
+	padding   	  	: 0px 0px 0px 0px;
+	text-align	  	: center;
+	color 			: #ffffff;
+}
+
+#btn100 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #3C475B;
+	width:100%;
+	background-color: #C8D0CE;
+	font-weight: normal;
+	text-align: center;
+}

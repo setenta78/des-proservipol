@@ -1,0 +1,157 @@
+// Requerir configuración
+Requerir archivo 'config.php'
+
+// DATA DE ARCHIVO
+archivotmp = obtener archivo temporal subido
+tipo = obtener tipo de archivo subido
+tamanio = obtener tamaño de archivo subido
+lineas = leer archivo desde archivotmp
+
+// Verificar si se ha subido un archivo
+SI archivotmp está vacío
+    TERMINAR ejecución con mensaje "No se ha subido ningún archivo"
+FIN SI
+
+// Inicializar variables
+i = 0
+lista para datos a insertar = []
+lista para datos a actualizar = []
+
+// Definir valores predefinidos para procedencia, marca y modelo
+procedencias = {"E" => 10, "J" => 20, "S" => 80}
+marcas = {"GOPRO" => 10, "EDESIX" => 20, "HYTERA" => 30, "AXON" => 40, "GOPRO HERO" => 10}
+modelos = {"HERO 7 SILVER" => 10, "HERO BLACK" => 20, "VB-440-64-VF-N" => 30, "VB-400" => 40, "VM750D" => 50, "BODY 2" => 60}
+
+// Procesar cada línea del archivo
+PARA cada línea en lineas, con índice i
+    SI i NO es igual a 0 (ignorar la primera línea)
+        datos = dividir la línea por ";"
+        
+        // Obtener y validar valores de los datos
+        procedencia = datos[0] SI no está vacío, SINO ''
+        codEquipoSap = datos[1] SI no está vacío, SINO ''
+        codActivoSap = datos[2] SI no está vacío, SINO ''
+        nroSerie = datos[3] SI no está vacío, SINO ''
+        marca = datos[7] SI no está vacío, SINO ''
+        modelo = datos[8] SI no está vacío, SINO ''
+
+        // Asignar valores predefinidos a procedencia, marca y modelo
+        procedencia = procedencias[datos[0]] SI existe, SINO ''
+        marca = marcas[datos[7]] SI existe, SINO ''
+        modelo = modelos[datos[8]] SI existe, SINO ''
+        
+        // Verificar duplicidad en la base de datos
+        consulta_duplicidad = "Buscar en base de datos si VC_COD_EQUIPO_SAP es igual a codEquipoSap"
+        resultado_duplicidad = ejecutar consulta_duplicidad
+        cantidad_duplicidad = contar filas en resultado_duplicidad
+
+        // Si no hay duplicado, agregar a la lista de inserciones
+        SI cantidad_duplicidad es igual a 0
+            añadir a lista de inserciones "(marca, modelo, procedencia, codActivoSap, codEquipoSap, nroSerie)"
+        // Si hay duplicado, agregar a la lista de actualizaciones
+        SINO
+            añadir a lista de actualizaciones "CUANDO VC_COD_EQUIPO_SAP es igual a codEquipoSap, actualizar valores"
+        FIN SI
+    FIN SI
+    incrementar i
+FIN PARA
+
+// Insertar datos nuevos en la base de datos
+SI lista de inserciones NO está vacía
+    construir consulta de inserción con los datos en la lista
+    ejecutar consulta de inserción
+FIN SI
+
+// Actualizar datos existentes en la base de datos
+SI lista de actualizaciones NO está vacía
+    construir consulta de actualización con los datos en la lista
+    ejecutar consulta de actualización
+FIN SI
+
+
+----------
+
+INICIO
+
+Cargar la configuración desde 'config.php'
+
+Obtener el archivo temporal subido por el usuario
+Obtener el tipo del archivo subido
+Obtener el tamaño del archivo subido
+Leer el contenido del archivo línea por línea
+
+SI el archivo no ha sido subido o no es de tipo 'text/csv'
+    ARROJAR mensaje de error
+
+Inicializar los arrays para almacenar datos:
+    - updateData
+    - insertData
+    - mvcCodigo
+    - mvcDescripcion
+    - modvcCodigo
+    - modvcDescripcion
+
+Realizar la consulta SQL para seleccionar los datos de la tabla MARCA_VIDEOCAMARA
+    SI la consulta devuelve resultados
+        Recorrer los resultados y almacenar los códigos y descripciones en los arrays mvcCodigo y mvcDescripcion
+
+Realizar la consulta SQL para seleccionar los datos de la tabla MODELO_VIDEOCAMARA
+    SI la consulta devuelve resultados
+        Recorrer los resultados y almacenar los códigos y descripciones en los arrays modvcCodigo y modvcDescripcion
+
+Definir el array de procedencias con las claves: "E", "J", "S" y sus valores
+
+Recorrer cada línea del archivo leído
+    SI la línea es la primera (cabecera)
+        Continuar con la siguiente línea
+
+    Dividir la línea en un array llamado datos usando ';' como delimitador
+
+    Obtener los valores de:
+        - Procedencia usando los datos y el array de procedencias
+        - Código de equipo SAP
+        - Código de activo SAP
+        - Número de serie
+        - Marca
+        - Modelo
+
+    SI la marca no está en el array mvcDescripcion
+        Realizar una consulta SQL para obtener el último código en la tabla MARCA_VIDEOCAMARA
+        SI la consulta devuelve resultados
+            Sumar 10 al último código obtenido
+        SI NO
+            Asignar el código 10 como valor inicial
+
+        Insertar la nueva marca en la tabla MARCA_VIDEOCAMARA
+        SI la inserción es exitosa
+            Añadir la nueva marca a los arrays mvcCodigo y mvcDescripcion para evitar duplicados
+        SI NO
+            Mostrar un mensaje de error
+
+    SI el modelo no está en el array modvcDescripcion
+        Realizar una consulta SQL para obtener el último código en la tabla MODELO_VIDEOCAMARA
+        SI la consulta devuelve resultados
+            Sumar 10 al último código obtenido
+        SI NO
+            Asignar el código 10 como valor inicial
+
+        Insertar el nuevo modelo en la tabla MODELO_VIDEOCAMARA
+        SI la inserción es exitosa
+            Añadir el nuevo modelo a los arrays modvcCodigo y modvcDescripcion para evitar duplicados
+        SI NO
+            Mostrar un mensaje de error
+
+    Realizar una consulta SQL para verificar si el código de equipo SAP ya existe en la tabla VIDEOCAMARA
+    SI el código de equipo no existe
+        Añadir los datos a insertar en el array insertData
+    SI NO
+        Añadir los datos a actualizar en el array updateData
+
+SI el array insertData no está vacío
+    Realizar la inserción masiva de los datos en la tabla VIDEOCAMARA
+
+SI el array updateData no está vacío
+    Recorrer el array updateData y realizar la actualización de cada registro en la tabla VIDEOCAMARA
+
+FIN
+

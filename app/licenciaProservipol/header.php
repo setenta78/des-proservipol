@@ -1,0 +1,307 @@
+<?
+$gradoUsuario 				= $_SESSION['USUARIO_GRADO']; 
+$nombreCompletoUsuario 		= $_SESSION['USUARIO_NOMBRE']; 
+$codigoFuncionarioUsuario 	= $_SESSION['USUARIO_CODIGOFUNCIONARIO']; 
+$descripcionUnidadUsuario 	= $_SESSION['USUARIO_DESCRIPCIONUNIDAD']; 
+$perfil						= $_SESSION['USUARIO_PERFIL'];
+$codigoPerfil				= $_SESSION['USUARIO_CODIGOPERFIL'];
+$unidadBloqueada			= $_SESSION['USUARIO_UNIDADBLOQUEO'];
+$unidadEspecialidad			= $_SESSION['USUARIO_UNIDADESPECIALIDAD'];
+
+$unidadUsuario				= $_SESSION['USUARIO_CODIGOUNIDAD'];
+
+$desPadre = $_SESSION['USUARIO_DESCRIPCIONUNIDAD_PADRE'];
+$codPadre = $_SESSION['USUARIO_CODIGOUNIDAD_PADRE'];
+
+$fecha_hra_inicio= $_SESSION['HORA_INICIO'];
+
+$codigoUnidadUsuario= $_SESSION['USUARIO_PROSERVIPOLUNIDAD'];
+$perfil1= $_SESSION['USUARIO_PROSERVIPOLPERFIL'];
+
+$tienePlanCuadrante=$_SESSION['USUARIO_UNIDADPLANCUADRANTE'];
+
+//echo $fecha_hra_inicio;
+
+$descripcionPerfilUsuario	= $perfil;
+//$descripcionPerfilUsuario	= $perfil->getDescripcionPerfil();
+
+$textoNombreUsuario 		= $codigoFuncionarioUsuario . " - " . $gradoUsuario . " " . $nombreCompletoUsuario . " (PERFIL: " .$descripcionPerfilUsuario. ")";
+
+$anchoIzquierda = "53%";
+$fechaHoy = date("d-m-Y");
+
+
+//-- OBTIENE FECHA LIMITE DE ACTUALIZACION
+
+$fechaHoyLimite = date("Y-m-d");
+$numeroDiaHoy = date("N", strtotime($fechaHoyLimite));
+
+//if ($numeroDiaHoy == 1) $cantDias = 4;
+//else $cantDias = 2;
+
+switch ($numeroDiaHoy) {
+    case 1:
+        $cantDias = 5;
+        break;
+    case 2:
+        $cantDias = 4;
+        break;
+   default:
+        $cantDias = 3;
+}
+
+$fechaLimite = date("d-m-Y", strtotime("$fechaHoyLimite -$cantDias day"));  
+$fechaLimite = "01-12-2019";
+
+$numeroDia2 = date('N', strtotime($fechaLimite));
+
+//------------------------------------------
+
+
+
+?>
+<div id="banner"></div>
+<div id="usuario">
+	<div id="nombreUnidad">CARABINEROS DE CHILE - DEPTO. CONTROL DE GESTI&Oacute;N - INSPECTORIA GRAL.<?if ($codigoPerfil != 90){echo " (".$descripcionUnidadUsuario.")";}?></div>
+	<div id="linea1"></div>
+	<div id="nombreUsuario"><?echo $textoNombreUsuario?><?//echo " unidad bloqueda : " . $fechaLimite?></div>
+</div>
+</div>
+<div id="contenedorMenu">
+	<table width="100%" border="0">
+	  <tr> 
+	  	 <td width="50%">
+	  	 <table width="100%">
+		  	 <tr>
+		  	 <?if ($codigoPerfil == 10 || $codigoPerfil == 20){?>
+		  	 <a onclick="aparece_arbol();"><td width="10%" class="opcionSubmenu" OnMouseOver="cambiarClase(this, 'opcionSubmenuResaltado')"  OnMouseOut="cambiarClase(this, 'opcionSubmenu')">Fiscalizaci&oacute;n</td></a>
+		  	 <td width="1%"class="opcionSubmenu">|</td>
+			  	 <a href="configuracion.php"><td width="10%" class="opcionSubmenu" OnMouseOver="cambiarClase(this, 'opcionSubmenuResaltado')"  OnMouseOut="cambiarClase(this, 'opcionSubmenu')">Configuración</td></a>
+				 <td width="1%"class="opcionSubmenu">|</td>
+				 <a href="javascript:abrirVentanaUsuario()"><td width="19%"  class="opcionSubmenu" OnMouseOver="cambiarClase(this, 'opcionSubmenuResaltado')"  OnMouseOut="cambiarClase(this, 'opcionSubmenu')" style="text-align:left">Modifica Clave</td></a>
+				 <td width="70%"></td>
+			 <?} else {?>
+			 <a onclick="aparece_arbol();"><td width="10%" class="opcionSubmenu" OnMouseOver="cambiarClase(this, 'opcionSubmenuResaltado')"  OnMouseOut="cambiarClase(this, 'opcionSubmenu')">Fiscalizaci&oacute;n</td></a>
+			 <td width="1%"class="opcionSubmenu">|</td>
+			 	<a href="javascript:abrirVentanaUsuario()"><td width="17%" class="opcionSubmenu" OnMouseOver="cambiarClase(this, 'opcionSubmenuResaltado')"  OnMouseOut="cambiarClase(this, 'opcionSubmenu')">Modifica Clave</td></a>
+			 	<td width="83%"></td>
+			 <?}?>
+		  	 </tr>
+	  	 </table>
+	  	 </td>
+		 <td width="50%">
+		 <?if ($codigoPerfil == 10 || $codigoPerfil == 20){?>
+		 	<ul class="menuPrincipal">    
+				<li><a href="certificacionServicio.php">Validar</a></li>
+				<li><a href="servicios.php">Servicios</a></li>
+				<?     
+					if($unidadEspecialidad == 80){
+						echo "<li><a href='#'>Personal</a>";
+            echo "<ul>"; 
+						echo "<li><a href='personal.php'>Personal CENCO</a></li>"; 
+						echo "<li><a href='personalAgregado.php'>Agregados a CENCO</a></li>";
+						echo "<li><a href='licenciasMedicas.php'>Licencias Medicas</a></li>";    
+						echo "</ul>"; 
+            echo "</li>";   
+           }else{
+           	echo "<li><a href='#'>Personal</a>";
+            echo "<ul>"; 
+						echo "<li><a href='personal.php'>Personal Unidad</a></li>"; 
+						echo "<li><a href='licenciasDeConducir.php'>Licencias de Conducir</a></li>";  
+						echo "<li><a href='personalAgregado.php'>Agregados a la Unidad</a></li>";
+						echo "<li><a href='licenciasMedicas.php'>Licencias Medicas</a></li>";    
+						echo "</ul>"; 
+            echo "</li>"; 
+           	}
+           ?>
+				     <li><a href="#">Vehiculos</a>
+					<ul>    
+						<li><a href="vehiculos.php">Vehiculos Unidad</a></li>
+						<li><a href="vehiculoAgregado.php">Agregados a la Unidad</a></li>     
+					</ul>
+				</li>
+				     <li><a href="#">Armas</a>
+					<ul>    
+						<li><a href="armas.php">Armas Unidad</a></li>
+						<li><a href="armaAgregada.php">Agregadas a la Unidad</a></li>     
+					</ul>
+				</li>
+				<li><a href="consultas.php">Consultas</a></li>
+				<li><a href="javascript:cerrarAplicacion()">Cerrar</a></li>
+			</ul>
+		<?}?>
+		
+		<?if ($codigoPerfil == 50 || $codigoPerfil == 55 || $codigoPerfil == 60 || $codigoPerfil == 40){?>
+		 	<ul class="menuPrincipal">    
+				<li style="border-left:0px;"></li>
+				<li style="border-left:0px;"></li>
+				<li><a href="serviciosUnidadesHijos.php">Servicios</a></li>     
+				<li><a href="funcionariosUnidadesHijos.php">Personal</a></li>
+				<li><a href="vehiculosUnidadesHijos.php">Vehiculos</a></li>
+				<li><a href="controlIngresoDatos.php">Control</a></li>
+				<li><a href="javascript:cerrarAplicacion()">Cerrar</a></li>
+			</ul>
+		<?}?>
+		
+		<?if ($codigoPerfil == 30 || $codigoPerfil == 70){?>
+		 	<ul class="menuPrincipal">  
+		 		<li style="border-left:0px;"></li>
+				<li style="border-left:0px;"></li>  
+				<li><a href="certificacionServicio.php">Validar</a></li>
+				<li><a href="serviciosUnidadesHijos.php">Servicios</a></li>     
+				<li><a href="funcionariosUnidadesHijos.php">Personal</a></li>
+				<li><a href="vehiculosUnidadesHijos.php">Vehiculos</a></li>
+				<li><a href="javascript:cerrarAplicacion()">Cerrar</a></li>
+			</ul>
+		<?}?>
+		
+		<?if ($codigoPerfil == 80){?>
+		 	<ul class="menuPrincipal">    
+				<li><a href="certificacionServicio.php">Validar</a></li>
+				<li><a href="servicios.php">Servicios</a></li>     
+				<li><a href="#">Personal</a>
+					<ul>    
+						<li><a href="personal.php">Personal Unidad</a></li>
+						<li><a href="licenciasDeConducir.php">Licencias de Conducir</a></li>     
+						<li><a href="licenciasMedicas.php">Licencias Medicas</a></li>    
+					</ul>
+				</li>
+				<li><a href="vehiculos.php">Vehiculos</a></li>
+				<li><a href="armas.php">Armas</a></li>
+				<li><a href="consultas.php">Consultas</a></li>
+				<li><a href="javascript:cerrarAplicacion()">Cerrar</a></li>
+			</ul>
+		<?}?>
+		
+	 <?if ($codigoPerfil == 90){?>
+		 	<ul class="menuPrincipal">    
+        <li style="border-left:0px;"></li>
+				<li style="border-left:0px;"></li>
+				<li><a href="serviciosUnidadesHijos.php">Servicios</a></li>     
+				<li><a href="funcionariosUnidadesHijos.php">Personal</a></li>
+				<li><a href="vehiculosUnidadesHijos.php">Vehiculos</a></li>
+				<li><a href="controlIngresoDatos.php">Control</a></li>
+				<li><a href="javascript:cerrarAplicacion()">Cerrar</a></li>
+			</ul>
+		<?}?>
+		
+				<?if ($codigoPerfil == 45 || $codigoPerfil == 120){?> <!--Perfil añadido el 16-04-2015!-->
+		 	<ul class="menuPrincipal">  
+         <li><a href="certificacionServicio.php">Validar</a></li>	
+				<li><a href="serviciosUnidadesEspecializadas.php">Servicios</a></li>  	             
+					 <?   
+						if($codigoPerfil == 120){
+						echo "<li><a href='#'>Personal</a>";
+            echo "<ul>"; 
+						echo "<li><a href='personalConHijos.php'>Personal ESUCAR</a></li>"; 
+						echo "<li><a href='licenciasDeConducir.php'>Licencias de Conducir</a></li>";  
+						echo "<li><a href='personalAgregado.php'>Agregados a ESUCAR</a></li>";
+						echo "<li><a href='licenciasMedicas.php'>Licencias Medicas</a></li>";  
+						echo "</ul>"; 
+           echo "</li>";
+				       
+           }else{
+             
+            echo "<li><a href='#'>Personal</a>";
+            echo "<ul>"; 
+            if($unidadEspecialidad==41 && $unidadUsuario==10630){
+           	echo "<li><a href='personalConHijos.php'>Personal Subprefectura</a></li>";
+           	echo "<li><a href='licenciasDeConducir.php'>Licencias de Conducir</a></li>";  
+            echo "<li><a href='personalAgregado.php'>Agregados a la Subprefectura</a></li>";
+            echo "<li><a href='licenciasMedicas.php'>Licencias Medicas</a></li>";  
+          }else{
+          		echo "<li><a href='personalConHijos.php'>Personal Prefectura</a></li>";
+          		echo "<li><a href='licenciasDeConducir.php'>Licencias de Conducir</a></li>";  
+              echo "<li><a href='personalAgregado.php'>Agregados a la Prefectura</a></li>";
+             	echo "<li><a href='licenciasMedicas.php'>Licencias Medicas</a></li>";  
+          	}   
+            echo "</ul>"; 
+           echo "</li>"; 
+           	}
+           	
+           ?>       
+							
+			 		 <?   
+						if($codigoPerfil == 120){
+						
+						echo "<li><a href='#'>Vehiculos</a>";
+            echo "<ul>"; 
+						echo "<li><a href='vehiculosConHijos.php'>Vehiculos ESUCAR</a></li>"; 
+						echo "<li><a href='vehiculoAgregado.php'>Agregados a ESUCAR</a></li>";
+						echo "</ul>"; 
+           echo "</li>";
+				       
+           }else{
+             
+            echo "<li><a href='#'>Vehiculos</a>";
+            echo "<ul>"; 
+            if($unidadEspecialidad==41 && $unidadUsuario==10630){
+           	echo "<li><a href='vehiculosConHijos.php'>Vehiculos Subprefectura</a></li>";
+            echo "<li><a href='vehiculoAgregado.php'>Agregados a la Subprefectura</a></li>";   
+          }else{
+          	  echo "<li><a href='vehiculosConHijos.php'>Vehiculos Prefectura</a></li>";
+              echo "<li><a href='vehiculoAgregado.php'>Agregados a la Prefectura</a></li>";   
+          	}
+            echo "</ul>"; 
+           echo "</li>"; 
+           	}
+           	
+           ?> 
+           
+			 		 <?   
+						if($codigoPerfil == 120){
+						
+						echo "<li><a href='#'>Armas</a>";
+            echo "<ul>"; 
+						echo "<li><a href='armasConHijos.php'>Armas ESUCAR</a></li>"; 
+						echo "<li><a href='armaAgregada.php'>Agregadas a ESUCAR</a></li>";
+						echo "</ul>"; 
+           echo "</li>";
+				       
+           }else{
+             
+            echo "<li><a href='#'>Armas</a>";
+            echo "<ul>"; 
+            if($unidadEspecialidad==41 && $unidadUsuario==10630){
+           	echo "<li><a href='armasConHijos.php'>Armas Subprefectura</a></li>";
+            echo "<li><a href='armaAgregada.php'>Agregadas a la Subprefectura</a></li>";   
+          }else{
+          	  echo "<li><a href='armasConHijos.php'>Armas Prefectura</a></li>";
+              echo "<li><a href='armaAgregada.php'>Agregadas a la Prefectura</a></li>";   
+          	}
+            echo "</ul>"; 
+           echo "</li>"; 
+           	}
+           	
+           ?> 
+			 	<li><a href="consultas.php">Consultas</a></li>
+			 	<li><a href="javascript:cerrarAplicacion()">Cerrar</a></li>	
+			</ul>
+		<?}?>
+
+		</td>
+	   </tr>
+	 </table>
+</div>
+<script>
+	var presionado = true;
+	function aparece_arbol(){
+		/*if(presionado){
+			document.getElementById('navBar').style.display = 'block';
+			presionado=false;
+		}
+		else{
+			document.getElementById('navBar').style.display = 'none';
+			presionado=true;	
+		}*/
+		window.location = ("unidades.php");
+	}
+</script>
+
+<script>
+  window.onunload = window.onbeforeunload = function(){
+  return 'Ud esta abandonando este sitio, su sesion se finalizara';
+</script>
+
+
+

@@ -1,0 +1,63 @@
+.menuPrincipal * { 
+	font-family			: Verdana, Arial,sans-serif;
+	font-weight			: bold;
+	font-size			: 10px;
+	list-style			: none; 
+	text-decoration		: none; 
+	margin				: 0; 
+	padding				: 0; 
+}   
+
+
+.menuPrincipal > li { 
+	float				: left;
+	width				: 14%; 
+	border-left			: 1px solid #ffffff; 
+}   
+
+.menuPrincipal li a { 
+	color				: #FFF; 
+	display				: block;
+	padding				: 2px 0px 2px 0px;
+	text-align			: center;
+}   
+
+.menuPrincipal li a:hover { 
+	color				: #000000;
+} 
+
+
+.menuPrincipal li ul { 
+	display				: none; 
+	position			: absolute; 
+	min-width			: 350px; 
+	background-image	: url(../img/barra.jpg);
+	border-left			: 1px solid #ffffff; 
+	border-top			: 1px solid #ffffff; 
+	border-right		: 1px solid #000000; 
+	border-bottom		: 1px solid #000000; 
+} 
+
+.menuPrincipal li ul a { 
+	padding				: 7px 7px;
+	text-align			: left;
+	border-left			: 1px solid #ffffff; 
+	border-top			: 1px solid #ffffff; 
+	border-right		: 1px solid #000000; 
+	border-bottom		: 1px solid #000000;
+} 
+
+.menuPrincipal li:hover > ul { 
+	display				: block; 
+} 
+
+
+#contenedorMenu{
+	width				: 100%;
+	background-image	: url(../img/barra.jpg);
+	height				: 23px;
+}
+
+.nav li ul li ul {
+	right				: -300px;
+}

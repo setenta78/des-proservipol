@@ -1,0 +1,66 @@
+
+$.getJSON('js/graph/stocks/data/usdeur.json', function (data) {
+
+  var startDate = new Date(data[data.length - 1][0]),
+    minRate = 0,
+    maxRate = 0,
+    startPeriod,
+    date,
+    rate,
+    index;
+
+  startDate.setMonth(startDate.getMonth() - 3); // a quarter of a year before last data point
+  startPeriod = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+
+  for (index = data.length - 1; index >= 0; index = index - 1) {
+    date = data[index][0]; // data[i][0] is date
+    rate = data[index][1]; // data[i][1] is exchange rate
+    if (date < startPeriod) {
+      break; // stop measuring highs and lows
+    }
+    if (rate > maxRate) {
+      maxRate = rate;
+    }
+    if (rate < minRate) {
+      minRate = rate;
+    }
+  }
+
+  // Create the chart
+  Highcharts.stockChart('container_graph', {
+
+    rangeSelector: {
+      selected: 1
+    },
+
+    title: {
+      //text: 'USD to EUR exchange rate'
+      text: ''
+    },
+
+    yAxis: {
+      title: {
+        //text: 'Exchange rate'
+        text: ''
+      },
+      plotBands: [{
+        from: minRate,
+        to: maxRate,
+        color: 'rgba(68, 170, 213, 0.2)',
+        label: {
+          //text: "Last quarter year's value range"
+          text: ""
+        }
+      }]
+    },
+
+    series: [{
+      //name: 'USD to EUR',
+      name: '',
+      data: data,
+      tooltip: {
+        valueDecimals: 4
+      }
+    }]
+  });
+});

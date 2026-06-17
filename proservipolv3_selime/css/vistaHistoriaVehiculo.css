@@ -1,0 +1,10 @@
+
+#listadoHistoricoVehiculo{
+	overflow-y				: scroll;
+	scrollbar-track-color	: #d0d0d0;
+	scrollbar-face-color	: #d0d0d0;
+	height					: 300px;
+	position				: relative;
+	width		  			: 100%; 
+	align					: center;
+}

@@ -1,0 +1,105 @@
+/* Aseguramos que el body ocupe toda la pantalla */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start; /* Asegura que el contenido no quede pegado al pie */
+}
+
+/* Este es el contenedor principal donde irá el contenido */
+.texto3 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+}
+
+/* Estilo para las tablas */
+.campos {
+    background-color: #FFFFFF;
+    border: 1px solid #666666;
+    font-size: 9pt;
+    color: #000000;
+}
+
+/* Otros estilos que ya tienes */
+.texto {
+    font-family: Verdana;
+    font-size: 10px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.texto2 {
+    font-family: Verdana;
+    font-size: 14px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.texto3 {
+    font-family: Verdana;
+    font-size: 12px;
+    color: #000000;
+    font-weight: normal;
+    margin: 10px 0;
+    padding: 5px;
+
+/* Estilo para el footer */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8f8e8e;
+    color: white;
+    padding: 20px;
+    position: relative;
+    margin-top: auto; /* Esto asegura que el footer se quede abajo */
+    width: 100%;
+}
+
+/* Asegurar que el logo y texto estén alineados en el footer */
+footer div {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo del footer */
+footer img {
+    margin-right: 20px;
+}
+
+/* Estilo de texto en el footer */
+footer h4, footer h5 {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Estilo de enlaces en el footer */
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividad: Cuando la pantalla es pequeña (por ejemplo, móviles) */
+@media (max-width: 768px) {
+    footer div {
+        flex-direction: column; /* Cambiar de fila a columna */
+        text-align: center;
+    }
+
+    footer img {
+        margin-bottom: 10px; /* Espacio debajo del logo */
+    }
+
+    footer h4, footer h5 {
+        font-size: 14px; /* Ajustar tamaño de fuente para móviles */
+    }
+}

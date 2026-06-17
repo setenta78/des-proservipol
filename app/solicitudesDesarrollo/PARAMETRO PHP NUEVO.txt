@@ -1,0 +1,374 @@
+
+
+
+//IDENTIFICADOR11
+if($idFuncionario9!="" and $idUsuario!=""){
+ 	$identificador1=$idFuncionario9;
+  $identificador2=$idUsuario;
+  $etiqueta1="FUNCIONARIO";
+  $etiqueta2="RUT";
+  $tipoMovimiento=20;
+}elseif($idFuncionario9!=""){
+	$identificador1=$idFuncionario9;
+  $identificador2= "NULL";
+  $etiqueta1="FUNCIONARIO";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idUsuario!="")	{
+	$identificador1="NULL";
+  $identificador2= $idUsuario;
+  $etiqueta1="NULL";
+  $etiqueta2="RUT";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR12
+if($idFuncionario10!="" and $idFolio!=""){
+ 	$identificador1=$idFuncionario10;
+  $identificador2=$idFolio;
+  $etiqueta1="FUNCIONARIO";
+  $etiqueta2="FOLIO";
+  $tipoMovimiento=20;
+}elseif($idFuncionario10!=""){
+	$identificador1=$idFuncionario10;
+  $identificador2= "NULL";
+  $etiqueta1="FUNCIONARIO";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idFolio!="")	{
+	$identificador1="NULL";
+  $identificador2= $idFolio;
+  $etiqueta1="NULL";
+  $etiqueta2="FOLIO";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR13
+if($idFuncionario11!="" and $idFolio2!=""){
+ 	$identificador1=$idFuncionario11;
+  $identificador2=$idFolio2;
+  $etiqueta1="FUNCIONARIO";
+  $etiqueta2="FOLIO";
+  $tipoMovimiento=20;
+}elseif($idFuncionario11!=""){
+	$identificador1=$idFuncionario11;
+  $identificador2= "NULL";
+  $etiqueta1="FUNCIONARIO";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idFolio2!="")	{
+	$identificador1="NULL";
+  $identificador2= $idFolio2;
+  $etiqueta1="NULL";
+  $etiqueta2="FOLIO";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR14
+if($idBCU!="" and $idTipoAnimal!=""){
+ 	$identificador1=$idBCU;
+  $identificador2=$idTipoAnimal;
+  $etiqueta1="BCU";
+  $etiqueta2="ANIMAL";
+  $tipoMovimiento=20;
+}elseif($idBCU!=""){
+	$identificador1=$idBCU;
+  $identificador2= "NULL";
+  $etiqueta1="BCU";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idTipoAnimal!="")	{
+	$identificador1="NULL";
+  $identificador2= $idTipoAnimal;
+  $etiqueta1="NULL";
+  $etiqueta2="ANIMAL";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR15
+if($idBCU2!="" and  $idFecha3!=""){
+ 	$identificador1=$idBCU2;
+  $identificador2= $idFecha3;
+  $etiqueta1="BCU";
+  $etiqueta2="FECHA";
+  $tipoMovimiento=20;
+}elseif($idBCU!=""){
+	$identificador1=$idBCU2;
+  $identificador2= "NULL";
+  $etiqueta1="BCU";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idFecha3!="")	{
+	$identificador1="NULL";
+  $identificador2=  $idFecha3;
+  $etiqueta1="NULL";
+  $etiqueta2="FECHA";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR16
+if($idBCU3!="" and  $idBCU4!=""){
+ 	$identificador1=$idBCU3;
+  $identificador2= $idBCU4;
+  $etiqueta1="BCU";
+  $etiqueta2="BCU";
+  $tipoMovimiento=20;
+}elseif($idBCU3!=""){
+	$identificador1=$idBCU3;
+  $identificador2= "NULL";
+  $etiqueta1="BCU";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idBCU4!="")	{
+	$identificador1="NULL";
+  $identificador2=  $idBCU4;
+  $etiqueta1="NULL";
+  $etiqueta2="BCU";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR17
+if($idBCU5!="" and  $idPatente!=""){
+ 	$identificador1=$idBCU5;
+  $identificador2= $idPatente;
+  $etiqueta1="BCU";
+  $etiqueta2="PATENTE";
+  $tipoMovimiento=20;
+}elseif($idBCU5!=""){
+	$identificador1=$idBCU5;
+  $identificador2= "NULL";
+  $etiqueta1="BCU";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idPatente!="")	{
+	$identificador1="NULL";
+  $identificador2= $idPatente;
+  $etiqueta1="NULL";
+  $etiqueta2="PATENTE";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR18
+if($idBCU6!="" and  $idFecha4!=""){
+ 	$identificador1=$idBCU6;
+  $identificador2= $idFecha4;
+  $etiqueta1="BCU";
+  $etiqueta2="FECHA";
+  $tipoMovimiento=20;
+}elseif($idBCU6!=""){
+	$identificador1=$idBCU6;
+  $identificador2= "NULL";
+  $etiqueta1="BCU";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idFecha4!="")	{
+	$identificador1="NULL";
+  $identificador2= $idFecha4;
+  $etiqueta1="NULL";
+  $etiqueta2="FECHA";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR19
+if($idBCU7!="" and  $idPatente2!=""){
+ 	$identificador1=$idBCU7;
+  $identificador2= $idPatente2;
+  $etiqueta1="BCU";
+  $etiqueta2="PATENTE";
+  $tipoMovimiento=20;
+}elseif($idBCU7!=""){
+	$identificador1=$idBCU7;
+  $identificador2= "NULL";
+  $etiqueta1="BCU";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idPatente2!="")	{
+	$identificador1="NULL";
+  $identificador2= $idPatente2;
+  $etiqueta1="NULL";
+  $etiqueta2="PATENTE";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR20
+if($idPatente3!="" and   $idBCU8!=""){
+ 	$identificador1=$idPatente3;
+  $identificador2= $idBCU8; 
+  $etiqueta1="BCU";
+  $etiqueta2="PATENTE";
+  $tipoMovimiento=20;
+}elseif($idBCU8!=""){
+	$identificador1=$idBCU8;
+  $identificador2= "NULL";
+  $etiqueta1="BCU";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idFecha4!="")	{
+	$identificador1="NULL";
+  $identificador2= $idPatente3;
+  $etiqueta1="NULL";
+  $etiqueta2="PATENTE";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR21
+if($idSerie!="" and   $idTarjeta!=""){
+ 	$identificador1=$idSerie;
+  $identificador2= $idTarjeta; 
+  $etiqueta1="SERIE";
+  $etiqueta2="TARJETA";
+  $tipoMovimiento=20;
+}elseif($idSerie!=""){
+	$identificador1=$idSerie;
+  $identificador2= "NULL";
+  $etiqueta1="SERIE";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idTarjeta!="")	{
+	$identificador1="NULL";
+  $identificador2= $idTarjeta;
+  $etiqueta1="NULL";
+  $etiqueta2="TARJETA";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR22
+if($idSerie2!="" and $idFecha5!=""){
+ 	$identificador1=$idSerie2;
+  $identificador2= $idFecha5; 
+  $etiqueta1="SERIE";
+  $etiqueta2="FECHA";
+  $tipoMovimiento=20;
+}elseif($idSerie2!=""){
+	$identificador1=$idSerie2;
+  $identificador2= "NULL";
+  $etiqueta1="SERIE";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idFecha5!="")	{
+	$identificador1="NULL";
+  $identificador2= $idFecha5;
+  $etiqueta1="NULL";
+  $etiqueta2="FECHA";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR23
+if($idSerie3!="" and $idSerie4!=""){
+ 	$identificador1=$idSerie3;
+  $identificador2= $idSerie4; 
+  $etiqueta1="SERIE";
+  $etiqueta2="SERIE";
+  $tipoMovimiento=20;
+}elseif($idSerie3!=""){
+	$identificador1=$idSerie3;
+  $identificador2= "NULL";
+  $etiqueta1="SERIE";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idSerie4!="")	{
+	$identificador1="NULL";
+  $identificador2= $idSerie4;
+  $etiqueta1="NULL";
+  $etiqueta2="SERIE";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR24
+if($idSerie5!="" and $idModelo!=""){
+ 	$identificador1=$idSerie5;
+  $identificador2= $idModelo; 
+  $etiqueta1="SERIE";
+  $etiqueta2="MODELO";
+  $tipoMovimiento=20;
+}elseif($idSerie5!=""){
+	$identificador1=$idSerie5;
+  $identificador2= "NULL";
+  $etiqueta1="SERIE";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idModelo!="")	{
+	$identificador1="NULL";
+  $identificador2= $idModelo;
+  $etiqueta1="NULL";
+  $etiqueta2="MODELO";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR25
+if($idSerie6!="" and $idFecha6!=""){
+ 	$identificador1=$idSerie6;
+  $identificador2= $idFecha6; 
+  $etiqueta1="SERIE";
+  $etiqueta2="FECHA";
+  $tipoMovimiento=20;
+}elseif($idSerie6!=""){
+	$identificador1=$idSerie6;
+  $identificador2= "NULL";
+  $etiqueta1="SERIE";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idFecha6!="")	{
+	$identificador1="NULL";
+  $identificador2= $idFecha6;
+  $etiqueta1="NULL";
+  $etiqueta2="FECHA";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR26
+if($idSerie7!="" and $idSerie8!=""){
+ 	$identificador1=$idSerie7;
+  $identificador2= $idSerie8; 
+  $etiqueta1="SERIE";
+  $etiqueta2="FECHA";
+  $tipoMovimiento=20;
+}elseif($idSerie7!=""){
+	$identificador1=$idSerie7;
+  $identificador2= "NULL";
+  $etiqueta1="SERIE";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idSerie8!="")	{
+	$identificador1="NULL";
+  $identificador2= $idSerie8;
+  $etiqueta1="NULL";
+  $etiqueta2="FECHA";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR27
+if($idDescUnidad!="" and $idDescUnidad2!=""){
+ 	$identificador1=$idDescUnidad;
+  $identificador2= $idDescUnidad2; 
+  $etiqueta1="UNIDAD";
+  $etiqueta2="UNIDAD";
+  $tipoMovimiento=20;
+}elseif($idDescUnidad!=""){
+	$identificador1=$idDescUnidad;
+  $identificador2= "NULL";
+  $etiqueta1="UNIDAD";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}elseif($idDescUnidad2!="")	{
+	$identificador1="NULL";
+  $identificador2= $idDescUnidad2;
+  $etiqueta1="NULL";
+  $etiqueta2="UNIDAD";
+  $tipoMovimiento=10;
+}
+
+//IDENTIFICADOR28
+if($idUnidad3!=""){
+	$identificador1= $idUnidad3;
+  $identificador2= "NULL";
+  $etiqueta1="UNIDAD";
+  $etiqueta2="NULL";
+  $tipoMovimiento=20;
+}else{
+	$identificador1="NULL";
+  $identificador2= "NULL";
+  $etiqueta1="NULL";
+  $etiqueta2="NULL";
+  $tipoMovimiento=10;
+}

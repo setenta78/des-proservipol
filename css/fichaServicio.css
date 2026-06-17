@@ -1,0 +1,88 @@
+#selTipoServicio, #selServicio, #selTipoExtraordinario, #textOtroExtraordinario, #textFechaServicio, #selHoraInicio, #selHoraTermino,
+#textObservaciones, #selTipoDeOrden,#selLicencia,
+#funcionariosDisponibles, #personalAsignado, 
+#vehiculosDisponibles, #vehiculosAsignados, #caballosDisponibles, #perrosDisponibles, #animalesAsignados, #simccarDisponibles, #simccarAsignados, #simccarServicio,
+#textCantidadVehiculos,#textVehiculoAsignado,#textKmInicial,#textKmFinal,#textCombustible,#cbEliminarVehiculo, #factorMV, #factorMV2,
+#textCantidadArmas, #selTipoArma, #textIdentificacionArma, #selResponsableArma, #cbEliminar,
+#textCantidadAnimales, #selTipoAnimal, #textIdentificacionAnimal, #selResponsableAnimal, #cbEliminarAnimal,
+#textCantidadAccesorios, #selTipoAccesorio, #textCantAccesorio, #cbEliminarAccesorio{
+	font-family	  			: Verdana, Arial,sans-serif;
+	font-size	  			: 10px;
+	width		  			: 100%;
+	text-transform			: uppercase;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+}
+
+#txttipo,#txtnum,#txtape1,#txtcolor,#cboPermiso,
+#txtape2,#txtnom,#txtrut,#Listcolor,
+#txtdig,#txtfec1,#txtfec2,#txtfolio,
+#txtdias,#txtfec3,#txtruth,
+#txtdigh,#txtlic,#txtrec,
+#txtinv,#txtrep,#txtcarep,
+#txtrutp,#txtesp,#txtmed,
+#txtfecF,#fechaReal,#textFechaTermino,#txtFechaTerminoReal,#seccion1a,
+#cboLicencia,#cboReposo,#cboEspecialidad,#cboMes,#txtbandas,#txtinfra3,#txtinfra19,#txtinfra93,#txtfisc3,#txtfisca19,#txtfisca93,#txtunicpp,#txtunicpr,#txtcantr,#txtcantc,#txtcantcc,#txtent,#txtos11inf,#txtos11fisc,
+#zona,#pref,#com,#dest, #codFun,#nom, #perfil, #cboSubProblema,#cboModulo,#fSolicitud,#estSolicitud,#cboProblema,#grado,#textBCU,#textPatente,#textFunc,#textFechaf,#textSerie,#textFechas,#cboMovimiento,#cboIngenieros,
+#textUnidad,#textDia,#textServicio,#textFunc,#textRut,#textNombre,#textUsu,#textFolio,#textBcu,#textTipoAni,#textBcu2,#textPatente,#textSerie,#textTarjeta,#textSerie2,#textModelo,#textDia2,#textDia3,#textDia4,#textDia5,
+#textDia6,#textDescUni,#textDescUni2,#cboSecciones,#textUnidad,#textUnidad2,#textUnidad3,#textUnidad4,#textDia,#textDia2,#textDia3,#textDia4,#textDia5,#textDia6,#textServicio,#textFunc,#textRut,#textNombre,#textUsu,#textFolio,
+#textBcu,#textBcu2,#textBcu3,#textBcu4,#textBcu5,#textBcu6,#textBcu7,#textBcu8,#textTipoAni,#textBcu2,#textPatente,#textSerie,#textTarjeta,#textSerie2,#textSerie3,#textSerie4,#textSerie5,#textSerie6,#textSerie7,#textSerie8,#textModelo,
+#textDescUni,#textDescUni2,#textFunc2,#textFunc3,#textRut2,#textFunc4,#textRut3,#textFunc5,#textFunc6,#textFunc7,#textFunc8,#textFunc9,#textFunc10,#textFunc11,#textFolio2,#textPatente2,#textPatente3,#estado,
+#estado2,#tipoDeUsuario,#tipoDeAnimal,#textTipoUsuario,#textTipoAnimal{
+	font-family	  			: Verdana, Arial,sans-serif;
+	font-size	  			: 10px;
+	text-transform			: uppercase;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+}
+
+.right{
+    float: right;
+}
+
+#tituloSelecMultiple{
+	font-weight		: normal;
+	background-color: #003300;
+	font-weight		: bold;
+	height		  	: 20px;
+	border-left   	: 1px solid #ffffff;
+	border-top    	: 1px solid #ffffff;
+	border-right  	: 1px solid #909090;
+	border-bottom 	: 1px solid #909090;
+	padding   	  	: 0px 0px 0px 0px;
+	text-align	  	: center;
+	color 			: #ffffff;
+}
+
+#listadoVehiculosAsignados, #listadoArmas, #listadoAnimalesAsignados, #listadoAccesoriosAsignados{
+	overflow-y				: scroll;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+	height					: 240px;
+	position				: absolute;
+	width		  			: 99.8%; 
+}
+
+#personalServicio, #personalServicioMedio, #personalServicioMedioDestino, #vehiculosServicio, #vehiculosServicioDestino, #personalServicio2, #personalServicioDestino, #animalesDisponibles,
+#accesoriosDisponibles, #camarasDisponibles, #personalServicioAccesorio, #cuadrantesMV, #unidadesMV, #destinosSeleccionados, #unidadesSeleccionados, #armasDisponibles, #animalServicio, #animalServicioDestino{
+	font-family	  			: Verdana, Arial,sans-serif;
+	font-size	  			: 10px;
+	width		  			: 100%;
+	text-transform			: uppercase;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+}
+
+#listadoMediosVigilancia, #listadoMediosVigilanciaDestinos {
+	overflow-y				: scroll;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+	height					: 80px;
+}
+
+#listadoPersonalAccesorios{
+	overflow-y				: scroll;
+	scrollbar-track-color	: #C8D0CE;
+	scrollbar-face-color	: #C8D0CE;
+	height					: 120px;
+}

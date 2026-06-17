@@ -1,0 +1,164 @@
+@charset "utf-8";
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic,700,700italic,900,900italic");
+@import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,700,300&subset=latin,cyrillic");
+
+* {
+    margin: 0;
+} 
+html, body{
+	height: 100%;
+	font-family:"Roboto Condensed";
+	font-size:12px;
+	color:#464646;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+	background-image: url(../images/IsLSAE.jpg);
+	background-repeat: repeat;
+	background-size:cover;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 70px;
+	color: white;
+}
+
+.header{
+	background-image: url(../images/IsLSAE.jpg);
+	background-repeat: repeat;
+	background-size:cover;
+	margin: 0px;
+	padding: 0px;
+	height: 100px;
+	max-height: 100px;
+	width:100%;
+	background-color:#f5fbf3;
+	position: absolute;
+}
+
+.content{
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+	min-height:600px;
+	top	: 100px;
+	background-color:#f5fbf3;
+	position: absolute;
+	text-align: center;
+}
+
+#imgLogo{
+    border: none;
+    position: fixed;
+    left: 35px;
+    top: 5px;
+}
+
+#tituloLogo{
+    position: fixed;
+    left: 150px;
+    top: 35px;
+	color:#f5fbf3;
+}
+
+#formularioRegistro{
+	width: 45%;
+	height: 98%;
+	margin-top:20px;
+	left: 40%;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	-ms-border-radius: 10px 10px 10px 10px;
+	border: 2px solid #AFCC4A;
+	position: absolute;
+    margin-left: -200px;
+	display:none;
+}
+
+#formularioBusqueda{
+	width:400px;
+	height:150px;
+	left:25%;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	-ms-border-radius: 10px 10px 10px 10px;
+	border: 2px solid #AFCC4A;
+	position: absolute;
+    margin-left: -300px;
+}
+
+h2{
+	padding-top:20px;
+}
+
+#textCodVerificacion{
+	font-family			:'Roboto Condensed', sans-serif;
+	background			: #f7f0f0 url(../images/login_icon.png) no-repeat;
+	background-position	: 1% -2%;
+	position	 		: relative;
+ 	font-size 	 		: 14px;
+ 	color		 		: #334d55;
+	height				: 20px;
+	width               : 75%;
+	padding-top         : 5px;
+	padding-left        : 40px;
+}
+
+#labelTextRegistro{
+	font-size 	: 18px;
+	position	: relative;
+}
+
+#labelText{
+	font-size 	: 16px;
+	position	: relative;
+}
+
+.btn{
+    background-color	: #D1EAC1;
+    border				: 2px solid #07672B;
+    border-radius		: 5px;
+    -moz-border-radius	: 5px;
+    -webkit-border-radius	: 5px;
+    font-family			:'Roboto Condensed', sans-serif;
+    font-size			: 15px;
+    width				: 150px;
+    height				: 30px;
+	text-align			:center;
+}
+
+.btn:hover {
+	color: #fff;
+	background-color	: #88b77b;
+	font-size: 16px;
+	border: 3px solid #07672B;
+	text-align			:center;
+}
+
+#respuestaCertificado{
+    display: none;
+	width:600px;
+	height:420px;
+	left:58%;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	-ms-border-radius: 10px 10px 10px 10px;
+	border: 2px solid #AFCC4A;
+	position: absolute;
+    margin-left: -300px;
+}
+
+#iconoValidacion{
+    border: none;
+    position: relative;
+    left: 15px;
+    top: 5px;
+}
+
